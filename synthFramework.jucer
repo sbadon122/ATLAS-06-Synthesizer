@@ -4,6 +4,30 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="EFNugl" name="synthFramework">
     <GROUP id="{66FD8400-6D02-3DAD-76EB-B7D0CEE54811}" name="Source">
+      <GROUP id="{92D55D49-B8B5-D1CE-25FB-A2681BF7505F}" name="Maximilian">
+        <GROUP id="{FB2B3F3D-4D19-BEA8-C9D2-8F99133737E9}" name="libs">
+          <FILE id="fY3SI4" name="fft.cpp" compile="1" resource="0" file="Libraries/Maximilian/libs/fft.cpp"/>
+          <FILE id="DEiV4g" name="fft.h" compile="0" resource="0" file="Libraries/Maximilian/libs/fft.h"/>
+          <FILE id="WPpzn4" name="maxiAtoms.cpp" compile="1" resource="0" file="Libraries/Maximilian/libs/maxiAtoms.cpp"/>
+          <FILE id="hfoz6t" name="maxiAtoms.h" compile="0" resource="0" file="Libraries/Maximilian/libs/maxiAtoms.h"/>
+          <FILE id="bl3qkh" name="maxiBark.cpp" compile="1" resource="0" file="Libraries/Maximilian/libs/maxiBark.cpp"/>
+          <FILE id="EEsagg" name="maxiBark.h" compile="0" resource="0" file="Libraries/Maximilian/libs/maxiBark.h"/>
+          <FILE id="Qrg6u1" name="maxiFFT.cpp" compile="1" resource="0" file="Libraries/Maximilian/libs/maxiFFT.cpp"/>
+          <FILE id="IxIncz" name="maxiFFT.h" compile="0" resource="0" file="Libraries/Maximilian/libs/maxiFFT.h"/>
+          <FILE id="tMyome" name="maxiGrains.cpp" compile="1" resource="0" file="Libraries/Maximilian/libs/maxiGrains.cpp"/>
+          <FILE id="dcnguM" name="maxiGrains.h" compile="0" resource="0" file="Libraries/Maximilian/libs/maxiGrains.h"/>
+          <FILE id="d84R7V" name="maxim.h" compile="0" resource="0" file="Libraries/Maximilian/libs/maxim.h"/>
+          <FILE id="Fpqbv7" name="maxiMFCC.cpp" compile="1" resource="0" file="Libraries/Maximilian/libs/maxiMFCC.cpp"/>
+          <FILE id="iuvHxV" name="maxiMFCC.h" compile="0" resource="0" file="Libraries/Maximilian/libs/maxiMFCC.h"/>
+          <FILE id="ibxEHS" name="sineTable.h" compile="0" resource="0" file="Libraries/Maximilian/libs/sineTable.h"/>
+        </GROUP>
+        <FILE id="boaiZa" name="main.cpp" compile="1" resource="0" file="Libraries/Maximilian/main.cpp"/>
+        <FILE id="oarc0w" name="maximilian.cpp" compile="1" resource="0" file="Libraries/Maximilian/maximilian.cpp"/>
+        <FILE id="gOy3Xk" name="maximilian.h" compile="0" resource="0" file="Libraries/Maximilian/maximilian.h"/>
+        <FILE id="ibAcaw" name="README" compile="0" resource="1" file="Libraries/Maximilian/README"/>
+        <FILE id="U4rknl" name="stb_vorbis.c" compile="1" resource="0" file="Libraries/Maximilian/stb_vorbis.c"/>
+        <FILE id="af8n5l" name="stb_vorbis.h" compile="0" resource="0" file="Libraries/Maximilian/stb_vorbis.h"/>
+      </GROUP>
       <FILE id="qamVp9" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
       <FILE id="X7KvpY" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
@@ -60,7 +84,7 @@
     <MODULE id="juce_video" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
   <LIVE_SETTINGS>
-    <OSX buildEnabled="1"/>
+    <OSX buildEnabled="0"/>
   </LIVE_SETTINGS>
   <JUCEOPTIONS/>
 </JUCERPROJECT>
