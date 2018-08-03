@@ -57,10 +57,14 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    ScopedPointer<AudioProcessorValueTreeState> tree;
+    ScopedPointer<UndoManager>                  mUndoManager;
+
 private:
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessor)
+   
     Synthesiser mySynth;
     SynthVoice* myVoice;
     double lastSampleRate;
+     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessor)
 };

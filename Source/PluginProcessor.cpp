@@ -24,11 +24,29 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
                        )
 #endif
 {
+    mUndoManager = new UndoManager();
+    tree =  new AudioProcessorValueTreeState (*this, mUndoManager);
+    //need these normalisable range objects for the tree state below this
+    NormalisableRange<float> attackParam (0.1f, 5000.0f);
+    NormalisableRange<float> decayParam (1.0f, 2000.0f);
+    NormalisableRange<float> sustainParam (0.0f, 1.0f);
+    NormalisableRange<float> releaseParam (0.1f, 5000.0f);
+    
+    //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
+    tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
+    tree->createAndAddParameter("decay", "Decay", "decay", decayParam, 1.0f, nullptr, nullptr);
+    tree->createAndAddParameter("sustain", "Sustain", "sustain", sustainParam, 0.8f, nullptr, nullptr);
+    tree->createAndAddParameter("release", "Release", "release", releaseParam, 0.1f, nullptr, nullptr);
+    
+    tree->state = ValueTree ("SynthGUI");
+    
     mySynth.clearVoices();
-    for(int i =0; i<5; i++)
+    
+    for (int i = 0; i < 5; i++)
     {
         mySynth.addVoice(new SynthVoice());
     }
+    
     mySynth.clearSounds();
     mySynth.addSound(new SynthSound());
 }
@@ -102,8 +120,9 @@ void SynthFrameworkAudioProcessor::changeProgramName (int index, const String& n
 //==============================================================================
 void SynthFrameworkAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+  
     ignoreUnused(samplesPerBlock);
-    sampleRate = lastSampleRate;
+    lastSampleRate = sampleRate;
     mySynth.setCurrentPlaybackSampleRate(lastSampleRate);
 }
 
@@ -139,7 +158,22 @@ bool SynthFrameworkAudioProcessor::isBusesLayoutSupported (const BusesLayout& la
 
 void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
+     ScopedNoDenormals noDenormals;
+   
+    for (int i = 0; i < mySynth.getNumVoices(); i++)
+    {
+        
+        
+        if ((myVoice = dynamic_cast<SynthVoice*>(mySynth.getVoice(i))))
+        {
+            myVoice->getEnvelopeParams(tree->getRawParameterValue("attack"),
+                                       tree->getRawParameterValue("decay"),
+                                       tree->getRawParameterValue("sustain"),
+                                       tree->getRawParameterValue("release"));
+        }
+    }
     buffer.clear();
+    
     mySynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 }
 
