@@ -34,6 +34,12 @@ class SynthVoice : public SynthesiserVoice
         theWave = *selection;
     }
     
+    void setCutoffSound(float* setting)
+    {
+        std::cout << *setting << std::endl;
+        cutoffSetting = *setting;
+    }
+    
     double setOscType()
     {
         if(theWave == 0)
@@ -85,9 +91,11 @@ class SynthVoice : public SynthesiserVoice
             for (int sample = 0; sample < numSamples; ++sample)
             {
                 double theSound = env1.adsr(setOscType(), env1.trigger) * level;
+                double filteredSound = filter1.lores(theSound, cutoffSetting, 10);
+                
                 for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel)
                 {
-                    outputBuffer.addSample(channel, startSample, theSound);
+                    outputBuffer.addSample(channel, startSample, filteredSound);
                 }
                 ++startSample;
             }
@@ -101,4 +109,5 @@ class SynthVoice : public SynthesiserVoice
     double level;
     double frequency;
     int theWave;
+    double cutoffSetting;
 };

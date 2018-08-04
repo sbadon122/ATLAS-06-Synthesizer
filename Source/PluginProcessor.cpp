@@ -32,6 +32,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> sustainParam (0.0f, 1.0f);
     NormalisableRange<float> releaseParam (0.1f, 5000.0f);
     NormalisableRange<float> waveTypeParam (0, 2);
+    NormalisableRange<float> filterParam (20, 16000);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -39,6 +40,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("sustain", "Sustain", "sustain", sustainParam, 0.8f, nullptr, nullptr);
     tree->createAndAddParameter("release", "Release", "release", releaseParam, 0.1f, nullptr, nullptr);
     tree->createAndAddParameter("wavetype", "WaveType", "wavetype", waveTypeParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("cutoff", "Cutoff", "cutoff", filterParam, 16000,nullptr , nullptr);
     
     tree->state = ValueTree ("SynthGUI");
     
@@ -173,6 +175,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
                                        tree->getRawParameterValue("sustain"),
                                        tree->getRawParameterValue("release"));
             myVoice->getOscType(tree->getRawParameterValue("wavetype"));
+            myVoice->setCutoffSound(tree->getRawParameterValue("cutoff"));
         }
     }
     buffer.clear();

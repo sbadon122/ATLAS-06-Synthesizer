@@ -4,6 +4,8 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="EFNugl" name="synthFramework">
     <GROUP id="{66FD8400-6D02-3DAD-76EB-B7D0CEE54811}" name="Source">
+      <FILE id="zEgCqN" name="Filter.cpp" compile="1" resource="0" file="Source/Filter.cpp"/>
+      <FILE id="XLIsRS" name="Filter.h" compile="0" resource="0" file="Source/Filter.h"/>
       <FILE id="C7H9nt" name="Envelope.cpp" compile="1" resource="0" file="Source/Envelope.cpp"/>
       <FILE id="bKfPaq" name="Envelope.h" compile="0" resource="0" file="Source/Envelope.h"/>
       <FILE id="aY5ob6" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>

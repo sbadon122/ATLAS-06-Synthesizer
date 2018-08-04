@@ -14,6 +14,7 @@
 #include "PluginProcessor.h"
 #include "Oscillator.h"
 #include "Envelope.h"
+#include "Cutoff.h"
 
 //==============================================================================
 /**
@@ -38,15 +39,7 @@ private:
     
     Oscillator oscGui;
     Envelope envGui;
+    Cutoff filterGui;
     
-//    Slider attackSlider;
-//    Slider decaySlider;
-//    Slider sustainSlider;
-//    Slider releaseSlider;
-//    
-//    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> attackVal;
-//    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> decayVal;
-//    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> sustainVal;
-//    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> releaseVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };
