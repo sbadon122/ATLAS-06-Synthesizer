@@ -36,8 +36,13 @@ class SynthVoice : public SynthesiserVoice
     
     void setCutoffSound(float* setting)
     {
-        std::cout << *setting << std::endl;
         cutoffSetting = *setting;
+    }
+    
+    void setFitlerResonance(float* setting)
+    {
+        std::cout << *setting << std::endl;
+        resonanceSetting = *setting;
     }
     
     double setOscType()
@@ -84,15 +89,25 @@ class SynthVoice : public SynthesiserVoice
         {
         }
     
+        void printSynthSettings(double theSound)
+        {
+            std::cout << "Sound ";
+            std::cout << theSound << std::endl;
+            std::cout << "Cuttoff ";
+            std::cout << cutoffSetting <<std::endl;
+            std::cout << "resonanceSetting ";
+            std::cout << resonanceSetting << std::endl;
+        }
+    
         void renderNextBlock(AudioBuffer<float> &outputBuffer,int startSample, int numSamples) override
         {
         
             
             for (int sample = 0; sample < numSamples; ++sample)
             {
-                double theSound = env1.adsr(setOscType(), env1.trigger) * level;
-                double filteredSound = filter1.lores(theSound, cutoffSetting, 10);
-                
+                double theSound = env1.adsr(setOscType(), env1.trigger) * level ;
+                //printSynthSettings(theSound);
+                double filteredSound = filter1.lores(theSound, cutoffSetting, resonanceSetting);
                 for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel)
                 {
                     outputBuffer.addSample(channel, startSample, filteredSound);
@@ -110,4 +125,5 @@ class SynthVoice : public SynthesiserVoice
     double frequency;
     int theWave;
     double cutoffSetting;
+    double resonanceSetting;
 };

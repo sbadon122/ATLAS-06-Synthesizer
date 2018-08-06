@@ -15,6 +15,7 @@
 #include "Oscillator.h"
 #include "Envelope.h"
 #include "Cutoff.h"
+#include "Resonance.h"
 
 //==============================================================================
 /**
@@ -40,6 +41,7 @@ private:
     Oscillator oscGui;
     Envelope envGui;
     Cutoff filterGui;
+    Resonance resonanceGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };

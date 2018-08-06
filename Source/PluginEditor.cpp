@@ -13,7 +13,7 @@
 
 //==============================================================================
 SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), oscGui(p), envGui(p), filterGui(p)
+    : AudioProcessorEditor (&p), processor (p), oscGui(p), envGui(p), filterGui(p), resonanceGui(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -21,6 +21,7 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     addAndMakeVisible(&oscGui);
     addAndMakeVisible(&envGui);
     addAndMakeVisible(&filterGui);
+    addAndMakeVisible(&resonanceGui);
     
     
 }
@@ -43,7 +44,8 @@ void SynthFrameworkAudioProcessorEditor::resized()
     Rectangle<int> area = getLocalBounds();
     oscGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
     envGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
-    filterGui.setBounds(area.removeFromLeft(componentWidth*2).removeFromTop(componentHeight*2));
+    filterGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
+    resonanceGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
 
 }
 

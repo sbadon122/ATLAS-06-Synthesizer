@@ -16,8 +16,8 @@ Cutoff::Cutoff(SynthFrameworkAudioProcessor& p) :
 processor(p)
 {
     filterSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    filterSlider.setRange(20.0f, 19000.0f);
-    filterSlider.setValue(19000.0f);
+    filterSlider.setRange(30.0f, 4000.0f);
+    filterSlider.setValue(4000.0f);
     filterSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
     filterSlider.addListener(this);
     addAndMakeVisible(&filterSlider);
@@ -37,7 +37,7 @@ void Cutoff::paint (Graphics& g)
 
 void Cutoff::resized()
 {
-    filterSlider.setBounds(210, 10, 40, 100);
+    filterSlider.setBounds(10, 10, 40, 100);
 
 }
 
