@@ -41,8 +41,14 @@ class SynthVoice : public SynthesiserVoice
     
     void setFitlerResonance(float* setting)
     {
-        std::cout << *setting << std::endl;
+    
         resonanceSetting = *setting;
+    }
+    
+    void setFilterEnvelopeSetting(float* setting)
+    {
+    
+        filterEnvelopeSetting = *setting;
     }
     
     double setOscType()
@@ -89,14 +95,17 @@ class SynthVoice : public SynthesiserVoice
         {
         }
     
-        void printSynthSettings(double theSound)
+    
+        double calculateFilterCutoff(double currentVolume)
         {
-            std::cout << "Sound ";
-            std::cout << theSound << std::endl;
-            std::cout << "Cuttoff ";
-            std::cout << cutoffSetting <<std::endl;
-            std::cout << "resonanceSetting ";
-            std::cout << resonanceSetting << std::endl;
+             if(cutoffSetting > filterEnvelopeSetting)
+             {
+                 return cutoffSetting;
+             }
+            else
+            {
+                return currentVolume*filterEnvelopeSetting;
+            }
         }
     
         void renderNextBlock(AudioBuffer<float> &outputBuffer,int startSample, int numSamples) override
@@ -105,9 +114,8 @@ class SynthVoice : public SynthesiserVoice
             
             for (int sample = 0; sample < numSamples; ++sample)
             {
-                double theSound = env1.adsr(setOscType(), env1.trigger) * level ;
-                //printSynthSettings(theSound);
-                double filteredSound = filter1.lores(theSound, cutoffSetting, resonanceSetting);
+                double myCurrentVolume = env1.adsr(1., env1.trigger) * level;
+                double filteredSound = filter1.lores(setOscType()*myCurrentVolume, calculateFilterCutoff(myCurrentVolume), resonanceSetting);
                 for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel)
                 {
                     outputBuffer.addSample(channel, startSample, filteredSound);
@@ -126,4 +134,5 @@ class SynthVoice : public SynthesiserVoice
     int theWave;
     double cutoffSetting;
     double resonanceSetting;
+    double filterEnvelopeSetting;
 };

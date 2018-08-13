@@ -16,6 +16,7 @@
 #include "Envelope.h"
 #include "Cutoff.h"
 #include "Resonance.h"
+#include "FilterEnvelope.h"
 
 //==============================================================================
 /**
@@ -42,6 +43,7 @@ private:
     Envelope envGui;
     Cutoff filterGui;
     Resonance resonanceGui;
+    FilterEnvelope filterEnvelopeGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };

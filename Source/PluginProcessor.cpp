@@ -34,6 +34,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> waveTypeParam (0, 2);
     NormalisableRange<float> filterParam (30.0f, 4000.0f);
     NormalisableRange<float> resonanceParam (1.0f, 20.0f);
+    NormalisableRange<float> filterEnvelopeParam (30.0f, 4000.0f);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -43,6 +44,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("wavetype", "WaveType", "wavetype", waveTypeParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("cutoff", "Cutoff", "cutoff", filterParam, 4000.0f,nullptr , nullptr);
     tree->createAndAddParameter("resonance", "Resonance", "resonance", resonanceParam, 1.0f,nullptr , nullptr);
+    tree->createAndAddParameter("filterEnvelope", "FilterEnvelope", "filterEnvelope", filterEnvelopeParam, 30.0f,nullptr , nullptr);
     
     tree->state = ValueTree ("SynthGUI");
     
@@ -179,6 +181,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->getOscType(tree->getRawParameterValue("wavetype"));
             myVoice->setCutoffSound(tree->getRawParameterValue("cutoff"));
             myVoice->setFitlerResonance(tree->getRawParameterValue("resonance"));
+            myVoice->setFilterEnvelopeSetting(tree->getRawParameterValue("filterEnvelope"));
         }
     }
     buffer.clear();
