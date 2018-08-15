@@ -17,6 +17,8 @@
 #include "Cutoff.h"
 #include "Resonance.h"
 #include "FilterEnvelope.h"
+#include "LFO.h"
+#include "LfoFilterEnvelope.h"
 
 //==============================================================================
 /**
@@ -44,6 +46,8 @@ private:
     Cutoff filterGui;
     Resonance resonanceGui;
     FilterEnvelope filterEnvelopeGui;
+    LFO lfoGui;
+    LfoFilterEnvelope lfoFilterEnvelopeGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };

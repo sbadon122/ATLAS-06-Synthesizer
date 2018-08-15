@@ -25,7 +25,7 @@ processor(p)
     filterEnvelopeLabel.attachToComponent(&filterEnvelopeSlider, false);
     filterEnvelopeLabel.setText("Filter Envelope", dontSendNotification);
     
-    resonanceVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "filterEnvelope", filterEnvelopeSlider);
+    filterEnvelopeVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "filterEnvelope", filterEnvelopeSlider);
 }
 
 FilterEnvelope::~FilterEnvelope()

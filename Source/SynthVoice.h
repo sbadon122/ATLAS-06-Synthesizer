@@ -41,15 +41,30 @@ class SynthVoice : public SynthesiserVoice
     
     void setFitlerResonance(float* setting)
     {
-    
         resonanceSetting = *setting;
     }
     
     void setFilterEnvelopeSetting(float* setting)
     {
-    
         filterEnvelopeSetting = *setting;
     }
+    
+    void setLfoFilterEnvelopeSetting(float* setting)
+    {
+        lfoFilterEnvelopeSetting = *setting;
+    }
+    
+    void setLfoRateSetting(float* setting)
+    {
+        lfoRateSetting = *setting;
+    }
+    
+    void setLfoDelaySetting(float* setting)
+    {
+        lfoDelaySetting = *setting;
+    }
+    
+    
     
     double setOscType()
     {
@@ -69,6 +84,11 @@ class SynthVoice : public SynthesiserVoice
         {
            return osc1.sinewave(frequency);
         }
+    }
+    
+    double getLfoValue()
+    {
+        return lfoRateSetting != 0 ? lfo.sinewave(lfoRateSetting) : 0;
     }
         
     void startNote(int midiNoteNumber, float velocity, SynthesiserSound* sound, int currentPitchWheelPosition) override
@@ -98,14 +118,26 @@ class SynthVoice : public SynthesiserVoice
     
         double calculateFilterCutoff(double currentVolume)
         {
+            double cutoffValue = 0;
              if(cutoffSetting > filterEnvelopeSetting)
              {
-                 return cutoffSetting;
+                 cutoffValue = cutoffSetting;
              }
             else
             {
-                return currentVolume*filterEnvelopeSetting;
+                cutoffValue = currentVolume*filterEnvelopeSetting;
             }
+           // std::cout << getLfoValue()*lfoFilterEnvelopeSetting << std::endl;
+            cutoffValue += getLfoValue()*lfoFilterEnvelopeSetting;
+            if(cutoffValue < 30.0f)
+            {
+                cutoffValue = 30.0f;
+            }
+            else if (cutoffValue > 4000.0f)
+            {
+                cutoffValue = 4000.0f;
+            }
+            return cutoffValue;
         }
     
         void renderNextBlock(AudioBuffer<float> &outputBuffer,int startSample, int numSamples) override
@@ -129,10 +161,14 @@ class SynthVoice : public SynthesiserVoice
     maxiOsc osc1;
     maxiEnv env1;
     maxiFilter filter1;
+    maxiOsc lfo;
     double level;
     double frequency;
     int theWave;
     double cutoffSetting;
     double resonanceSetting;
     double filterEnvelopeSetting;
+    double lfoRateSetting;
+    double lfoDelaySetting;
+    double lfoFilterEnvelopeSetting;
 };

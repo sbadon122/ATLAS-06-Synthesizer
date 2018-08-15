@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    FilterEnvelope.h
-    Created: 7 Aug 2018 3:47:44pm
+    LFO.h
+    Created: 12 Aug 2018 8:37:53pm
     Author:  Sebastian Badon
 
   ==============================================================================
@@ -16,11 +16,11 @@
 //==============================================================================
 /*
 */
-class FilterEnvelope    : public Component, public Slider::Listener
+class LFO    : public Component, public Slider::Listener
 {
 public:
-    FilterEnvelope(SynthFrameworkAudioProcessor& p);
-    ~FilterEnvelope();
+    LFO(SynthFrameworkAudioProcessor& p);
+    ~LFO();
 
     void paint (Graphics&) override;
     void resized() override;
@@ -28,8 +28,11 @@ public:
 
 private:
     SynthFrameworkAudioProcessor& processor;
-    Slider filterEnvelopeSlider;
-    Label filterEnvelopeLabel;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> filterEnvelopeVal;
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FilterEnvelope)
+    Slider lfoRateSlider;
+    Label lfoRateLabel;
+    Slider lfoDelaySlider;
+    Label lfoDelayLabel;
+    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> lfoRateVal;
+    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> lfoDelayVal;
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LFO)
 };
