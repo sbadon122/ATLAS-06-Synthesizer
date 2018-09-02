@@ -61,6 +61,10 @@ class SynthVoice : public SynthesiserVoice
     
     void setLfoDelaySetting(float* setting)
     {
+        lfoEnv.setAttack(*setting);
+        lfoEnv.setDecay(1.0f);
+        lfoEnv.setSustain(1.0f);
+        lfoEnv.setRelease(1.0f);
         lfoDelaySetting = *setting;
     }
     
@@ -88,12 +92,14 @@ class SynthVoice : public SynthesiserVoice
     
     double getLfoValue()
     {
-        return lfoRateSetting != 0 ? lfo.sinewave(lfoRateSetting) : 0;
+        double lfoValue = lfoRateSetting != 0 ? lfo.sinewave(lfoEnv.adsr(lfoRateSetting , lfoEnv.trigger)) : 0;
+        return lfoValue;
     }
         
     void startNote(int midiNoteNumber, float velocity, SynthesiserSound* sound, int currentPitchWheelPosition) override
         {
             env1.trigger = 1;
+            lfoEnv.trigger = 1;
             level = velocity;
             frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
         }
@@ -101,6 +107,7 @@ class SynthVoice : public SynthesiserVoice
         void stopNote(float velocity, bool allowTailOff) override
         {
             env1.trigger = 0;
+            lfoEnv.trigger = 0;
             allowTailOff = true;
             if (velocity == 0)
                 clearCurrentNote();
@@ -127,7 +134,6 @@ class SynthVoice : public SynthesiserVoice
             {
                 cutoffValue = currentVolume*filterEnvelopeSetting;
             }
-           // std::cout << getLfoValue()*lfoFilterEnvelopeSetting << std::endl;
             cutoffValue += getLfoValue()*lfoFilterEnvelopeSetting;
             if(cutoffValue < 30.0f)
             {
@@ -160,6 +166,7 @@ class SynthVoice : public SynthesiserVoice
     private:
     maxiOsc osc1;
     maxiEnv env1;
+    maxiEnv lfoEnv;
     maxiFilter filter1;
     maxiOsc lfo;
     double level;
@@ -171,4 +178,5 @@ class SynthVoice : public SynthesiserVoice
     double lfoRateSetting;
     double lfoDelaySetting;
     double lfoFilterEnvelopeSetting;
+    
 };

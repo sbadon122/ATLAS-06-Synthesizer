@@ -16,8 +16,9 @@ LFO::LFO(SynthFrameworkAudioProcessor& p) :
 processor(p)
 {
     lfoRateSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    lfoRateSlider.setRange(0, 25.0f);
+    lfoRateSlider.setRange(0, 100.0f);
     lfoRateSlider.setValue(0);
+    lfoRateSlider.setSkewFactor(0.4f);
     lfoRateSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 0, 0);
     lfoRateSlider.addListener(this);
     addAndMakeVisible(&lfoRateSlider);
@@ -26,8 +27,9 @@ processor(p)
     lfoRateLabel.setText("LFO Rate", dontSendNotification);
     
     lfoDelaySlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    lfoDelaySlider.setRange(0.1f, 5000.0f);
+    lfoDelaySlider.setRange(0.1f, 50000.0f);
     lfoDelaySlider.setValue(0.1f);
+    lfoDelaySlider.setSkewFactor(0.4f);
     lfoDelaySlider.setTextBoxStyle(Slider::TextBoxBelow, true, 0, 0);
     lfoDelaySlider.addListener(this);
     addAndMakeVisible(&lfoDelaySlider);
