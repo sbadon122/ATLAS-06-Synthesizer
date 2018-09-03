@@ -59,6 +59,7 @@ class SynthVoice : public SynthesiserVoice
         lfoRateSetting = *setting;
     }
     
+    
     void setLfoDelaySetting(float* setting)
     {
         lfoEnv.setAttack(*setting);
@@ -68,10 +69,14 @@ class SynthVoice : public SynthesiserVoice
         lfoDelaySetting = *setting;
     }
     
-    void sethpfSetting(float* setting)
+    void setHpfSetting(float* setting)
     {
-        std::cout << *setting << std::endl;
         hpfSetting = *setting;
+    }
+    
+    void setVcaSetting(float* setting)
+    {
+        vcaSetting = *setting;
     }
     
     
@@ -158,7 +163,7 @@ class SynthVoice : public SynthesiserVoice
             
             for (int sample = 0; sample < numSamples; ++sample)
             {
-                double myCurrentVolume = env1.adsr(1., env1.trigger) * level;
+                double myCurrentVolume = env1.adsr(1., env1.trigger) * level * vcaSetting;
                 double filteredSound = filter1.lores(setOscType()*myCurrentVolume, calculateFilterCutoff(myCurrentVolume), resonanceSetting);
                 filteredSound = filter1.hires(filteredSound, hpfSetting, 0);
                 for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel)
@@ -183,8 +188,10 @@ class SynthVoice : public SynthesiserVoice
     double resonanceSetting;
     double filterEnvelopeSetting;
     double hpfSetting;
+    double vcaSetting;
     double lfoRateSetting;
     double lfoDelaySetting;
     double lfoFilterEnvelopeSetting;
+    
     
 };

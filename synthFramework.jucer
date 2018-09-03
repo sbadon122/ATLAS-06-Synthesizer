@@ -8,6 +8,8 @@
       <FILE id="RB4rQM" name="HPF.h" compile="0" resource="0" file="Source/HPF.h"/>
       <FILE id="bPItRJ" name="LfoFilterEnvelope.cpp" compile="1" resource="0"
             file="Source/LfoFilterEnvelope.cpp"/>
+      <FILE id="lYfjeA" name="VCA.cpp" compile="1" resource="0" file="Source/VCA.cpp"/>
+      <FILE id="NLNgqf" name="VCA.h" compile="0" resource="0" file="Source/VCA.h"/>
       <FILE id="LhFe0M" name="LfoFilterEnvelope.h" compile="0" resource="0"
             file="Source/LfoFilterEnvelope.h"/>
       <FILE id="vzwJgl" name="LFO.cpp" compile="1" resource="0" file="Source/LFO.cpp"/>
