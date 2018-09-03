@@ -84,7 +84,18 @@ class SynthVoice : public SynthesiserVoice
         noiseSetting = *setting;
     }
     
+    void setSawOscSetting(float* setting)
+    {
+        sawOscSetting = *setting;
+    }
     
+    double getSawOsc() {
+        if(sawOscSetting)
+        {
+            return sawOsc.saw(frequency);
+        }
+        return 0;
+    }
     
     double setOscType()
     {
@@ -170,7 +181,7 @@ class SynthVoice : public SynthesiserVoice
             {
                 double myCurrentVolume = env1.adsr(1., env1.trigger) * level * vcaSetting;
                 double noiseValue = osc1.noise() * noiseSetting;
-                double oscSound = setOscType() + noiseValue;
+                double oscSound = getSawOsc() + noiseValue;
                 double filteredSound = filter1.lores(oscSound*myCurrentVolume, calculateFilterCutoff(myCurrentVolume), resonanceSetting);
                 filteredSound = filter1.hires(filteredSound, hpfSetting, 0);
                 for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel)
@@ -184,6 +195,7 @@ class SynthVoice : public SynthesiserVoice
         
     private:
     maxiOsc osc1;
+    maxiOsc sawOsc;
     maxiEnv env1;
     maxiEnv lfoEnv;
     maxiFilter filter1;
@@ -197,6 +209,7 @@ class SynthVoice : public SynthesiserVoice
     double hpfSetting;
     double vcaSetting;
     double noiseSetting;
+    double sawOscSetting;
     double lfoRateSetting;
     double lfoDelaySetting;
     double lfoFilterEnvelopeSetting;

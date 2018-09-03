@@ -22,6 +22,7 @@
 #include "HPF.h"
 #include "VCA.h"
 #include "Noise.h"
+#include "SawOscillator.h"
 
 
 //==============================================================================
@@ -54,6 +55,7 @@ private:
     HPF hpfGui;
     VCA vcaGui;
     Noise noiseGui;
+    SawOscillator sawOscGui;
     LfoFilterEnvelope lfoFilterEnvelopeGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
