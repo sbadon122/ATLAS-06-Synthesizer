@@ -23,6 +23,7 @@
 #include "VCA.h"
 #include "Noise.h"
 #include "SawOscillator.h"
+#include "SquareOscillator.h"
 
 
 //==============================================================================
@@ -56,6 +57,7 @@ private:
     VCA vcaGui;
     Noise noiseGui;
     SawOscillator sawOscGui;
+    SquareOscillator squareOscGui;
     LfoFilterEnvelope lfoFilterEnvelopeGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)

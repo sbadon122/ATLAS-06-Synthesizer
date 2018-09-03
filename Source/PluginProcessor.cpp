@@ -41,7 +41,8 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> hpfParam (30.0f, 19000.0f);
     NormalisableRange<float> vcaParam (0, 1);
     NormalisableRange<float> noiseParam (0, 1);
-    NormalisableRange<float> sawButtonParam (0, 1, 1);
+    NormalisableRange<float> sawButtonParam (0, 1, 0);
+    NormalisableRange<float> squareButtonParam (0, 1, 1);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -58,8 +59,8 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("hpf", "Hpf", "hpf", hpfParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("vca", "Vca", "vca", vcaParam, 0.75f,nullptr , nullptr);
     tree->createAndAddParameter("noise", "Noise", "noise", noiseParam, 0.0f,nullptr , nullptr);
-    tree->createAndAddParameter("sawOsc", "sawOsc", "sawOsc", sawButtonParam, 1,nullptr , nullptr);
-    
+    tree->createAndAddParameter("sawOsc", "SawOsc", "sawOsc", sawButtonParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("squareOsc", "SquareOsc", "sqyareOsc", squareButtonParam, 1,nullptr , nullptr);
     
     
     tree->state = ValueTree ("SynthGUI");
@@ -205,6 +206,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setVcaSetting(tree->getRawParameterValue("vca"));
             myVoice->setNoiseSetting(tree->getRawParameterValue("noise"));
             myVoice->setSawOscSetting(tree->getRawParameterValue("sawOsc"));
+            myVoice->setSquareOscSetting(tree->getRawParameterValue("squareOsc"));
         }
     }
     buffer.clear();

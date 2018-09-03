@@ -27,7 +27,7 @@ SawOscillator::~SawOscillator()
 
 void SawOscillator::paint (Graphics& g)
 {
-    sawButton.setBounds (10, 10, 100, 50);
+    sawButton.setBounds (10, 10, 90, 50);
 }
 
 

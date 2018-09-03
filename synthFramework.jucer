@@ -4,6 +4,10 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="EFNugl" name="synthFramework">
     <GROUP id="{66FD8400-6D02-3DAD-76EB-B7D0CEE54811}" name="Source">
+      <FILE id="vIRnBn" name="SquareOscillator.cpp" compile="1" resource="0"
+            file="Source/SquareOscillator.cpp"/>
+      <FILE id="lMkvAZ" name="SquareOscillator.h" compile="0" resource="0"
+            file="Source/SquareOscillator.h"/>
       <FILE id="pfm07l" name="SawOscillator.cpp" compile="1" resource="0"
             file="Source/SawOscillator.cpp"/>
       <FILE id="hr4XVN" name="SawOscillator.h" compile="0" resource="0" file="Source/SawOscillator.h"/>
