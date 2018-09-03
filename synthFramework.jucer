@@ -4,6 +4,9 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="EFNugl" name="synthFramework">
     <GROUP id="{66FD8400-6D02-3DAD-76EB-B7D0CEE54811}" name="Source">
+      <FILE id="jhGBuy" name="SubOscillator.cpp" compile="1" resource="0"
+            file="Source/SubOscillator.cpp"/>
+      <FILE id="pOpQ8M" name="SubOscillator.h" compile="0" resource="0" file="Source/SubOscillator.h"/>
       <FILE id="vIRnBn" name="SquareOscillator.cpp" compile="1" resource="0"
             file="Source/SquareOscillator.cpp"/>
       <FILE id="lMkvAZ" name="SquareOscillator.h" compile="0" resource="0"

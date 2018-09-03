@@ -24,6 +24,7 @@
 #include "Noise.h"
 #include "SawOscillator.h"
 #include "SquareOscillator.h"
+#include "SubOscillator.h"
 
 
 //==============================================================================
@@ -58,6 +59,7 @@ private:
     Noise noiseGui;
     SawOscillator sawOscGui;
     SquareOscillator squareOscGui;
+    SubOscillator subOscGui;
     LfoFilterEnvelope lfoFilterEnvelopeGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)

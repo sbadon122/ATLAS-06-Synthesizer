@@ -13,7 +13,7 @@
 
 //==============================================================================
 SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), oscGui(p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p)
+    : AudioProcessorEditor (&p), processor (p), oscGui(p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -30,6 +30,7 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     addAndMakeVisible(&noiseGui);
     addAndMakeVisible(&sawOscGui);
     addAndMakeVisible(&squareOscGui);
+    addAndMakeVisible(&subOscGui);
     
 }
 
@@ -61,6 +62,7 @@ void SynthFrameworkAudioProcessorEditor::resized()
     noiseGui.setBounds(50, 150, 45, 150);
     sawOscGui.setBounds(100, 150, 100, 150);
     squareOscGui.setBounds(200, 150, 100, 150);
+    subOscGui.setBounds(300, 150, 100, 150);
 
 }
 
