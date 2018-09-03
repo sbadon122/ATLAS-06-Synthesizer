@@ -40,6 +40,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> lfoFilterParam (0.1f, 5000.0f);
     NormalisableRange<float> hpfParam (30.0f, 19000.0f);
     NormalisableRange<float> vcaParam (0, 1);
+    NormalisableRange<float> noiseParam (0, 1);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -55,6 +56,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("lfoFilterEnvelope", "LfoFilterEnvelope", "lfoFilterEnvelope", lfoFilterParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("hpf", "Hpf", "hpf", hpfParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("vca", "Vca", "vca", vcaParam, 0.75f,nullptr , nullptr);
+    tree->createAndAddParameter("noise", "Noise", "noise", noiseParam, 0.0f,nullptr , nullptr);
     
     
     
@@ -199,6 +201,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setLfoFilterEnvelopeSetting(tree->getRawParameterValue("lfoFilterEnvelope"));
             myVoice->setHpfSetting(tree->getRawParameterValue("hpf"));
             myVoice->setVcaSetting(tree->getRawParameterValue("vca"));
+            myVoice->setNoiseSetting(tree->getRawParameterValue("noise"));
         }
     }
     buffer.clear();

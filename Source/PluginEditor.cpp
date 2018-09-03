@@ -13,7 +13,7 @@
 
 //==============================================================================
 SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), oscGui(p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p)
+    : AudioProcessorEditor (&p), processor (p), oscGui(p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -27,6 +27,7 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     addAndMakeVisible(&lfoFilterEnvelopeGui);
     addAndMakeVisible(&hpfGui);
     addAndMakeVisible(&vcaGui);
+    addAndMakeVisible(&noiseGui);
     
     
 }
@@ -55,7 +56,8 @@ void SynthFrameworkAudioProcessorEditor::resized()
     lfoGui.setBounds(area.removeFromLeft(100).removeFromTop(componentHeight));
     lfoFilterEnvelopeGui.setBounds(area.removeFromLeft(50).removeFromTop(componentHeight));
     hpfGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
-    vcaGui.setBounds(10, 150, 150, 150);
+    vcaGui.setBounds(10, 150, 45, 150);
+    noiseGui.setBounds(50, 150, 45, 150);
 
 }
 

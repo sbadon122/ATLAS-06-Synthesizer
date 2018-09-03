@@ -21,6 +21,7 @@
 #include "LfoFilterEnvelope.h"
 #include "HPF.h"
 #include "VCA.h"
+#include "Noise.h"
 
 
 //==============================================================================
@@ -52,6 +53,7 @@ private:
     LFO lfoGui;
     HPF hpfGui;
     VCA vcaGui;
+    Noise noiseGui;
     LfoFilterEnvelope lfoFilterEnvelopeGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
