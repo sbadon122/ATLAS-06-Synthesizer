@@ -19,6 +19,7 @@
 #include "FilterEnvelope.h"
 #include "LFO.h"
 #include "LfoFilterEnvelope.h"
+#include "HPF.h"
 
 //==============================================================================
 /**
@@ -47,6 +48,7 @@ private:
     Resonance resonanceGui;
     FilterEnvelope filterEnvelopeGui;
     LFO lfoGui;
+    HPF hpfGui;
     LfoFilterEnvelope lfoFilterEnvelopeGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)

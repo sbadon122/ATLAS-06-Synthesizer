@@ -38,6 +38,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> lfoRateParam (0.0f, 25.0f);
     NormalisableRange<float> lfoDelayParam (30.0f, 50000.0f);
     NormalisableRange<float> lfoFilterParam (0.1f, 5000.0f);
+    NormalisableRange<float> hpfParam (30.0f, 19000.0f);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -51,6 +52,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("lfoRate", "LfoRate", "lfoRate", lfoRateParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("lfoDelay", "LfoDelay", "lfoDelay", lfoDelayParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("lfoFilterEnvelope", "LfoFilterEnvelope", "lfoFilterEnvelope", lfoFilterParam, 30.0f,nullptr , nullptr);
+    tree->createAndAddParameter("hpf", "Hpf", "hpf", hpfParam, 30.0f,nullptr , nullptr);
     
     
     tree->state = ValueTree ("SynthGUI");
@@ -192,6 +194,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setLfoRateSetting(tree->getRawParameterValue("lfoRate"));
             myVoice->setLfoDelaySetting(tree->getRawParameterValue("lfoDelay"));
             myVoice->setLfoFilterEnvelopeSetting(tree->getRawParameterValue("lfoFilterEnvelope"));
+            myVoice->sethpfSetting(tree->getRawParameterValue("hpf"));
         }
     }
     buffer.clear();

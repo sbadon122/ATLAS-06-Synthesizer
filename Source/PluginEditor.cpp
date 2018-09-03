@@ -13,7 +13,7 @@
 
 //==============================================================================
 SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), oscGui(p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p)
+    : AudioProcessorEditor (&p), processor (p), oscGui(p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -25,6 +25,7 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     addAndMakeVisible(&filterEnvelopeGui);
     addAndMakeVisible(&lfoGui);
     addAndMakeVisible(&lfoFilterEnvelopeGui);
+    addAndMakeVisible(&hpfGui);
     
     
 }
@@ -52,6 +53,7 @@ void SynthFrameworkAudioProcessorEditor::resized()
     filterEnvelopeGui.setBounds(area.removeFromLeft(50).removeFromTop(componentHeight));
     lfoGui.setBounds(area.removeFromLeft(100).removeFromTop(componentHeight));
     lfoFilterEnvelopeGui.setBounds(area.removeFromLeft(50).removeFromTop(componentHeight));
+    hpfGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
 
 }
 

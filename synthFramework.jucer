@@ -4,6 +4,8 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="EFNugl" name="synthFramework">
     <GROUP id="{66FD8400-6D02-3DAD-76EB-B7D0CEE54811}" name="Source">
+      <FILE id="bsZulC" name="HPF.cpp" compile="1" resource="0" file="Source/HPF.cpp"/>
+      <FILE id="RB4rQM" name="HPF.h" compile="0" resource="0" file="Source/HPF.h"/>
       <FILE id="bPItRJ" name="LfoFilterEnvelope.cpp" compile="1" resource="0"
             file="Source/LfoFilterEnvelope.cpp"/>
       <FILE id="LhFe0M" name="LfoFilterEnvelope.h" compile="0" resource="0"
