@@ -26,6 +26,7 @@
 #include "SquareOscillator.h"
 #include "SubOscillator.h"
 #include "PitchRange.h"
+#include "PWM.h"
 
 
 //==============================================================================
@@ -63,6 +64,7 @@ private:
     SubOscillator subOscGui;
     LfoFilterEnvelope lfoFilterEnvelopeGui;
     PitchRange pitchRangeGui;
+    PWM pwmGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };

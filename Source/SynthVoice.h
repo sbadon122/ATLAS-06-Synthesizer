@@ -104,6 +104,11 @@ class SynthVoice : public SynthesiserVoice
         pitchRangeSetting = *setting;
     }
     
+    void setPwmSetting(float* setting)
+    {
+        pwmSetting = *setting;
+    }
+    
     double getPitchRangeSetting()
     {
         if(pitchRangeSetting == 1)
@@ -128,7 +133,13 @@ class SynthVoice : public SynthesiserVoice
     double getSquareOsc() {
         if(squareOscSetting)
         {
-            return squareOsc.square(frequency/getPitchRangeSetting());
+            double squareFrequency = squareOsc.square(frequency/getPitchRangeSetting());
+            if(pwmSetting > 0){
+            return squareOsc.pulse(squareFrequency, pwmSetting);
+            } else {
+                return squareFrequency;
+            }
+            
         }
         return 0;
     }
@@ -257,6 +268,7 @@ class SynthVoice : public SynthesiserVoice
     double cutoffSetting;
     double resonanceSetting;
     double filterEnvelopeSetting;
+    double pwmSetting;
     double hpfSetting;
     double vcaSetting;
     double noiseSetting;
