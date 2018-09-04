@@ -25,6 +25,7 @@
 #include "SawOscillator.h"
 #include "SquareOscillator.h"
 #include "SubOscillator.h"
+#include "PitchRange.h"
 
 
 //==============================================================================
@@ -61,6 +62,7 @@ private:
     SquareOscillator squareOscGui;
     SubOscillator subOscGui;
     LfoFilterEnvelope lfoFilterEnvelopeGui;
+    PitchRange pitchRangeGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };

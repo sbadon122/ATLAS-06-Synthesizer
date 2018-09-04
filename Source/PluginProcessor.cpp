@@ -44,6 +44,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> sawButtonParam (0, 1, 0);
     NormalisableRange<float> squareButtonParam (0, 1, 1);
     NormalisableRange<float> subOscParam (0, 1.0f);
+    NormalisableRange<float> pitchRangeParam (0, 2);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -63,6 +64,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("sawOsc", "SawOsc", "sawOsc", sawButtonParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("squareOsc", "SquareOsc", "squareOsc", squareButtonParam, 1,nullptr , nullptr);
     tree->createAndAddParameter("subOsc", "SubOsc", "subOsc", subOscParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("range", "Range", "range", pitchRangeParam, 0,nullptr , nullptr);
     
     
     tree->state = ValueTree ("SynthGUI");
@@ -210,6 +212,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setSawOscSetting(tree->getRawParameterValue("sawOsc"));
             myVoice->setSquareOscSetting(tree->getRawParameterValue("squareOsc"));
             myVoice->setSubOscSetting(tree->getRawParameterValue("subOsc"));
+            myVoice->setPitchRangeSetting(tree->getRawParameterValue("range"));
         }
     }
     buffer.clear();
