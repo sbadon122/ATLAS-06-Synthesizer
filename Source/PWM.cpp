@@ -35,7 +35,7 @@ PWM::~PWM()
 
 void PWM::paint (Graphics& g)
 {
-   pwmSlider.setBounds(50, 30, 40, 100);
+   pwmSlider.setBounds(10, 30, 40, 100);
 }
 
 void PWM::resized()

@@ -13,7 +13,7 @@
 
 //==============================================================================
 SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p), lfoPitchGui(p)
+    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p), lfoPitchGui(p), lfoPwmGui(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -33,6 +33,7 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     addAndMakeVisible(&pitchRangeGui);
     addAndMakeVisible(&pwmGui);
     addAndMakeVisible(&lfoPitchGui);
+    addAndMakeVisible(&lfoPwmGui);
     
 }
 
@@ -67,6 +68,7 @@ void SynthFrameworkAudioProcessorEditor::resized()
     pitchRangeGui.setBounds(400, 150, 100, 150);
     pwmGui.setBounds(450, 150, 100, 150);
     lfoPitchGui.setBounds(500, 150, 100, 150);
+    lfoPwmGui.setBounds(600, 150, 100, 150);
 }
 
 void SynthFrameworkAudioProcessorEditor::sliderValueChanged(Slider *slider)

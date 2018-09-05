@@ -104,6 +104,18 @@ class SynthVoice : public SynthesiserVoice
         pwmSetting = *setting;
     }
     
+    double getPwmSetting(){
+        double pwm = pwmSetting;
+        pwm = pwmSetting - pwmSetting * lfoPwmSetting * getLfoValue();
+        if(pwm > 0.99f){
+            return 0.99;
+        } else if (pwm < 0){
+            return 0;
+        } else {
+            return pwm;
+        }
+    }
+    
     double getPitchRangeSetting()
     {
         if(pitchRangeSetting == 1)
@@ -118,8 +130,11 @@ class SynthVoice : public SynthesiserVoice
     }
     
     void setLfoPitchSetting(float* setting){
-        std::cout << *setting << std::endl;
         lfoPitchSetting = *setting;
+    }
+    
+    void setLfoPwmSetting(float* setting){
+        lfoPwmSetting = *setting;
     }
     
     double getSawOsc() {
@@ -135,7 +150,7 @@ class SynthVoice : public SynthesiserVoice
         {
             double squareFrequency = squareOsc.square(processedFrequency/getPitchRangeSetting());
             if(pwmSetting > 0){
-            return squareOsc.pulse(squareFrequency, pwmSetting);
+            return squareOsc.pulse(squareFrequency, getPwmSetting());
             } else {
                 return squareFrequency;
             }
@@ -261,6 +276,7 @@ class SynthVoice : public SynthesiserVoice
     double lfoDelaySetting;
     double lfoFilterEnvelopeSetting;
     double lfoPitchSetting;
+    double lfoPwmSetting;
     
     
 };

@@ -4,6 +4,8 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="EFNugl" name="synthFramework">
     <GROUP id="{66FD8400-6D02-3DAD-76EB-B7D0CEE54811}" name="Source">
+      <FILE id="q1z18o" name="LFOPWM.cpp" compile="1" resource="0" file="Source/LFOPWM.cpp"/>
+      <FILE id="otWXCs" name="LFOPWM.h" compile="0" resource="0" file="Source/LFOPWM.h"/>
       <FILE id="bFQNR5" name="LFOPitch.cpp" compile="1" resource="0" file="Source/LFOPitch.cpp"/>
       <FILE id="antsYD" name="LFOPitch.h" compile="0" resource="0" file="Source/LFOPitch.h"/>
       <FILE id="oB2Nkv" name="PWM.cpp" compile="1" resource="0" file="Source/PWM.cpp"/>

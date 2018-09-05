@@ -27,6 +27,7 @@
 #include "PitchRange.h"
 #include "PWM.h"
 #include "LFOPitch.h"
+#include "LFOPWM.h"
 
 
 //==============================================================================
@@ -63,7 +64,8 @@ private:
     SubOscillator subOscGui;
     LfoFilterEnvelope lfoFilterEnvelopeGui;
     PitchRange pitchRangeGui;
-    LFOPitch lfoPitchGui; 
+    LFOPitch lfoPitchGui;
+    LFOPWM lfoPwmGui;
     PWM pwmGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)

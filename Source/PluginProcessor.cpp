@@ -38,7 +38,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> lfoRateParam (0.0f, 10.0f);
     NormalisableRange<float> lfoDelayParam (30.0f, 50000.0f);
     NormalisableRange<float> lfoFilterParam (0.1f, 5000.0f);
-    NormalisableRange<float> hpfParam (30.0f, 19000.0f);
+    NormalisableRange<float> hpfParam (5.0f, 19000.0f);
     NormalisableRange<float> vcaParam (0, 1);
     NormalisableRange<float> noiseParam (0, 1);
     NormalisableRange<float> sawButtonParam (0, 1, 0);
@@ -47,6 +47,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> pitchRangeParam (0, 2);
     NormalisableRange<float> pwmParam (0, 0.99);
     NormalisableRange<float> lfoPitchParam (0, 1.0f);
+    NormalisableRange<float> lfoPwmParam (0, 0.99f);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -60,7 +61,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("lfoRate", "LfoRate", "lfoRate", lfoRateParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("lfoDelay", "LfoDelay", "lfoDelay", lfoDelayParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("lfoFilterEnvelope", "LfoFilterEnvelope", "lfoFilterEnvelope", lfoFilterParam, 30.0f,nullptr , nullptr);
-    tree->createAndAddParameter("hpf", "Hpf", "hpf", hpfParam, 30.0f,nullptr , nullptr);
+    tree->createAndAddParameter("hpf", "Hpf", "hpf", hpfParam, 5.0f,nullptr , nullptr);
     tree->createAndAddParameter("vca", "Vca", "vca", vcaParam, 0.75f,nullptr , nullptr);
     tree->createAndAddParameter("noise", "Noise", "noise", noiseParam, 0.0f,nullptr , nullptr);
     tree->createAndAddParameter("sawOsc", "SawOsc", "sawOsc", sawButtonParam, 0,nullptr , nullptr);
@@ -69,6 +70,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("range", "Range", "range", pitchRangeParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("pwm", "Pwm", "pwm", pwmParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("lfoPitch", "LfoPitch", "lfoPitch", lfoPitchParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("lfoPwm", "LfoPwm", "lfoPwm", lfoPwmParam, 0,nullptr , nullptr);
     
     
     tree->state = ValueTree ("SynthGUI");
@@ -218,6 +220,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setPitchRangeSetting(tree->getRawParameterValue("range"));
             myVoice->setPwmSetting(tree->getRawParameterValue("pwm"));
             myVoice->setLfoPitchSetting(tree->getRawParameterValue("lfoPitch"));
+            myVoice->setLfoPwmSetting(tree->getRawParameterValue("lfoPwm"));
         }
     }
     buffer.clear();

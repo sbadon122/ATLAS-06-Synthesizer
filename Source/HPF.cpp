@@ -16,8 +16,8 @@ HPF::HPF(SynthFrameworkAudioProcessor& p) :
 processor(p)
 {
     hpfSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    hpfSlider.setRange(30.0f, 19000.0);
-    hpfSlider.setValue(30.0f);
+    hpfSlider.setRange(5.0f, 19000.0);
+    hpfSlider.setValue(5.0f);
     hpfSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 0, 0);
     hpfSlider.addListener(this);
     addAndMakeVisible(&hpfSlider);
