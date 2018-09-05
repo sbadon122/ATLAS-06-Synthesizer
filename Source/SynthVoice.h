@@ -117,10 +117,15 @@ class SynthVoice : public SynthesiserVoice
         return 1;
     }
     
+    void setLfoPitchSetting(float* setting){
+        std::cout << *setting << std::endl;
+        lfoPitchSetting = *setting;
+    }
+    
     double getSawOsc() {
         if(sawOscSetting)
         {
-            return sawOsc.saw(frequency/getPitchRangeSetting());
+            return sawOsc.saw(processedFrequency/getPitchRangeSetting());
         }
         return 0;
     }
@@ -128,7 +133,7 @@ class SynthVoice : public SynthesiserVoice
     double getSquareOsc() {
         if(squareOscSetting)
         {
-            double squareFrequency = squareOsc.square(frequency/getPitchRangeSetting());
+            double squareFrequency = squareOsc.square(processedFrequency/getPitchRangeSetting());
             if(pwmSetting > 0){
             return squareOsc.pulse(squareFrequency, pwmSetting);
             } else {
@@ -142,7 +147,7 @@ class SynthVoice : public SynthesiserVoice
     double getSubOsc() {
         if(subOscSetting > 0)
         {
-            return subOsc.square(frequency/4/getPitchRangeSetting()) * subOscSetting;
+            return subOsc.square(processedFrequency/4/getPitchRangeSetting()) * subOscSetting;
         }
         return 0;
     }
@@ -216,6 +221,7 @@ class SynthVoice : public SynthesiserVoice
             for (int sample = 0; sample < numSamples; ++sample)
             {
                 double myCurrentVolume = env1.adsr(1., env1.trigger) * level * vcaSetting;
+                processedFrequency = frequency + (frequency * getLfoValue() * lfoPitchSetting);
                 double oscSound = getDCOSound();
                 double filteredSound = filter1.lores(oscSound*myCurrentVolume, calculateFilterCutoff(myCurrentVolume), resonanceSetting);
                 filteredSound = filter1.hires(filteredSound, hpfSetting, 0);
@@ -239,6 +245,7 @@ class SynthVoice : public SynthesiserVoice
     maxiOsc lfo;
     double level;
     double frequency;
+    double processedFrequency;
     double cutoffSetting;
     double resonanceSetting;
     double filterEnvelopeSetting;
@@ -253,6 +260,7 @@ class SynthVoice : public SynthesiserVoice
     double lfoRateSetting;
     double lfoDelaySetting;
     double lfoFilterEnvelopeSetting;
+    double lfoPitchSetting;
     
     
 };

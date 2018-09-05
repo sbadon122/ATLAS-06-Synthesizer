@@ -35,7 +35,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> filterParam (30.0f, 4000.0f);
     NormalisableRange<float> resonanceParam (1.0f, 20.0f);
     NormalisableRange<float> filterEnvelopeParam (30.0f, 4000.0f);
-    NormalisableRange<float> lfoRateParam (0.0f, 25.0f);
+    NormalisableRange<float> lfoRateParam (0.0f, 10.0f);
     NormalisableRange<float> lfoDelayParam (30.0f, 50000.0f);
     NormalisableRange<float> lfoFilterParam (0.1f, 5000.0f);
     NormalisableRange<float> hpfParam (30.0f, 19000.0f);
@@ -46,6 +46,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> subOscParam (0, 1.0f);
     NormalisableRange<float> pitchRangeParam (0, 2);
     NormalisableRange<float> pwmParam (0, 0.99);
+    NormalisableRange<float> lfoPitchParam (0, 1.0f);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -67,6 +68,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("subOsc", "SubOsc", "subOsc", subOscParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("range", "Range", "range", pitchRangeParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("pwm", "Pwm", "pwm", pwmParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("lfoPitch", "LfoPitch", "lfoPitch", lfoPitchParam, 0,nullptr , nullptr);
     
     
     tree->state = ValueTree ("SynthGUI");
@@ -215,6 +217,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setSubOscSetting(tree->getRawParameterValue("subOsc"));
             myVoice->setPitchRangeSetting(tree->getRawParameterValue("range"));
             myVoice->setPwmSetting(tree->getRawParameterValue("pwm"));
+            myVoice->setLfoPitchSetting(tree->getRawParameterValue("lfoPitch"));
         }
     }
     buffer.clear();

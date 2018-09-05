@@ -16,9 +16,9 @@ LFO::LFO(SynthFrameworkAudioProcessor& p) :
 processor(p)
 {
     lfoRateSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    lfoRateSlider.setRange(0, 100.0f);
+    lfoRateSlider.setRange(0, 10.0f);
     lfoRateSlider.setValue(0);
-    lfoRateSlider.setSkewFactor(0.4f);
+    lfoRateSlider.setSkewFactorFromMidPoint(5.0f);
     lfoRateSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 0, 0);
     lfoRateSlider.addListener(this);
     addAndMakeVisible(&lfoRateSlider);
@@ -53,8 +53,8 @@ void LFO::paint (Graphics& g)
 
 void LFO::resized()
 {
-    lfoRateSlider.setBounds(10, 30, 40, 100);
-    lfoDelaySlider.setBounds(60, 30, 40, 100);
+    lfoRateSlider.setBounds(10, 30, 90, 100);
+    lfoDelaySlider.setBounds(60, 30, 90, 100);
 
 }
 
