@@ -40,8 +40,6 @@
       <FILE id="qV3Ykc" name="Cutoff.h" compile="0" resource="0" file="Source/Cutoff.h"/>
       <FILE id="C7H9nt" name="Envelope.cpp" compile="1" resource="0" file="Source/Envelope.cpp"/>
       <FILE id="bKfPaq" name="Envelope.h" compile="0" resource="0" file="Source/Envelope.h"/>
-      <FILE id="aY5ob6" name="Oscillator.cpp" compile="1" resource="0" file="Source/Oscillator.cpp"/>
-      <FILE id="sYa80T" name="Oscillator.h" compile="0" resource="0" file="Source/Oscillator.h"/>
       <GROUP id="{92D55D49-B8B5-D1CE-25FB-A2681BF7505F}" name="Maximilian">
         <GROUP id="{FB2B3F3D-4D19-BEA8-C9D2-8F99133737E9}" name="libs">
           <FILE id="fY3SI4" name="fft.cpp" compile="1" resource="0" file="Libraries/Maximilian/libs/fft.cpp"/>

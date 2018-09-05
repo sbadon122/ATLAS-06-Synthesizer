@@ -51,7 +51,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
     tree->createAndAddParameter("decay", "Decay", "decay", decayParam, 1.0f, nullptr, nullptr);
     tree->createAndAddParameter("sustain", "Sustain", "sustain", sustainParam, 0.8f, nullptr, nullptr);
-    tree->createAndAddParameter("release", "Release", "release", releaseParam, 0.1f, nullptr, nullptr);
+    tree->createAndAddParameter("release", "Release", "release", releaseParam, 5.0f, nullptr, nullptr);
     tree->createAndAddParameter("wavetype", "WaveType", "wavetype", waveTypeParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("cutoff", "Cutoff", "cutoff", filterParam, 4000.0f,nullptr , nullptr);
     tree->createAndAddParameter("resonance", "Resonance", "resonance", resonanceParam, 1.0f,nullptr , nullptr);
@@ -201,7 +201,6 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
                                        tree->getRawParameterValue("decay"),
                                        tree->getRawParameterValue("sustain"),
                                        tree->getRawParameterValue("release"));
-            myVoice->getOscType(tree->getRawParameterValue("wavetype"));
             myVoice->setCutoffSound(tree->getRawParameterValue("cutoff"));
             myVoice->setFitlerResonance(tree->getRawParameterValue("resonance"));
             myVoice->setFilterEnvelopeSetting(tree->getRawParameterValue("filterEnvelope"));

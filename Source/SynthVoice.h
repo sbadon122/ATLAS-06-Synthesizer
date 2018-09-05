@@ -29,11 +29,6 @@ class SynthVoice : public SynthesiserVoice
             env1.setRelease(*release);
     }
     
-    void getOscType(float* selection)
-    {
-        theWave = *selection;
-    }
-    
     void setCutoffSound(float* setting)
     {
         cutoffSetting = *setting;
@@ -158,26 +153,6 @@ class SynthVoice : public SynthesiserVoice
         return dcoSound;
     }
     
-    double setOscType()
-    {
-        if(theWave == 0)
-        {
-            return osc1.sinewave(frequency);
-        }
-        else if(theWave == 1)
-        {
-            return osc1.saw(frequency);
-        }
-        else if(theWave==2)
-        {
-            return osc1.square(frequency);
-        }
-        else
-        {
-           return osc1.sinewave(frequency);
-        }
-    }
-    
     double getLfoValue()
     {
         double lfoValue = lfoRateSetting != 0 ? lfo.sinewave(lfoEnv.adsr(lfoRateSetting , lfoEnv.trigger)) : 0;
@@ -264,7 +239,6 @@ class SynthVoice : public SynthesiserVoice
     maxiOsc lfo;
     double level;
     double frequency;
-    int theWave;
     double cutoffSetting;
     double resonanceSetting;
     double filterEnvelopeSetting;

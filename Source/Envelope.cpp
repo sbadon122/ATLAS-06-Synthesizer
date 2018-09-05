@@ -37,7 +37,7 @@ processor(p)
     
         releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
         releaseSlider.setRange(0.1f, 5000.0f);
-        releaseSlider.setValue(0.8f);
+        releaseSlider.setValue(5.0f);
         releaseSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
         releaseSlider.addListener(this);
         addAndMakeVisible(&releaseSlider);

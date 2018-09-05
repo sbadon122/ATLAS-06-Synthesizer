@@ -12,7 +12,6 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
-#include "Oscillator.h"
 #include "Envelope.h"
 #include "Cutoff.h"
 #include "Resonance.h"
@@ -50,7 +49,6 @@ private:
     // access the processor object that created it.
     SynthFrameworkAudioProcessor& processor;
     
-    Oscillator oscGui;
     Envelope envGui;
     Cutoff filterGui;
     Resonance resonanceGui;

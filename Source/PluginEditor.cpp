@@ -13,12 +13,11 @@
 
 //==============================================================================
 SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), oscGui(p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p)
+    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (800, 400);
-    addAndMakeVisible(&oscGui);
     addAndMakeVisible(&envGui);
     addAndMakeVisible(&filterGui);
     addAndMakeVisible(&resonanceGui);
@@ -52,7 +51,6 @@ void SynthFrameworkAudioProcessorEditor::resized()
     const int componentWidth = 200;
     const int componentHeight = 300;
     Rectangle<int> area = getLocalBounds();
-    oscGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight+10));
     envGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight+10));
     filterGui.setBounds(area.removeFromLeft(50).removeFromTop(componentHeight+10));
     resonanceGui.setBounds(area.removeFromLeft(50).removeFromTop(componentHeight+10));
