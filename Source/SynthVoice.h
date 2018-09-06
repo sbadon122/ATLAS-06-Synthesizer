@@ -12,6 +12,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SynthSound.h"
 #include "maximilian.h"
+#include "ChorusEffect.h"
 
 class SynthVoice : public SynthesiserVoice
 {
@@ -114,6 +115,11 @@ class SynthVoice : public SynthesiserVoice
         } else {
             return pwm;
         }
+    }
+    
+    void setChorus(float* chorus1, float* chorus2){
+        chorus1Setting = *chorus1;
+        chorus2Setting = *chorus2;
     }
     
     double getPitchRangeSetting()
@@ -229,6 +235,13 @@ class SynthVoice : public SynthesiserVoice
             return cutoffValue;
         }
     
+        double getChorusRate(){
+            double chorusRate = 0;
+            if(chorus1Setting > 0){ chorusRate += 0.2; }
+            if(chorus2Setting > 0){ chorusRate += 0.5; }
+            return chorusRate;
+        }
+    
         void renderNextBlock(AudioBuffer<float> &outputBuffer,int startSample, int numSamples) override
         {
         
@@ -239,10 +252,14 @@ class SynthVoice : public SynthesiserVoice
                 processedFrequency = frequency + (frequency * getLfoValue() * lfoPitchSetting);
                 double oscSound = getDCOSound();
                 double filteredSound = filter1.lores(oscSound*myCurrentVolume, calculateFilterCutoff(myCurrentVolume), resonanceSetting);
-                filteredSound = filter1.hires(filteredSound, hpfSetting, 0);
+                double processedSound = filter1.hires(filteredSound, hpfSetting, 0);
+                double chorusRate = getChorusRate();
+                if(chorusRate > 0) {
+                    processedSound = chorusEffect.processSignal(processedSound, chorusRate);
+                }
                 for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel)
                 {
-                    outputBuffer.addSample(channel, startSample, filteredSound);
+                    outputBuffer.addSample(channel, startSample, processedSound);
                 }
                 ++startSample;
             }
@@ -258,6 +275,7 @@ class SynthVoice : public SynthesiserVoice
     maxiEnv lfoEnv;
     maxiFilter filter1;
     maxiOsc lfo;
+    ChorusEffect chorusEffect;
     double level;
     double frequency;
     double processedFrequency;
@@ -277,6 +295,8 @@ class SynthVoice : public SynthesiserVoice
     double lfoFilterEnvelopeSetting;
     double lfoPitchSetting;
     double lfoPwmSetting;
+    double chorus1Setting;
+    double chorus2Setting;
     
     
 };

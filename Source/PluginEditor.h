@@ -28,6 +28,7 @@
 #include "PWM.h"
 #include "LFOPitch.h"
 #include "LFOPWM.h"
+#include "Chorus.h"
 
 
 //==============================================================================
@@ -66,6 +67,7 @@ private:
     PitchRange pitchRangeGui;
     LFOPitch lfoPitchGui;
     LFOPWM lfoPwmGui;
+    Chorus chorusGui;
     PWM pwmGui;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)

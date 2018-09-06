@@ -48,6 +48,8 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> pwmParam (0, 0.99);
     NormalisableRange<float> lfoPitchParam (0, 1.0f);
     NormalisableRange<float> lfoPwmParam (0, 0.99f);
+    NormalisableRange<float> chorus1Param (0, 1, 0);
+    NormalisableRange<float> chorus2Param (0, 1, 0);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -71,6 +73,8 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("pwm", "Pwm", "pwm", pwmParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("lfoPitch", "LfoPitch", "lfoPitch", lfoPitchParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("lfoPwm", "LfoPwm", "lfoPwm", lfoPwmParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("chorus1", "Chorus1", "chorus1", chorus1Param, 0,nullptr , nullptr);
+    tree->createAndAddParameter("chorus2", "Chorus2", "chorus2", chorus2Param, 0,nullptr , nullptr);
     
     
     tree->state = ValueTree ("SynthGUI");
@@ -221,6 +225,8 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setPwmSetting(tree->getRawParameterValue("pwm"));
             myVoice->setLfoPitchSetting(tree->getRawParameterValue("lfoPitch"));
             myVoice->setLfoPwmSetting(tree->getRawParameterValue("lfoPwm"));
+            myVoice->setChorus(tree->getRawParameterValue("chorus1"),
+                               tree->getRawParameterValue("chorus2"));
         }
     }
     buffer.clear();
