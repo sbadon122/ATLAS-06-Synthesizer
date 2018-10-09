@@ -34,7 +34,9 @@
 //==============================================================================
 /**
 */
-class SynthFrameworkAudioProcessorEditor  : public AudioProcessorEditor
+class SynthFrameworkAudioProcessorEditor  : public AudioProcessorEditor,
+                                            private MidiInputCallback,
+                                            private MidiKeyboardStateListener
 {
 public:
     SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor&);
@@ -43,7 +45,9 @@ public:
     //==============================================================================
     void paint (Graphics&) override;
     void resized() override;
-    
+    void handleNoteOn (MidiKeyboardState *source, int midiChannel, int midiNoteNumber, float velocity) override;
+    void handleNoteOff(MidiKeyboardState *source, int midiChannel, int midiNoteNumber, float velocity) override;
+    void handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message) override;
     void sliderValueChanged (Slider* slider);
     
 
@@ -69,6 +73,8 @@ private:
     LFOPWM lfoPwmGui;
     Chorus chorusGui;
     PWM pwmGui;
+    MidiKeyboardState keyboardState;            // [5]
+    MidiKeyboardComponent keyboardComponent;    // [6]
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };
