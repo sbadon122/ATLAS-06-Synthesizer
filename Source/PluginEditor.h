@@ -73,7 +73,6 @@ private:
     LFOPWM lfoPwmGui;
     Chorus chorusGui;
     PWM pwmGui;
-    MidiKeyboardState keyboardState;            // [5]
     MidiKeyboardComponent keyboardComponent;    // [6]
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)

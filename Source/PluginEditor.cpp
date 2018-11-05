@@ -13,7 +13,7 @@
 
 //==============================================================================
 SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p), lfoPitchGui(p), lfoPwmGui(p), chorusGui(p), keyboardComponent (keyboardState, MidiKeyboardComponent::horizontalKeyboard)
+    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p), lfoPitchGui(p), lfoPwmGui(p), chorusGui(p), keyboardComponent (p.keyboardState, MidiKeyboardComponent::horizontalKeyboard)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -36,7 +36,6 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     addAndMakeVisible(&lfoPwmGui);
     addAndMakeVisible(&chorusGui);
     addAndMakeVisible(&keyboardComponent);
-    keyboardState.addListener(this);
     
     
 }
@@ -75,6 +74,7 @@ void SynthFrameworkAudioProcessorEditor::resized()
     lfoPwmGui.setBounds(600, 150, 100, 150);
     chorusGui.setBounds(600, 20, 200, 150);
     keyboardComponent.setBounds(0, 325, 800, 75);
+    keyboardComponent.setMidiChannel(1);
 }
 
 void SynthFrameworkAudioProcessorEditor::sliderValueChanged(Slider *slider)
@@ -85,16 +85,16 @@ void SynthFrameworkAudioProcessorEditor::sliderValueChanged(Slider *slider)
 
 void SynthFrameworkAudioProcessorEditor::handleNoteOn(MidiKeyboardState *source, int midiChannel, int midiNoteNumber, float velocity)
 {
-   
+ 
 }
 
 void SynthFrameworkAudioProcessorEditor::handleNoteOff(MidiKeyboardState *source, int midiChannel, int midiNoteNumber, float velocity)
 {
-   
+
 }
 
 void SynthFrameworkAudioProcessorEditor::handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message)
 {
-    
+   
 }
 

@@ -198,7 +198,7 @@ bool SynthFrameworkAudioProcessor::isBusesLayoutSupported (const BusesLayout& la
 void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
      ScopedNoDenormals noDenormals;
-   
+   auto numSamples = buffer.getNumSamples();
     for (int i = 0; i < mySynth.getNumVoices(); i++)
     {
         
@@ -230,7 +230,8 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
         }
     }
     buffer.clear();
-    
+    keyboardState.processNextMidiBuffer (midiMessages, 0, numSamples, true);
+
     mySynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 }
 
