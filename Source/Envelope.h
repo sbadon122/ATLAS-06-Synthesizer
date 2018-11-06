@@ -32,6 +32,10 @@ private:
     Slider decaySlider;
     Slider sustainSlider;
     Slider releaseSlider;
+    Label attackLabel         { {}, "A"};
+    Label decayLabel         { {}, "D"};
+    Label sustainLabel         { {}, "S"};
+    Label releaseLabel         { {}, "R"};
     
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> attackVal;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> decayVal;

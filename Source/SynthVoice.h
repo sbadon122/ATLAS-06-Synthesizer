@@ -95,9 +95,17 @@ class SynthVoice : public SynthesiserVoice
         subOscSetting = *setting;
     }
     
-    void setPitchRangeSetting(float* setting)
+    void setPitchRangeSetting(float* range4, float* range8, float* range16)
     {
-        pitchRangeSetting = *setting;
+        if(*range4 == 1) {
+            pitchRangeSetting = 0;
+        }
+        else if(*range8 == 1) {
+             pitchRangeSetting = 1;
+        }
+        else if(*range16 == 1) {
+            pitchRangeSetting = 2;
+        }
     }
     
     void setPwmSetting(float* setting)

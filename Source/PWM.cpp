@@ -24,6 +24,8 @@ processor(p)
     addAndMakeVisible(&pwmLabel);
     pwmLabel.attachToComponent(&pwmSlider, false);
     pwmLabel.setText("PWM", dontSendNotification);
+    pwmLabel.setFont (Font (12.0f, Font::plain));
+    pwmLabel.setJustificationType(Justification::centred);
     
     pwmVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "pwm", pwmSlider);
 
@@ -35,14 +37,12 @@ PWM::~PWM()
 
 void PWM::paint (Graphics& g)
 {
-   pwmSlider.setBounds(10, 30, 40, 100);
+    g.fillAll(Colours::grey);
 }
 
 void PWM::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
-
+     pwmSlider.setBounds(0, 30, 50, 100);
 }
 
 void PWM::sliderValueChanged(Slider* slider)

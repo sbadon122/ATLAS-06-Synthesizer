@@ -53,28 +53,18 @@ void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
 
 void SynthFrameworkAudioProcessorEditor::resized()
 {
-    const int componentWidth = 200;
-    const int componentHeight = 300;
     Rectangle<int> area = getLocalBounds();
-    envGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight+10));
-    filterGui.setBounds(area.removeFromLeft(50).removeFromTop(componentHeight+10));
-    resonanceGui.setBounds(area.removeFromLeft(50).removeFromTop(componentHeight+10));
-    filterEnvelopeGui.setBounds(area.removeFromLeft(50).removeFromTop(componentHeight+10));
-    lfoGui.setBounds(area.removeFromLeft(100).removeFromTop(componentHeight+10));
-    lfoFilterEnvelopeGui.setBounds(area.removeFromLeft(50).removeFromTop(componentHeight+10));
-    hpfGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight+10));
-    vcaGui.setBounds(10, 150, 45, 150);
-    noiseGui.setBounds(50, 150, 45, 150);
-    sawOscGui.setBounds(100, 150, 100, 150);
-    squareOscGui.setBounds(200, 150, 100, 150);
-    subOscGui.setBounds(300, 150, 100, 150);
-    pitchRangeGui.setBounds(400, 150, 100, 150);
-    pwmGui.setBounds(450, 150, 100, 150);
-    lfoPitchGui.setBounds(500, 150, 100, 150);
-    lfoPwmGui.setBounds(600, 150, 100, 150);
-    chorusGui.setBounds(600, 20, 200, 150);
+    lfoGui.setBounds(area.removeFromLeft(120).removeFromTop(150));
+    pitchRangeGui.setBounds(area.removeFromLeft(140).removeFromTop(150));
+    lfoPwmGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
+    pwmGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
+    squareOscGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
+    sawOscGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
+    subOscGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
+    noiseGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
+    envGui.setBounds(area.removeFromLeft(240).removeFromTop(150));
     keyboardComponent.setBounds(0, 325, 800, 75);
-    keyboardComponent.setMidiChannel(1);
+    
 }
 
 void SynthFrameworkAudioProcessorEditor::sliderValueChanged(Slider *slider)

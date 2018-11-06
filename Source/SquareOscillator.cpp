@@ -18,6 +18,10 @@ processor(p)
     squareButton.setClickingTogglesState (true);
     addAndMakeVisible (squareLabel);
     addAndMakeVisible (squareButton);
+    squareLabel.attachToComponent(&squareButton, false);
+    squareLabel.setText("Square", dontSendNotification);
+    squareLabel.setFont (Font (12.0f, Font::plain));
+    squareLabel.setJustificationType(Justification::centred);
     sawVal = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "squareOsc", squareButton);
 
 }
@@ -28,12 +32,11 @@ SquareOscillator::~SquareOscillator()
 
 void SquareOscillator::paint (Graphics& g)
 {
-   squareButton.setBounds (10, 10, 90, 50);
+    g.fillAll(Colours::grey);
+  
 }
 
 void SquareOscillator::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
-
+     squareButton.setBounds (5, 60,40, 40);
 }

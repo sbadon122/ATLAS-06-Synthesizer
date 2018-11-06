@@ -27,7 +27,7 @@ public:
 
 private:
     SynthFrameworkAudioProcessor& processor;
-    TextButton squareButton    { "squareOsc" };
+    TextButton squareButton    { "" };
     Label squareLabel         { {}, "Square"};
     ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> sawVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquareOscillator)

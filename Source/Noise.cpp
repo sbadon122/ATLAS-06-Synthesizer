@@ -24,6 +24,8 @@ processor(p)
     addAndMakeVisible(&noiseLabel);
     noiseLabel.attachToComponent(&noiseSlider, false);
     noiseLabel.setText("Noise", dontSendNotification);
+    noiseLabel.setFont (Font (12.0f, Font::plain));
+    noiseLabel.setJustificationType(Justification::centred);
     
     noiseVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "noise", noiseSlider);
 
@@ -36,14 +38,13 @@ Noise::~Noise()
 
 void Noise::paint (Graphics& g)
 {
-     noiseSlider.setBounds(10, 30, 40, 100);
+    g.fillAll(Colours::grey);
+    
 }
 
 void Noise::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
-
+    noiseSlider.setBounds(0, 30, 50, 100);
 }
 
 void Noise::sliderValueChanged(Slider* slider)

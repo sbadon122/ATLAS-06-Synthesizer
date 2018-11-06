@@ -23,7 +23,9 @@ processor(p)
     addAndMakeVisible(&subOscSlider);
     addAndMakeVisible(&subOscLabel);
     subOscLabel.attachToComponent(&subOscSlider, false);
-    subOscLabel.setText("Sub Osc", dontSendNotification);
+    subOscLabel.setText("Sub", dontSendNotification);
+    subOscLabel.setFont (Font (12.0f, Font::plain));
+    subOscLabel.setJustificationType(Justification::centred);
     
     subOscVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "subOsc", subOscSlider);
 
@@ -36,14 +38,13 @@ SubOscillator::~SubOscillator()
 
 void SubOscillator::paint (Graphics& g)
 {
-     subOscSlider.setBounds(10, 30, 100, 100);
+    g.fillAll(Colours::grey);
+    
 }
 
 void SubOscillator::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
-
+    subOscSlider.setBounds(0, 30, 50, 100);
 }
 
 void SubOscillator::sliderValueChanged(Slider* slider)

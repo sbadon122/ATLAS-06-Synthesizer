@@ -16,8 +16,7 @@
 //==============================================================================
 /*
 */
-class PitchRange    : public Component,
-private ComboBox::Listener
+class PitchRange    : public Component
 {
 public:
     PitchRange(SynthFrameworkAudioProcessor& p);
@@ -25,11 +24,20 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
-    void comboBoxChanged(ComboBox*) override;
 
 private:
     SynthFrameworkAudioProcessor& processor;
-    ScopedPointer<AudioProcessorValueTreeState::ComboBoxAttachment> rangeSelection;
-    ComboBox rangeMenu;
+    TextButton range4Button    { "4'" };
+    Label range4Label         { {}, "4'"};
+    ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> range4Val;
+    
+    TextButton range8Button    { "8'" };
+    Label range8Label         { {}, "8'"};
+    ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> range8Val;
+    
+    TextButton range16Button    { "16'" };
+    Label range16Label         { {}, "16'"};
+    ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> range16Val;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PitchRange)
 };

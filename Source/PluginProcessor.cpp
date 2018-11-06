@@ -44,7 +44,9 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> sawButtonParam (0, 1, 0);
     NormalisableRange<float> squareButtonParam (0, 1, 1);
     NormalisableRange<float> subOscParam (0, 1.0f);
-    NormalisableRange<float> pitchRangeParam (0, 2);
+    NormalisableRange<float> pitchRangeParam (0, 1);
+    NormalisableRange<float> pitchRangeParam2 (0, 1);
+    NormalisableRange<float> pitchRangeParam3 (0, 1);
     NormalisableRange<float> pwmParam (0, 0.99);
     NormalisableRange<float> lfoPitchParam (0, 1.0f);
     NormalisableRange<float> lfoPwmParam (0, 0.99f);
@@ -69,7 +71,9 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("sawOsc", "SawOsc", "sawOsc", sawButtonParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("squareOsc", "SquareOsc", "squareOsc", squareButtonParam, 1,nullptr , nullptr);
     tree->createAndAddParameter("subOsc", "SubOsc", "subOsc", subOscParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("range", "Range", "range", pitchRangeParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("range4", "Range4", "range4", pitchRangeParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("range8", "Range8", "range8", pitchRangeParam2, 0,nullptr , nullptr);
+    tree->createAndAddParameter("range16", "Range16", "range16", pitchRangeParam3, 0,nullptr , nullptr);
     tree->createAndAddParameter("pwm", "Pwm", "pwm", pwmParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("lfoPitch", "LfoPitch", "lfoPitch", lfoPitchParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("lfoPwm", "LfoPwm", "lfoPwm", lfoPwmParam, 0,nullptr , nullptr);
@@ -221,7 +225,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setSawOscSetting(tree->getRawParameterValue("sawOsc"));
             myVoice->setSquareOscSetting(tree->getRawParameterValue("squareOsc"));
             myVoice->setSubOscSetting(tree->getRawParameterValue("subOsc"));
-            myVoice->setPitchRangeSetting(tree->getRawParameterValue("range"));
+            myVoice->setPitchRangeSetting(tree->getRawParameterValue("range4"),tree->getRawParameterValue("range8"), tree->getRawParameterValue("range16"));
             myVoice->setPwmSetting(tree->getRawParameterValue("pwm"));
             myVoice->setLfoPitchSetting(tree->getRawParameterValue("lfoPitch"));
             myVoice->setLfoPwmSetting(tree->getRawParameterValue("lfoPwm"));

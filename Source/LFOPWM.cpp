@@ -23,7 +23,9 @@ processor(p)
     addAndMakeVisible(&lfoPwmSlider);
     addAndMakeVisible(&lfoPwmLabel);
     lfoPwmLabel.attachToComponent(&lfoPwmSlider, false);
-    lfoPwmLabel.setText("LFO Pwm", dontSendNotification);
+    lfoPwmLabel.setText("LFO PWM", dontSendNotification);
+    lfoPwmLabel.setFont (Font (12.0f, Font::plain));
+    lfoPwmLabel.setJustificationType(Justification::centred);
     
     lfoPwmVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoPwm", lfoPwmSlider);
 
@@ -35,13 +37,13 @@ LFOPWM::~LFOPWM()
 
 void LFOPWM::paint (Graphics& g)
 {
-    lfoPwmSlider.setBounds(10, 30, 80, 100);
+    g.fillAll(Colours::grey);
+    
 }
 
 void LFOPWM::resized()
 {
-    
-
+    lfoPwmSlider.setBounds(0, 30, 50, 100);
 }
 
 void LFOPWM::sliderValueChanged(Slider* slider)

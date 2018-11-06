@@ -19,23 +19,27 @@ processor(p)
     lfoRateSlider.setRange(0, 10.0f);
     lfoRateSlider.setValue(0);
     lfoRateSlider.setSkewFactorFromMidPoint(5.0f);
-    lfoRateSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 0, 0);
+    lfoRateSlider.setTextBoxStyle(Slider::TextBoxAbove, true, 0, 0);
     lfoRateSlider.addListener(this);
     addAndMakeVisible(&lfoRateSlider);
     addAndMakeVisible(&lfoRateLabel);
     lfoRateLabel.attachToComponent(&lfoRateSlider, false);
     lfoRateLabel.setText("LFO Rate", dontSendNotification);
+    lfoRateLabel.setJustificationType(Justification::centred);
+    lfoRateLabel.setFont (Font (12.0f, Font::plain));
     
     lfoDelaySlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
     lfoDelaySlider.setRange(0.1f, 50000.0f);
     lfoDelaySlider.setValue(0.1f);
     lfoDelaySlider.setSkewFactor(0.4f);
-    lfoDelaySlider.setTextBoxStyle(Slider::TextBoxBelow, true, 0, 0);
+    lfoDelaySlider.setTextBoxStyle(Slider::TextBoxAbove, true, 0, 0);
     lfoDelaySlider.addListener(this);
     addAndMakeVisible(&lfoDelaySlider);
     addAndMakeVisible(&lfoDelayLabel);
     lfoDelayLabel.attachToComponent(&lfoDelaySlider, false);
     lfoDelayLabel.setText("LFO Delay", dontSendNotification);
+    lfoDelayLabel.setJustificationType(Justification::centred);
+    lfoDelayLabel.setFont (Font (12.0f, Font::plain));
     
     lfoRateVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoRate", lfoRateSlider);
     lfoDelayVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoDelay", lfoDelaySlider);
@@ -48,13 +52,13 @@ LFO::~LFO()
 
 void LFO::paint (Graphics& g)
 {
-   
+   g.fillAll(Colours::grey);
 }
 
 void LFO::resized()
 {
-    lfoRateSlider.setBounds(10, 30, 90, 100);
-    lfoDelaySlider.setBounds(60, 30, 90, 100);
+    lfoRateSlider.setBounds(5, 30, 50, 100);
+    lfoDelaySlider.setBounds(45, 30, 75, 100);
 
 }
 

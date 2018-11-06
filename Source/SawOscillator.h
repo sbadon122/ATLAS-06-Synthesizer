@@ -27,7 +27,7 @@ public:
 
 private:
     SynthFrameworkAudioProcessor& processor;
-    TextButton sawButton    { "sawOsc" };
+    TextButton sawButton    { "" };
     Label sawLabel         { {}, "Saw"};
     ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> sawVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SawOscillator)

@@ -21,6 +21,11 @@ processor(p)
         attackSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
         attackSlider.addListener(this);
         addAndMakeVisible(&attackSlider);
+        addAndMakeVisible(&attackLabel);
+        attackLabel.attachToComponent(&attackSlider, false);
+        attackLabel.setText("A", dontSendNotification);
+        attackLabel.setJustificationType(Justification::centred);
+        attackLabel.setFont (Font (12.0f, Font::plain));
     
         decaySlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
         decaySlider.setRange(1.0f, 2000.0f);
@@ -28,12 +33,23 @@ processor(p)
         decaySlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
         decaySlider.addListener(this);
         addAndMakeVisible(&decaySlider);
+        addAndMakeVisible(&decayLabel);
+        decayLabel.attachToComponent(&decaySlider, false);
+        decayLabel.setText("D", dontSendNotification);
+        decayLabel.setJustificationType(Justification::centred);
+        decayLabel.setFont (Font (12.0f, Font::plain));
+    
         sustainSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
         sustainSlider.setRange(0.0f, 1.0f);
         sustainSlider.setValue(0.8f);
         sustainSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
         sustainSlider.addListener(this);
         addAndMakeVisible(&sustainSlider);
+        addAndMakeVisible(&sustainLabel);
+        sustainLabel.attachToComponent(&sustainSlider, false);
+        sustainLabel.setText("S", dontSendNotification);
+        sustainLabel.setJustificationType(Justification::centred);
+        sustainLabel.setFont (Font (12.0f, Font::plain));
     
         releaseSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
         releaseSlider.setRange(0.1f, 5000.0f);
@@ -41,6 +57,11 @@ processor(p)
         releaseSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
         releaseSlider.addListener(this);
         addAndMakeVisible(&releaseSlider);
+        addAndMakeVisible(&releaseLabel);
+        releaseLabel.attachToComponent(&releaseSlider, false);
+        releaseLabel.setText("S", dontSendNotification);
+        releaseLabel.setJustificationType(Justification::centred);
+        releaseLabel.setFont (Font (12.0f, Font::plain));
     
         //sends value of the sliders to the tree state in the processor
         attackVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "attack", attackSlider);
@@ -56,17 +77,15 @@ Envelope::~Envelope()
 
 void Envelope::paint (Graphics& g)
 {
-   
+   g.fillAll(Colours::grey);
 }
 
 void Envelope::resized()
 {
-    attackSlider.setBounds(10, 10, 40, 100);
-    decaySlider.setBounds(60, 10, 40, 100);
-    sustainSlider.setBounds(110, 10, 40, 100);
-    releaseSlider.setBounds(160, 10, 40, 100);
-   
-    
+    attackSlider.setBounds(20, 30, 40, 100);
+    decaySlider.setBounds(70, 30, 40, 100);
+    sustainSlider.setBounds(120, 30, 40, 100);
+    releaseSlider.setBounds(170, 30, 40, 100);
 
 }
 
