@@ -38,6 +38,23 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     addAndMakeVisible(&keyboardComponent);
     
     
+    //Labels
+    addAndMakeVisible(&lfoLabel);
+    lfoLabel.setText ("LFO", dontSendNotification);
+    lfoLabel.setJustificationType (Justification::centred);
+    lfoLabel.setFont (Font (16.0f, Font::bold));
+    
+    addAndMakeVisible(&oscLabel);
+    oscLabel.setText ("DCO", dontSendNotification);
+    oscLabel.setJustificationType (Justification::centred);
+    oscLabel.setFont (Font (16.0f, Font::bold));
+    
+    addAndMakeVisible(&envLabel);
+    envLabel.setText ("ENV", dontSendNotification);
+    envLabel.setJustificationType (Justification::centred);
+    envLabel.setFont (Font (16.0f, Font::bold));
+    
+    
 }
 
 
@@ -49,11 +66,23 @@ SynthFrameworkAudioProcessorEditor::~SynthFrameworkAudioProcessorEditor()
 void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
 {
     g.fillAll(Colours::black);
+    g.setColour(Colours::darkred);
+    g.fillRect (0, 0, 117, 20);
+    g.fillRect (120, 0, 440, 20);
+    g.fillRect (563, 0, 237, 20);
 }
 
 void SynthFrameworkAudioProcessorEditor::resized()
 {
     Rectangle<int> area = getLocalBounds();
+    area.translate(0, 20);
+    
+    //Labels
+    lfoLabel.setBounds(0,5,100, 10);
+    oscLabel.setBounds(120, 0, 440, 20);
+    envLabel.setBounds(563, 0, 237, 20);
+    
+    //Synth Components
     lfoGui.setBounds(area.removeFromLeft(120).removeFromTop(150));
     pitchRangeGui.setBounds(area.removeFromLeft(140).removeFromTop(150));
     lfoPwmGui.setBounds(area.removeFromLeft(50).removeFromTop(150));

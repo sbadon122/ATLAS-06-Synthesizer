@@ -75,5 +75,10 @@ private:
     PWM pwmGui;
     MidiKeyboardComponent keyboardComponent;    // [6]
     
+    //Labels
+    Label lfoLabel;
+    Label oscLabel;
+    Label envLabel;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };
