@@ -24,6 +24,8 @@ processor(p)
     addAndMakeVisible(&vcaLabel);
     vcaLabel.attachToComponent(&vcaSlider, false);
     vcaLabel.setText("VCA", dontSendNotification);
+    vcaLabel.setFont (Font (12.0f, Font::plain));
+    vcaLabel.setJustificationType(Justification::centred);
     
     vcaVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "vca", vcaSlider);
 
@@ -35,13 +37,13 @@ VCA::~VCA()
 
 void VCA::paint (Graphics& g)
 {
-  vcaSlider.setBounds(10, 30, 40, 100);
+    g.fillAll(Colours::grey);
 }
 
 void VCA::resized()
 {
-    // This method is where you should set the bounds of any child
-    // components that your component contains..
+     vcaSlider.setBounds(50, 30, 50, 100);
+
 
 }
 

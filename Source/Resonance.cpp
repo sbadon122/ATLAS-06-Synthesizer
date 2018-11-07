@@ -18,12 +18,13 @@ processor(p)
     resonanceSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
     resonanceSlider.setRange(1.0f, 20.0f);
     resonanceSlider.setValue(1.0f);
-    resonanceSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 0, 0);
+    resonanceSlider.setTextBoxStyle(Slider::TextBoxAbove, true, 0, 0);
     resonanceSlider.addListener(this);
     addAndMakeVisible(&resonanceSlider);
-    addAndMakeVisible(&resonanceLabel);
     resonanceLabel.attachToComponent(&resonanceSlider, false);
-    resonanceLabel.setText("resonance", dontSendNotification);
+    resonanceLabel.setText("Resonance", dontSendNotification);
+    resonanceLabel.setFont (Font (12.0f, Font::plain));
+    resonanceLabel.setJustificationType(Justification::centred);
     
     resonanceVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "resonance", resonanceSlider);
 
@@ -35,13 +36,12 @@ Resonance::~Resonance()
 
 void Resonance::paint (Graphics& g)
 {
-    
-  
+    g.fillAll(Colours::grey);
 }
 
 void Resonance::resized()
 {
-    resonanceSlider.setBounds(10, 10, 40, 100);
+    resonanceSlider.setBounds(0, 30, 50, 100);
 }
 
 void Resonance::sliderValueChanged(Slider* slider)

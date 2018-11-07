@@ -23,8 +23,9 @@ processor(p)
     addAndMakeVisible(&lfoFilterEnvelopeSlider);
     addAndMakeVisible(&lfoFilterEnvelopeLabel);
     lfoFilterEnvelopeLabel.attachToComponent(&lfoFilterEnvelopeSlider, false);
-    lfoFilterEnvelopeLabel.setText("LFO Filter Envelope", dontSendNotification);
-    
+    lfoFilterEnvelopeLabel.setText("LFO", dontSendNotification);
+    lfoFilterEnvelopeLabel.setFont (Font (12.0f, Font::plain));
+    lfoFilterEnvelopeLabel.setJustificationType(Justification::centred);
     lfoFilterEnvelopeVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoFilterEnvelope", lfoFilterEnvelopeSlider);
 
 }
@@ -35,12 +36,13 @@ LfoFilterEnvelope::~LfoFilterEnvelope()
 
 void LfoFilterEnvelope::paint (Graphics& g)
 {
-  
+    g.fillAll(Colours::grey);
+
 }
 
 void LfoFilterEnvelope::resized()
 {
-    lfoFilterEnvelopeSlider.setBounds(10, 30, 40, 100);
+    lfoFilterEnvelopeSlider.setBounds(0, 30, 40, 100);
 }
 
 void LfoFilterEnvelope::sliderValueChanged(Slider* slider)

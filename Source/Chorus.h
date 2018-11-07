@@ -27,11 +27,11 @@ public:
 
 private:
     SynthFrameworkAudioProcessor& processor;
-    TextButton chorus1Button    { "chorusOne" };
+    TextButton chorus1Button    { "" };
     Label chorus1Label         { {}, "Chorus 1"};
     ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> chorus1Val;
     
-    TextButton chorus2Button    { "chorusTwo" };
+    TextButton chorus2Button    { "" };
     Label chorus2Label         { {}, "Chorus 2"};
     ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> chorus2Val;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Chorus)

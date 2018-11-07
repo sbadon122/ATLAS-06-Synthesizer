@@ -29,6 +29,7 @@ public:
 private:
     SynthFrameworkAudioProcessor& processor;
     Slider filterSlider;
+    Label filterLabel;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> filterVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Cutoff)
 };

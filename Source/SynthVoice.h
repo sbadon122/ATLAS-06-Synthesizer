@@ -246,7 +246,7 @@ class SynthVoice : public SynthesiserVoice
         double getChorusRate(){
             double chorusRate = 0;
             if(chorus1Setting > 0){ chorusRate += 0.2; }
-            if(chorus2Setting > 0){ chorusRate += 0.5; }
+            if(chorus2Setting > 0){ chorusRate += 0.4; }
             return chorusRate;
         }
     

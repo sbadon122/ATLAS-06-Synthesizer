@@ -21,6 +21,11 @@ processor(p)
     filterSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
     filterSlider.addListener(this);
     addAndMakeVisible(&filterSlider);
+    addAndMakeVisible(&filterLabel);
+    filterLabel.attachToComponent(&filterSlider, false);
+    filterLabel.setText("Cutoff", dontSendNotification);
+    filterLabel.setFont (Font (12.0f, Font::plain));
+    filterLabel.setJustificationType(Justification::centred);
     
     filterVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "cutoff", filterSlider);
 
@@ -32,12 +37,12 @@ Cutoff::~Cutoff()
 
 void Cutoff::paint (Graphics& g)
 {
-  
+   g.fillAll(Colours::grey);
 }
 
 void Cutoff::resized()
 {
-    filterSlider.setBounds(10, 10, 40, 100);
+    filterSlider.setBounds(0, 30, 50, 100);
 
 }
 

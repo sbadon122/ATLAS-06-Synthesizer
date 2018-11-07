@@ -79,6 +79,10 @@ private:
     Label lfoLabel;
     Label oscLabel;
     Label envLabel;
+    Label hpfLabel;
+    Label envAmpLabel;
+    Label ampLabel;
+    Label chorusLabel;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };

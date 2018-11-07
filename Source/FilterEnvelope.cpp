@@ -23,7 +23,9 @@ processor(p)
     addAndMakeVisible(&filterEnvelopeSlider);
     addAndMakeVisible(&filterEnvelopeLabel);
     filterEnvelopeLabel.attachToComponent(&filterEnvelopeSlider, false);
-    filterEnvelopeLabel.setText("Filter Envelope", dontSendNotification);
+    filterEnvelopeLabel.setText("Envelope", dontSendNotification);
+    filterEnvelopeLabel.setFont (Font (12.0f, Font::plain));
+    filterEnvelopeLabel.setJustificationType(Justification::centred);
     
     filterEnvelopeVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "filterEnvelope", filterEnvelopeSlider);
 }
@@ -34,12 +36,12 @@ FilterEnvelope::~FilterEnvelope()
 
 void FilterEnvelope::paint (Graphics& g)
 {
-   
+     g.fillAll(Colours::grey);
 }
 
 void FilterEnvelope::resized()
 {
-     filterEnvelopeSlider.setBounds(10, 30, 40, 100);
+     filterEnvelopeSlider.setBounds(0, 30, 50, 100);
 
 }
 

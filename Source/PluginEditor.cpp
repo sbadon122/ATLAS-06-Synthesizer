@@ -54,6 +54,26 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     envLabel.setJustificationType (Justification::centred);
     envLabel.setFont (Font (16.0f, Font::bold));
     
+    addAndMakeVisible(&hpfLabel);
+    hpfLabel.setText ("HPF", dontSendNotification);
+    hpfLabel.setJustificationType (Justification::centred);
+    hpfLabel.setFont (Font (16.0f, Font::bold));
+    
+    addAndMakeVisible(&envAmpLabel);
+    envAmpLabel.setText ("ENV", dontSendNotification);
+    envAmpLabel.setJustificationType (Justification::centred);
+    envAmpLabel.setFont (Font (16.0f, Font::bold));
+    
+    addAndMakeVisible(&ampLabel);
+    ampLabel.setText ("AMP", dontSendNotification);
+    ampLabel.setJustificationType (Justification::centred);
+    ampLabel.setFont (Font (16.0f, Font::bold));
+    
+    addAndMakeVisible(&chorusLabel);
+    chorusLabel.setText ("CHORUS", dontSendNotification);
+    chorusLabel.setJustificationType (Justification::centred);
+    chorusLabel.setFont (Font (16.0f, Font::bold));
+    
     
 }
 
@@ -70,6 +90,10 @@ void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
     g.fillRect (0, 0, 117, 20);
     g.fillRect (120, 0, 440, 20);
     g.fillRect (563, 0, 237, 20);
+    g.fillRect (50, 160, 57, 20);
+    g.fillRect (145, 160, 200, 20);
+    g.fillRect (400, 160, 50, 20);
+    g.fillRect (500, 160, 100, 20);
 }
 
 void SynthFrameworkAudioProcessorEditor::resized()
@@ -77,21 +101,38 @@ void SynthFrameworkAudioProcessorEditor::resized()
     Rectangle<int> area = getLocalBounds();
     area.translate(0, 20);
     
+    Rectangle<int> area2 = getLocalBounds();
+    area2.translate(0, 180);
+    
     //Labels
     lfoLabel.setBounds(0,5,100, 10);
     oscLabel.setBounds(120, 0, 440, 20);
     envLabel.setBounds(563, 0, 237, 20);
+    hpfLabel.setBounds(50, 160, 57, 20);
+    envAmpLabel.setBounds(145, 160, 200, 20);
+    ampLabel.setBounds(400, 160, 50, 20);
+    chorusLabel.setBounds(500, 160, 100, 20);
     
     //Synth Components
-    lfoGui.setBounds(area.removeFromLeft(120).removeFromTop(150));
-    pitchRangeGui.setBounds(area.removeFromLeft(140).removeFromTop(150));
-    lfoPwmGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
-    pwmGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
-    squareOscGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
-    sawOscGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
-    subOscGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
-    noiseGui.setBounds(area.removeFromLeft(50).removeFromTop(150));
-    envGui.setBounds(area.removeFromLeft(240).removeFromTop(150));
+    lfoGui.setBounds(area.removeFromLeft(120).removeFromTop(140));
+    pitchRangeGui.setBounds(area.removeFromLeft(140).removeFromTop(140));
+    lfoPwmGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
+    pwmGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
+    squareOscGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
+    sawOscGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
+    subOscGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
+    noiseGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
+    envGui.setBounds(area.removeFromLeft(240).removeFromTop(140));
+    hpfGui.setBounds(area2.removeFromLeft(150).removeFromTop(300));
+    filterGui.setBounds(area2.removeFromLeft(50).removeFromTop(300));
+    resonanceGui.setBounds(area2.removeFromLeft(50).removeFromTop(300));
+    filterEnvelopeGui.setBounds(area2.removeFromLeft(50).removeFromTop(300));
+    lfoFilterEnvelopeGui.setBounds(area2.removeFromLeft(50).removeFromTop(300));
+    vcaGui.setBounds(area2.removeFromLeft(150).removeFromTop(300));
+    chorusGui.setBounds(area2.removeFromLeft(100).removeFromTop(300));
+
+
+    //Keyboard
     keyboardComponent.setBounds(0, 325, 800, 75);
     
 }
