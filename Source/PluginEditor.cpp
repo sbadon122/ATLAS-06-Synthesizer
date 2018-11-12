@@ -13,7 +13,7 @@
 
 //==============================================================================
 SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p), lfoPitchGui(p), lfoPwmGui(p), chorusGui(p), keyboardComponent (p.keyboardState, MidiKeyboardComponent::horizontalKeyboard)
+    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p), lfoPitchGui(p), lfoPwmGui(p), chorusGui(p), keyboardComponent (p.keyboardState, MidiKeyboardComponent::horizontalKeyboard), presets(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -36,6 +36,7 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     addAndMakeVisible(&lfoPwmGui);
     addAndMakeVisible(&chorusGui);
     addAndMakeVisible(&keyboardComponent);
+    addAndMakeVisible(&presets);
     
     
     //Labels
@@ -73,6 +74,8 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     chorusLabel.setText ("CHORUS", dontSendNotification);
     chorusLabel.setJustificationType (Justification::centred);
     chorusLabel.setFont (Font (16.0f, Font::bold));
+    
+   
     
     
 }
@@ -130,6 +133,8 @@ void SynthFrameworkAudioProcessorEditor::resized()
     lfoFilterEnvelopeGui.setBounds(area2.removeFromLeft(50).removeFromTop(300));
     vcaGui.setBounds(area2.removeFromLeft(150).removeFromTop(300));
     chorusGui.setBounds(area2.removeFromLeft(100).removeFromTop(300));
+    presets.setBounds(area2.removeFromLeft(200).removeFromTop(145));
+    
 
 
     //Keyboard
@@ -157,4 +162,5 @@ void SynthFrameworkAudioProcessorEditor::handleIncomingMidiMessage (MidiInput* s
 {
    
 }
+
 

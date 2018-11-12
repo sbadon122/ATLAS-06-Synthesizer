@@ -59,7 +59,7 @@ processor(p)
         addAndMakeVisible(&releaseSlider);
         addAndMakeVisible(&releaseLabel);
         releaseLabel.attachToComponent(&releaseSlider, false);
-        releaseLabel.setText("S", dontSendNotification);
+        releaseLabel.setText("R", dontSendNotification);
         releaseLabel.setJustificationType(Justification::centred);
         releaseLabel.setFont (Font (12.0f, Font::plain));
     

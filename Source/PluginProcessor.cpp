@@ -81,7 +81,9 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("chorus2", "Chorus2", "chorus2", chorus2Param, 0,nullptr , nullptr);
     
     
-    tree->state = ValueTree ("SynthGUI");
+    
+    
+    tree->state = ValueTree ("synth");
     
     mySynth.clearVoices();
     
@@ -256,12 +258,22 @@ void SynthFrameworkAudioProcessor::getStateInformation (MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    
+    ScopedPointer <XmlElement> xml (tree->state.createXml());
+    copyXmlToBinary(*xml, destData);
 }
 
 void SynthFrameworkAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+    ScopedPointer <XmlElement> paramsXml (getXmlFromBinary(data,sizeInBytes));
+    
+    if( paramsXml != nullptr) {
+        if(paramsXml -> hasTagName(tree->state.getType())) {
+            tree->state = ValueTree::fromXml(*paramsXml);
+        }
+    }
 }
 
 //==============================================================================

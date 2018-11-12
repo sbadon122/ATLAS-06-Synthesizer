@@ -29,6 +29,7 @@
 #include "LFOPitch.h"
 #include "LFOPWM.h"
 #include "Chorus.h"
+#include "PresetLoader.h"
 
 
 //==============================================================================
@@ -49,6 +50,7 @@ public:
     void handleNoteOff(MidiKeyboardState *source, int midiChannel, int midiNoteNumber, float velocity) override;
     void handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message) override;
     void sliderValueChanged (Slider* slider);
+
     
 
 private:
@@ -73,7 +75,8 @@ private:
     LFOPWM lfoPwmGui;
     Chorus chorusGui;
     PWM pwmGui;
-    MidiKeyboardComponent keyboardComponent;    // [6]
+    MidiKeyboardComponent keyboardComponent;
+    PresetLoader presets;
     
     //Labels
     Label lfoLabel;
