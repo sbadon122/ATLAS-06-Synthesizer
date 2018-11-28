@@ -76,7 +76,9 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     chorusLabel.setFont (Font (16.0f, Font::bold));
     
    
-    
+    //Styling LookAndFeel
+    getLookAndFeel().setColour (TextButton::buttonColourId,  Colour(0xffe0dedf));
+    getLookAndFeel().setColour (TextButton::buttonOnColourId,  Colour(0xffe0dedf));
     
 }
 

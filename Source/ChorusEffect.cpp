@@ -16,7 +16,7 @@ ChorusEffect::~ChorusEffect() { }
 
 double ChorusEffect::processSignal(float sample, double lfoRate){
     double delayedSample = 0;
-    delayedSample = delay.dl(sample, 350*lfo.sinewave(lfoRate), 0);
+    delayedSample = delay.dl(sample, 350*lfo.triangle(lfoRate), 0);
     return sample + delayedSample;
 }
 

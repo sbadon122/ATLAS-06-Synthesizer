@@ -32,7 +32,6 @@ processor(p)
     chorus2Label.setFont (Font (12.0f, Font::plain));
     chorus2Label.setJustificationType(Justification::centred);
     chorus2Val = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "chorus2", chorus2Button);
-
 }
 
 Chorus::~Chorus()

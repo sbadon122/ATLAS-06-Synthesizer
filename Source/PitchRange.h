@@ -16,7 +16,8 @@
 //==============================================================================
 /*
 */
-class PitchRange    : public Component
+class PitchRange    : public Component,
+                      public Button::Listener
 {
 public:
     PitchRange(SynthFrameworkAudioProcessor& p);
@@ -24,18 +25,21 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+    void buttonClicked (Button* button) override; // [2]
+    Colour getButtonColor(Button* button);
+   
 
 private:
     SynthFrameworkAudioProcessor& processor;
-    TextButton range4Button    { "4'" };
+    TextButton range4Button    { "" };
     Label range4Label         { {}, "4'"};
     ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> range4Val;
     
-    TextButton range8Button    { "8'" };
+    TextButton range8Button    { "" };
     Label range8Label         { {}, "8'"};
     ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> range8Val;
     
-    TextButton range16Button    { "16'" };
+    TextButton range16Button    { "" };
     Label range16Label         { {}, "16'"};
     ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> range16Val;
     
