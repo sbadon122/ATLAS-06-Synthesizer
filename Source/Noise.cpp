@@ -38,7 +38,6 @@ Noise::~Noise()
 
 void Noise::paint (Graphics& g)
 {
-    g.fillAll(Colours::grey);
     
 }
 

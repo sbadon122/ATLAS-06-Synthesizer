@@ -36,7 +36,6 @@ LfoFilterEnvelope::~LfoFilterEnvelope()
 
 void LfoFilterEnvelope::paint (Graphics& g)
 {
-    g.fillAll(Colours::grey);
 
 }
 

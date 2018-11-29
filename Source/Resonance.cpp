@@ -36,7 +36,6 @@ Resonance::~Resonance()
 
 void Resonance::paint (Graphics& g)
 {
-    g.fillAll(Colours::grey);
 }
 
 void Resonance::resized()

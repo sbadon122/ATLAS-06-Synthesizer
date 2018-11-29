@@ -37,7 +37,6 @@ HPF::~HPF()
 
 void HPF::paint (Graphics& g)
 {
-     g.fillAll(Colours::grey);
    
 }
 

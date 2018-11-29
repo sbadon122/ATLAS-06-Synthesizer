@@ -16,7 +16,8 @@
 //==============================================================================
 /*
 */
-class SawOscillator    : public Component
+class SawOscillator    : public Component,
+                         public Button::Listener
 {
 public:
     SawOscillator(SynthFrameworkAudioProcessor& p);
@@ -24,6 +25,8 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+    Colour getButtonColor(Button* b);
+    void buttonClicked (Button* button) override; 
 
 private:
     SynthFrameworkAudioProcessor& processor;

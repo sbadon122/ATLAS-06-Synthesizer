@@ -37,7 +37,7 @@ Cutoff::~Cutoff()
 
 void Cutoff::paint (Graphics& g)
 {
-   g.fillAll(Colours::grey);
+   
 }
 
 void Cutoff::resized()

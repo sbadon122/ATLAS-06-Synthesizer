@@ -79,6 +79,19 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     //Styling LookAndFeel
     getLookAndFeel().setColour (TextButton::buttonColourId,  Colour(0xffe0dedf));
     getLookAndFeel().setColour (TextButton::buttonOnColourId,  Colour(0xffe0dedf));
+    lfoGui.setLookAndFeel(&sliderLookAndFeel);
+    lfoPwmGui.setLookAndFeel(&sliderLookAndFeel);
+    pwmGui.setLookAndFeel(&sliderLookAndFeel);
+    subOscGui.setLookAndFeel(&sliderLookAndFeel);
+    noiseGui.setLookAndFeel(&sliderLookAndFeel);
+    envGui.setLookAndFeel(&sliderLookAndFeel);
+    hpfGui.setLookAndFeel(&sliderLookAndFeel);
+    filterGui.setLookAndFeel(&sliderLookAndFeel);
+    resonanceGui.setLookAndFeel(&sliderLookAndFeel);
+    filterEnvelopeGui.setLookAndFeel(&sliderLookAndFeel);
+    lfoFilterEnvelopeGui.setLookAndFeel(&sliderLookAndFeel);
+    vcaGui.setLookAndFeel(&sliderLookAndFeel);
+    
     
 }
 
@@ -90,7 +103,7 @@ SynthFrameworkAudioProcessorEditor::~SynthFrameworkAudioProcessorEditor()
 //==============================================================================
 void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
 {
-    g.fillAll(Colours::black);
+    g.fillAll(Colour(0xff4c494a));
     g.setColour(Colours::darkred);
     g.fillRect (0, 0, 117, 20);
     g.fillRect (120, 0, 440, 20);

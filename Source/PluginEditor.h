@@ -30,6 +30,7 @@
 #include "LFOPWM.h"
 #include "Chorus.h"
 #include "PresetLoader.h"
+#include "SliderLookAndFeel.h"
 
 
 //==============================================================================
@@ -87,8 +88,7 @@ private:
     Label ampLabel;
     Label chorusLabel;
     
-    //LookAndFeel
-    
+    SliderLookAndFeel sliderLookAndFeel;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };

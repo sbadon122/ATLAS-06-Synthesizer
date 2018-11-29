@@ -18,7 +18,6 @@ processor(p)
     chorus1Button.setClickingTogglesState (true);
     addAndMakeVisible (chorus1Label);
     addAndMakeVisible (chorus1Button);
-    chorus1Label.attachToComponent(&chorus1Button, false);
     chorus1Label.setText("i", dontSendNotification);
     chorus1Label.setFont (Font (12.0f, Font::plain));
     chorus1Label.setJustificationType(Justification::centred);
@@ -27,11 +26,18 @@ processor(p)
     chorus2Button.setClickingTogglesState (true);
     addAndMakeVisible (chorus2Label);
     addAndMakeVisible (chorus2Button);
-    chorus2Label.attachToComponent(&chorus2Button, false);
     chorus2Label.setText("ii", dontSendNotification);
     chorus2Label.setFont (Font (12.0f, Font::plain));
     chorus2Label.setJustificationType(Justification::centred);
     chorus2Val = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "chorus2", chorus2Button);
+    
+    chorus1Button.addListener(this);
+    chorus2Button.addListener(this);
+    
+    otherLookAndFeel.setColour (TextButton::buttonColourId,  Colour(0xfff9ac02));
+    otherLookAndFeel.setColour (TextButton::buttonOnColourId,  Colour(0xfff9ac02));
+    chorus1Button.setLookAndFeel(&otherLookAndFeel);
+    chorus2Button.setLookAndFeel(&otherLookAndFeel);
 }
 
 Chorus::~Chorus()
@@ -40,12 +46,34 @@ Chorus::~Chorus()
 
 void Chorus::paint (Graphics& g)
 {
-  g.fillAll(Colours::grey);
+ 
+  g.setColour (getButtonColor(&chorus1Button));
+  g.fillEllipse(17.5, 50,5, 5);
+  g.setColour (getButtonColor(&chorus2Button));
+  g.fillEllipse(67.5, 50,5, 5);
 }
 
 void Chorus::resized()
 {
-    chorus1Button.setBounds (5, 60,40, 40);
+    chorus1Button.setBounds (0, 60,40, 40);
     chorus2Button.setBounds (50, 60, 40, 40);
     
+    chorus1Label.setBounds (0, 17,40, 40);
+    chorus2Label.setBounds (50, 17, 40, 40);
+    
 }
+
+Colour Chorus::getButtonColor(Button* b){
+    if(b->getToggleState()){
+        return Colour(0xffbe2932);
+    }
+    else {
+        return Colour(0xff5f525d);
+    }
+}
+
+void Chorus::buttonClicked (Button* button)
+{
+    repaint();
+}
+

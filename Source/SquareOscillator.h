@@ -16,7 +16,8 @@
 //==============================================================================
 /*
 */
-class SquareOscillator    : public Component
+class SquareOscillator    : public Component,
+                            public Button::Listener
 {
 public:
     SquareOscillator(SynthFrameworkAudioProcessor& p);
@@ -24,6 +25,8 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+    Colour getButtonColor(Button* b);
+    void buttonClicked (Button* button) override; 
 
 private:
     SynthFrameworkAudioProcessor& processor;

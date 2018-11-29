@@ -77,15 +77,14 @@ Envelope::~Envelope()
 
 void Envelope::paint (Graphics& g)
 {
-   g.fillAll(Colours::grey);
 }
 
 void Envelope::resized()
 {
-    attackSlider.setBounds(20, 30, 40, 100);
-    decaySlider.setBounds(70, 30, 40, 100);
-    sustainSlider.setBounds(120, 30, 40, 100);
-    releaseSlider.setBounds(170, 30, 40, 100);
+    attackSlider.setBounds(0, 30, 40, 100);
+    decaySlider.setBounds(40, 30, 40, 100);
+    sustainSlider.setBounds(80, 30, 40, 100);
+    releaseSlider.setBounds(120, 30, 40, 100);
 
 }
 

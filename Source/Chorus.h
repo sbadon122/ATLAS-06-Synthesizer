@@ -16,7 +16,8 @@
 //==============================================================================
 /*
 */
-class Chorus    : public Component
+class Chorus    : public Component,
+                  public Button::Listener
 {
 public:
     Chorus(SynthFrameworkAudioProcessor& p);
@@ -24,8 +25,11 @@ public:
 
     void paint (Graphics&) override;
     void resized() override;
+    Colour getButtonColor(Button* b);
+    void buttonClicked (Button* button) override; 
 
 private:
+    LookAndFeel_V4 otherLookAndFeel;
     SynthFrameworkAudioProcessor& processor;
     TextButton chorus1Button    { "" };
     Label chorus1Label         { {}, "Chorus 1"};

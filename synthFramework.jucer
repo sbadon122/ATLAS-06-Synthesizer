@@ -4,6 +4,8 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="EFNugl" name="synthFramework">
     <GROUP id="{66FD8400-6D02-3DAD-76EB-B7D0CEE54811}" name="Source">
+      <FILE id="PQhezK" name="SliderLookAndFeel.h" compile="0" resource="0"
+            file="Source/SliderLookAndFeel.h"/>
       <FILE id="ZRr7qN" name="PresetLoader.cpp" compile="1" resource="0"
             file="Source/PresetLoader.cpp"/>
       <FILE id="sKfCm5" name="PresetLoader.h" compile="0" resource="0" file="Source/PresetLoader.h"/>

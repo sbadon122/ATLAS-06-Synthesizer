@@ -38,7 +38,7 @@ SubOscillator::~SubOscillator()
 
 void SubOscillator::paint (Graphics& g)
 {
-    g.fillAll(Colours::grey);
+
     
 }
 

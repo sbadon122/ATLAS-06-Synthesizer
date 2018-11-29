@@ -37,6 +37,9 @@ private:
     void     buttonClicked (Button *) override;
     void     buttonStateChanged (Button *) override;
     
+    //LookAndFeel
+    LookAndFeel_V4 otherLookAndFeel;
+    
     SynthFrameworkAudioProcessor& processor;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetLoader)
 };

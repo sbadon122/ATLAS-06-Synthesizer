@@ -71,7 +71,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("sawOsc", "SawOsc", "sawOsc", sawButtonParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("squareOsc", "SquareOsc", "squareOsc", squareButtonParam, 1,nullptr , nullptr);
     tree->createAndAddParameter("subOsc", "SubOsc", "subOsc", subOscParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("range4", "Range4", "range4", pitchRangeParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("range4", "Range4", "range4", pitchRangeParam, 1,nullptr , nullptr);
     tree->createAndAddParameter("range8", "Range8", "range8", pitchRangeParam2, 0,nullptr , nullptr);
     tree->createAndAddParameter("range16", "Range16", "range16", pitchRangeParam3, 0,nullptr , nullptr);
     tree->createAndAddParameter("pwm", "Pwm", "pwm", pwmParam, 0,nullptr , nullptr);

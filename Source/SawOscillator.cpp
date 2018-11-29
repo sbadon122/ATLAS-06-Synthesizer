@@ -18,11 +18,11 @@ processor(p)
     sawButton.setClickingTogglesState (true);
     addAndMakeVisible (sawLabel);
     addAndMakeVisible (sawButton);
-    sawLabel.attachToComponent(&sawButton, false);
     sawLabel.setText("Saw", dontSendNotification);
     sawLabel.setFont (Font (12.0f, Font::plain));
     sawLabel.setJustificationType(Justification::centred);
     sawVal = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "sawOsc", sawButton);
+    sawButton.addListener(this);
 }
 
 SawOscillator::~SawOscillator()
@@ -31,12 +31,29 @@ SawOscillator::~SawOscillator()
 
 void SawOscillator::paint (Graphics& g)
 {
-      g.fillAll(Colours::grey);
+      g.setColour (getButtonColor(&sawButton));
+      g.fillEllipse(17.5, 50,5, 5);
 }
 
 
 void SawOscillator::resized()
 {
-     sawButton.setBounds (5, 60,40, 40);
+     sawButton.setBounds (0, 60,40, 40);
+    sawLabel.setBounds (0, 17,40, 40);
+    
 
+}
+
+Colour SawOscillator::getButtonColor(Button* b){
+    if(b->getToggleState()){
+        return Colour(0xffbe2932);
+    }
+    else {
+        return Colour(0xff5f525d);
+    }
+}
+
+void SawOscillator::buttonClicked (Button* button) // [2]
+{
+    repaint();
 }

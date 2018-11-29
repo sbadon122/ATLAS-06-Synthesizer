@@ -36,7 +36,6 @@ FilterEnvelope::~FilterEnvelope()
 
 void FilterEnvelope::paint (Graphics& g)
 {
-     g.fillAll(Colours::grey);
 }
 
 void FilterEnvelope::resized()

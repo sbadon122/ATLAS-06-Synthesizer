@@ -18,9 +18,11 @@ processor(p)
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     //File Selector
-    fileComp.reset (new FilenameComponent ("fileComp", {}, false, false, false, {},   {}, "Select file to open"));
+    fileComp.reset (new FilenameComponent ("fileComp", {}, false, false, false, {},   {}, "Presets"));
     addAndMakeVisible (fileComp.get());
     fileComp->addListener (this);
+    fileComp->setTooltip("Select Preset");
+    fileComp->setBrowseButtonText("Load Preset");
     
     saveButton.setClickingTogglesState (true);
     addAndMakeVisible (saveLabel);
@@ -30,6 +32,16 @@ processor(p)
     saveLabel.setFont (Font (12.0f, Font::plain));
     saveLabel.setJustificationType(Justification::centred);
     saveButton.addListener(this);
+    
+    otherLookAndFeel.setColour (TextButton::buttonColourId,  Colour(0xffe0dedf));
+    otherLookAndFeel.setColour (TextButton::buttonOnColourId,  Colour(0xffe0dedf));
+    otherLookAndFeel.setColour (TextButton::textColourOnId,  Colours::black);
+    otherLookAndFeel.setColour (TextButton::textColourOffId,  Colours::black);
+    otherLookAndFeel.setColour (ComboBox::backgroundColourId,  Colour(0xffe0dedf));
+    otherLookAndFeel.setColour (ComboBox::textColourId,  Colours::black);
+    otherLookAndFeel.setColour (ComboBox::arrowColourId,  Colours::black);
+    saveButton.setLookAndFeel(&otherLookAndFeel);
+    fileComp->setLookAndFeel(&otherLookAndFeel);
 
 }
 
@@ -38,9 +50,7 @@ PresetLoader::~PresetLoader()
 }
 
 void PresetLoader::paint (Graphics& g)
-{
-   g.fillAll(Colours::grey);
-   
+{   
   
 }
 
@@ -117,6 +127,7 @@ void PresetLoader::buttonClicked(Button* button){
                          }
                      });
     
+
    
 }
                 

@@ -37,7 +37,6 @@ VCA::~VCA()
 
 void VCA::paint (Graphics& g)
 {
-    g.fillAll(Colours::grey);
 }
 
 void VCA::resized()

@@ -37,7 +37,7 @@ PWM::~PWM()
 
 void PWM::paint (Graphics& g)
 {
-    g.fillAll(Colours::grey);
+
 }
 
 void PWM::resized()

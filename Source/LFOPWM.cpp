@@ -37,7 +37,6 @@ LFOPWM::~LFOPWM()
 
 void LFOPWM::paint (Graphics& g)
 {
-    g.fillAll(Colours::grey);
     
 }
 

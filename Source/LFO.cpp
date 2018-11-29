@@ -52,7 +52,7 @@ LFO::~LFO()
 
 void LFO::paint (Graphics& g)
 {
-   g.fillAll(Colours::grey);
+   g.fillAll(Colour(0xff4c494a));
 }
 
 void LFO::resized()

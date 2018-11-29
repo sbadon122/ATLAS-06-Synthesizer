@@ -56,7 +56,6 @@ PitchRange::~PitchRange()
 
 void PitchRange::paint (Graphics& g)
 {
-   g.fillAll(Colours::grey);
    g.setColour (getButtonColor(&range4Button));
    g.fillEllipse(17.5, 50,5, 5);
    g.setColour (getButtonColor(&range8Button));
