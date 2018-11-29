@@ -43,6 +43,30 @@ processor(p)
     
     lfoRateVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoRate", lfoRateSlider);
     lfoDelayVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoDelay", lfoDelaySlider);
+    
+    addAndMakeVisible(&zeroLabel1);
+    zeroLabel1.setText("0", dontSendNotification);
+    zeroLabel1.setFont (Font (10.0f, Font::bold));
+    
+    addAndMakeVisible(&fiveLabel1);
+    fiveLabel1.setText("5", dontSendNotification);
+    fiveLabel1.setFont (Font (10.0f, Font::bold));
+    
+    addAndMakeVisible(&tenLabel1);
+    tenLabel1.setText("10", dontSendNotification);
+    tenLabel1.setFont (Font (10.0f, Font::bold));
+    
+    addAndMakeVisible(&zeroLabel2);
+    zeroLabel2.setText("0", dontSendNotification);
+    zeroLabel2.setFont (Font (10.0f, Font::bold));
+    
+    addAndMakeVisible(&fiveLabel2);
+    fiveLabel2.setText("5", dontSendNotification);
+    fiveLabel2.setFont (Font (10.0f, Font::bold));
+    
+    addAndMakeVisible(&tenLabel2);
+    tenLabel2.setText("10", dontSendNotification);
+    tenLabel2.setFont (Font (10.0f, Font::bold));
 
 }
 
@@ -52,13 +76,18 @@ LFO::~LFO()
 
 void LFO::paint (Graphics& g)
 {
-   g.fillAll(Colour(0xff4c494a));
 }
 
 void LFO::resized()
 {
-    lfoRateSlider.setBounds(5, 30, 50, 100);
-    lfoDelaySlider.setBounds(45, 30, 75, 100);
+    tenLabel1.setBounds(0, 37.5, 20, 10);
+    fiveLabel1.setBounds(5, 77.5, 20, 10);
+    zeroLabel1.setBounds(5, 114, 20, 10);
+    lfoRateSlider.setBounds(20, 30, 50, 100);
+    lfoDelaySlider.setBounds(70, 30, 50, 100);
+    tenLabel2.setBounds(120, 37.5, 20, 10);
+    fiveLabel2.setBounds(120, 77.5, 20, 10);
+    zeroLabel2.setBounds(120, 114, 20, 10);
 
 }
 

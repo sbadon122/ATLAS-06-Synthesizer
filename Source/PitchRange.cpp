@@ -57,11 +57,11 @@ PitchRange::~PitchRange()
 void PitchRange::paint (Graphics& g)
 {
    g.setColour (getButtonColor(&range4Button));
-   g.fillEllipse(17.5, 50,5, 5);
+   g.fillEllipse(22.5, 60,5, 5);
    g.setColour (getButtonColor(&range8Button));
-   g.fillEllipse(67.5, 50,5, 5);
+   g.fillEllipse(62.5, 60,5, 5);
    g.setColour (getButtonColor(&range16Button));
-   g.fillEllipse(117.5, 50,5, 5);
+   g.fillEllipse(102.5, 60,5, 5);
 }
 
 Colour PitchRange::getButtonColor(Button* b){
@@ -75,13 +75,17 @@ Colour PitchRange::getButtonColor(Button* b){
 
 void PitchRange::resized()
 {
-    range4Button.setBounds (0, 60,40, 40);
-    range8Button.setBounds (50, 60, 40, 40);
-    range16Button.setBounds (100, 60, 40, 40);
+    int padding = 10;
+    auto area = getLocalBounds();
     
-    range4Label.setBounds (0, 17,40, 40);
-    range8Label.setBounds (50, 17, 40, 40);
-    range16Label.setBounds (100, 17, 40, 40);
+    
+    range4Label.setBounds (10, 27,buttonSize, buttonSize);
+    range8Label.setBounds (50, 27, buttonSize, buttonSize);
+    range16Label.setBounds (90, 27, buttonSize, buttonSize);
+    
+    range4Button.setBounds (padding, 70,buttonSize, buttonSize);
+    range8Button.setBounds (50, 70, buttonSize, buttonSize);
+    range16Button.setBounds (90, 70, buttonSize, buttonSize);
 
 
 }

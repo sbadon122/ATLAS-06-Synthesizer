@@ -132,10 +132,10 @@ void SynthFrameworkAudioProcessorEditor::resized()
     chorusLabel.setBounds(500, 160, 100, 20);
     
     //Synth Components
-    lfoGui.setBounds(area.removeFromLeft(120).removeFromTop(140));
+    lfoGui.setBounds(area.removeFromLeft(140).removeFromTop(140));
     pitchRangeGui.setBounds(area.removeFromLeft(140).removeFromTop(140));
-    lfoPwmGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
-    pwmGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
+    lfoPwmGui.setBounds(area.removeFromLeft(80).removeFromTop(140));
+    pwmGui.setBounds(area.removeFromLeft(80).removeFromTop(140));
     squareOscGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
     sawOscGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
     subOscGui.setBounds(area.removeFromLeft(50).removeFromTop(140));

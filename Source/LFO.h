@@ -33,6 +33,12 @@ private:
     Label lfoRateLabel;
     Slider lfoDelaySlider;
     Label lfoDelayLabel;
+    Label zeroLabel1;
+    Label fiveLabel1;
+    Label tenLabel1;
+    Label zeroLabel2;
+    Label fiveLabel2;
+    Label tenLabel2;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> lfoRateVal;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> lfoDelayVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LFO)
