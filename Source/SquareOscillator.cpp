@@ -18,9 +18,6 @@ processor(p)
     squareButton.setClickingTogglesState (true);
     addAndMakeVisible (squareLabel);
     addAndMakeVisible (squareButton);
-    squareLabel.setText("Square", dontSendNotification);
-    squareLabel.setFont (Font (12.0f, Font::plain));
-    squareLabel.setJustificationType(Justification::centred);
     sawVal = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "squareOsc", squareButton);
     squareButton.addListener(this);
 
@@ -33,14 +30,14 @@ SquareOscillator::~SquareOscillator()
 void SquareOscillator::paint (Graphics& g)
 {
     g.setColour (getButtonColor(&squareButton));
-    g.fillEllipse(17.5, 50,5, 5);
+    g.fillEllipse(12.5, 60,5, 5);
   
 }
 
 void SquareOscillator::resized()
 {
-     squareButton.setBounds (0, 60,40, 40);
-     squareLabel.setBounds (0, 17,40, 40);
+     squareButton.setBounds (0, 70,buttonSize, buttonSize);
+     squareLabel.setBounds (0, 17,buttonSize, buttonSize);
 }
 
 Colour SquareOscillator::getButtonColor(Button* b){

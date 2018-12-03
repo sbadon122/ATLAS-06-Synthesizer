@@ -79,6 +79,9 @@ class SynthVoice : public SynthesiserVoice
     {
         noiseSetting = *setting;
     }
+    void setPwmMode(float* setting){
+        pwmModeSetting = *setting;
+    }
     
     void setSawOscSetting(float* setting)
     {
@@ -115,7 +118,7 @@ class SynthVoice : public SynthesiserVoice
     
     double getPwmSetting(){
         double pwm = pwmSetting;
-        pwm = pwmSetting - pwmSetting * lfoPwmSetting * getLfoValue();
+        pwm = pwmSetting - pwmSetting * lfoPwmSetting * pwmModeSetting * getLfoValue();
         if(pwm > 0.99f){
             return 0.99;
         } else if (pwm < 0){
@@ -305,6 +308,7 @@ class SynthVoice : public SynthesiserVoice
     double lfoPwmSetting;
     double chorus1Setting;
     double chorus2Setting;
+    double pwmModeSetting;
     
     
 };

@@ -20,8 +20,8 @@ processor(p)
     addAndMakeVisible (range4Button);
     range4Val = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "range4", range4Button);
     //range4Label.attachToComponent(&range4Button, false);
-    range4Label.setText("4'", dontSendNotification);
-    range4Label.setFont (Font (12.0f, Font::plain));
+    range4Label.setText(" 4'", dontSendNotification);
+    range4Label.setFont (Font (10.0f, Font::plain));
     range4Label.setJustificationType(Justification::centred);
     
     range8Button.setClickingTogglesState (true);
@@ -29,8 +29,8 @@ processor(p)
     addAndMakeVisible (range8Button);
     range8Val = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "range8", range8Button);
     //range8Label.attachToComponent(&range8Button, false);
-    range8Label.setText("8'", dontSendNotification);
-    range8Label.setFont (Font (12.0f, Font::plain));
+    range8Label.setText(" 8'", dontSendNotification);
+    range8Label.setFont (Font (10.0f, Font::plain));
     range8Label.setJustificationType(Justification::centred);
     
     range16Button.setClickingTogglesState (true);
@@ -39,7 +39,7 @@ processor(p)
     range16Val = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "range16", range16Button);
    // range16Label.attachToComponent(&range16Button, false);
     range16Label.setText("16'", dontSendNotification);
-    range16Label.setFont (Font (12.0f, Font::plain));
+    range16Label.setFont (Font (10.0f, Font::plain));
     range16Label.setJustificationType(Justification::centred);
     
     range4Button.addListener(this);
@@ -79,9 +79,9 @@ void PitchRange::resized()
     auto area = getLocalBounds();
     
     
-    range4Label.setBounds (10, 27,buttonSize, buttonSize);
-    range8Label.setBounds (50, 27, buttonSize, buttonSize);
-    range16Label.setBounds (90, 27, buttonSize, buttonSize);
+    range4Label.setBounds (10, 30,buttonSize, buttonSize);
+    range8Label.setBounds (50, 30, buttonSize, buttonSize);
+    range16Label.setBounds (90, 30, buttonSize, buttonSize);
     
     range4Button.setBounds (padding, 70,buttonSize, buttonSize);
     range8Button.setBounds (50, 70, buttonSize, buttonSize);

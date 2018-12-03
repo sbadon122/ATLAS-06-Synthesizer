@@ -31,6 +31,7 @@
 #include "Chorus.h"
 #include "PresetLoader.h"
 #include "SliderLookAndFeel.h"
+#include "PWMModeSwitch.h"
 
 
 //==============================================================================
@@ -78,6 +79,7 @@ private:
     PWM pwmGui;
     MidiKeyboardComponent keyboardComponent;
     PresetLoader presets;
+    PWMModeSwitch pwmModeSwitchGui;
     
     //Labels
     Label lfoLabel;
@@ -89,6 +91,7 @@ private:
     Label chorusLabel;
     
     SliderLookAndFeel sliderLookAndFeel;
+    SliderToggleLookAndFeel sliderToggleLookAndFeel;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessorEditor)
 };

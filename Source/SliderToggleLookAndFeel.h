@@ -1,15 +1,11 @@
 /*
   ==============================================================================
 
-    Constants.h
-    Created: 29 Nov 2018 1:23:52pm
+    SliderToggleLookAndFeel.h
+    Created: 1 Dec 2018 3:31:01pm
     Author:  Sebastian Badon
 
   ==============================================================================
 */
 
 #pragma once
-
-int const buttonSize = 30;
-int const numberFontSize = 8.0f;
-int const sliderWidth = 40.0f;

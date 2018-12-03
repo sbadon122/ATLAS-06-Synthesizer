@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "Constants.h"
 
 //==============================================================================
 /*
@@ -31,7 +32,7 @@ public:
 private:
     SynthFrameworkAudioProcessor& processor;
     TextButton squareButton    { "" };
-    Label squareLabel         { {}, "Square"};
+    Label squareLabel         { {}, ""};
     ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> sawVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquareOscillator)
 };

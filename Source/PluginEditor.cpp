@@ -13,7 +13,7 @@
 
 //==============================================================================
 SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p), lfoPitchGui(p), lfoPwmGui(p), chorusGui(p), keyboardComponent (p.keyboardState, MidiKeyboardComponent::horizontalKeyboard), presets(p)
+    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p), lfoPitchGui(p), lfoPwmGui(p), chorusGui(p), keyboardComponent (p.keyboardState, MidiKeyboardComponent::horizontalKeyboard), presets(p), pwmModeSwitchGui(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -37,6 +37,7 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     addAndMakeVisible(&chorusGui);
     addAndMakeVisible(&keyboardComponent);
     addAndMakeVisible(&presets);
+    addAndMakeVisible(&pwmModeSwitchGui);
     
     
     //Labels
@@ -91,6 +92,7 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     filterEnvelopeGui.setLookAndFeel(&sliderLookAndFeel);
     lfoFilterEnvelopeGui.setLookAndFeel(&sliderLookAndFeel);
     vcaGui.setLookAndFeel(&sliderLookAndFeel);
+    pwmModeSwitchGui.setLookAndFeel(&sliderToggleLookAndFeel);
     
     
 }
@@ -132,14 +134,16 @@ void SynthFrameworkAudioProcessorEditor::resized()
     chorusLabel.setBounds(500, 160, 100, 20);
     
     //Synth Components
-    lfoGui.setBounds(area.removeFromLeft(140).removeFromTop(140));
-    pitchRangeGui.setBounds(area.removeFromLeft(140).removeFromTop(140));
-    lfoPwmGui.setBounds(area.removeFromLeft(80).removeFromTop(140));
-    pwmGui.setBounds(area.removeFromLeft(80).removeFromTop(140));
-    squareOscGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
-    sawOscGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
-    subOscGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
-    noiseGui.setBounds(area.removeFromLeft(50).removeFromTop(140));
+    area.removeFromLeft(10);
+    lfoGui.setBounds(area.removeFromLeft(115).removeFromTop(140));
+    pitchRangeGui.setBounds(area.removeFromLeft(127.5).removeFromTop(140));
+    lfoPwmGui.setBounds(area.removeFromLeft(60).removeFromTop(140));
+    pwmGui.setBounds(area.removeFromLeft(55).removeFromTop(140));
+    pwmModeSwitchGui.setBounds(area.removeFromLeft(32.5).removeFromTop(140));
+    squareOscGui.setBounds(area.removeFromLeft(40).removeFromTop(140));
+    sawOscGui.setBounds(area.removeFromLeft(37.5).removeFromTop(140));
+    subOscGui.setBounds(area.removeFromLeft(55).removeFromTop(140));
+    noiseGui.setBounds(area.removeFromLeft(65).removeFromTop(140));
     envGui.setBounds(area.removeFromLeft(240).removeFromTop(140));
     hpfGui.setBounds(area2.removeFromLeft(150).removeFromTop(300));
     filterGui.setBounds(area2.removeFromLeft(50).removeFromTop(300));

@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "Constants.h"
 
 //==============================================================================
 /*
@@ -41,5 +42,11 @@ private:
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> decayVal;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> sustainVal;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> releaseVal;
+    Label zeroLabel1;
+    Label fiveLabel1;
+    Label tenLabel1;
+    Label zeroLabel2;
+    Label fiveLabel2;
+    Label tenLabel2;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Envelope)
 };

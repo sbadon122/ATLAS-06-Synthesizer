@@ -12,7 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
-
+#include "Constants.h"
 //==============================================================================
 /*
 */
@@ -30,6 +30,9 @@ private:
     SynthFrameworkAudioProcessor& processor;
     Slider lfoPwmSlider;
     Label lfoPwmLabel;
+    Label zeroLabel1;
+    Label fiveLabel1;
+    Label tenLabel1;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> lfoPwmVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LFOPWM)
 };

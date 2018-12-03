@@ -4,6 +4,8 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="EFNugl" name="synthFramework">
     <GROUP id="{66FD8400-6D02-3DAD-76EB-B7D0CEE54811}" name="Source">
+      <FILE id="R9LXTS" name="SliderToggleLookAndFeel.h" compile="0" resource="0"
+            file="Source/SliderToggleLookAndFeel.h"/>
       <FILE id="sFZFnR" name="Constants.h" compile="0" resource="0" file="Source/Constants.h"/>
       <FILE id="PQhezK" name="SliderLookAndFeel.h" compile="0" resource="0"
             file="Source/SliderLookAndFeel.h"/>
@@ -19,6 +21,9 @@
       <FILE id="otWXCs" name="LFOPWM.h" compile="0" resource="0" file="Source/LFOPWM.h"/>
       <FILE id="bFQNR5" name="LFOPitch.cpp" compile="1" resource="0" file="Source/LFOPitch.cpp"/>
       <FILE id="antsYD" name="LFOPitch.h" compile="0" resource="0" file="Source/LFOPitch.h"/>
+      <FILE id="rAWcqP" name="PWMModeSwitch.cpp" compile="1" resource="0"
+            file="Source/PWMModeSwitch.cpp"/>
+      <FILE id="IRzVxU" name="PWMModeSwitch.h" compile="0" resource="0" file="Source/PWMModeSwitch.h"/>
       <FILE id="oB2Nkv" name="PWM.cpp" compile="1" resource="0" file="Source/PWM.cpp"/>
       <FILE id="wcuOAs" name="PWM.h" compile="0" resource="0" file="Source/PWM.h"/>
       <FILE id="jhGBuy" name="SubOscillator.cpp" compile="1" resource="0"
