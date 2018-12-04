@@ -11,6 +11,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <stack>
 #include "PluginProcessor.h"
 #include "Envelope.h"
 #include "Cutoff.h"
@@ -34,6 +35,7 @@
 #include "PWMModeSwitch.h"
 
 
+
 //==============================================================================
 /**
 */
@@ -52,7 +54,10 @@ public:
     void handleNoteOff(MidiKeyboardState *source, int midiChannel, int midiNoteNumber, float velocity) override;
     void handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message) override;
     void sliderValueChanged (Slider* slider);
-
+    void drawSquareLabel(float x, float y, int size, float thickness, Graphics& g);
+    void drawSawLabel(float x, float y, int size, float thickness, Graphics& g);
+    void drawDCOLabelLines(float x, float y, float width, float thickness, Graphics& g);
+    void drawSeparatingWhiteLines(float x, float y, float height, float thickness, Graphics& g);
     
 
 private:
