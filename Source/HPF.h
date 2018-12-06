@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "Constants.h"
 
 //==============================================================================
 /*
@@ -30,6 +31,12 @@ private:
     SynthFrameworkAudioProcessor& processor;
     Slider hpfSlider;
     Label hpfLabel;
+    Label zeroLabel1;
+    Label fiveLabel1;
+    Label tenLabel1;
+    Label zeroLabel2;
+    Label fiveLabel2;
+    Label tenLabel2;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> hfpVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HPF)
 };

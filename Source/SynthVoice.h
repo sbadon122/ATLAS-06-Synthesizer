@@ -45,6 +45,10 @@ class SynthVoice : public SynthesiserVoice
         filterEnvelopeSetting = *setting;
     }
     
+    void setPolarityModeSetting(float* setting) {
+        polarityModeSetting = *setting;
+    }
+    
     void setLfoFilterEnvelopeSetting(float* setting)
     {
         lfoFilterEnvelopeSetting = *setting;
@@ -207,7 +211,11 @@ class SynthVoice : public SynthesiserVoice
         void stopNote(float velocity, bool allowTailOff) override
         {
             env1.trigger = 0;
+            env1.attackphase=0;
+            env1.decayphase=1;
             lfoEnv.trigger = 0;
+            lfoEnv.attackphase=0;
+            lfoEnv.decayphase=1;
             allowTailOff = true;
             if (velocity == 0)
                 clearCurrentNote();
@@ -226,14 +234,23 @@ class SynthVoice : public SynthesiserVoice
         double calculateFilterCutoff(double currentVolume)
         {
             double cutoffValue = 0;
-             if(cutoffSetting > filterEnvelopeSetting)
+             if(cutoffSetting > filterEnvelopeSetting && polarityModeSetting == 1.0)
              {
                  cutoffValue = cutoffSetting;
              }
-            else
+            else if(cutoffSetting < filterEnvelopeSetting && polarityModeSetting == -1.0)
+            {
+                cutoffValue = cutoffSetting;
+            }
+            else if(polarityModeSetting == 1.0)
             {
                 cutoffValue = currentVolume*filterEnvelopeSetting;
             }
+            else if(polarityModeSetting == -1.0)
+            {
+                cutoffValue = filterEnvelopeSetting/currentVolume;
+            }
+            
             cutoffValue += getLfoValue()*lfoFilterEnvelopeSetting;
             if(cutoffValue < 30.0f)
             {
@@ -275,6 +292,7 @@ class SynthVoice : public SynthesiserVoice
                 ++startSample;
             }
             
+            
         }
         
     private:
@@ -309,6 +327,7 @@ class SynthVoice : public SynthesiserVoice
     double chorus1Setting;
     double chorus2Setting;
     double pwmModeSetting;
+    double polarityModeSetting;
     
     
 };

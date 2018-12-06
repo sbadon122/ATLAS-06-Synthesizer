@@ -33,6 +33,7 @@
 #include "PresetLoader.h"
 #include "SliderLookAndFeel.h"
 #include "PWMModeSwitch.h"
+#include "PolaritySwitch.h"
 
 
 
@@ -85,7 +86,7 @@ private:
     MidiKeyboardComponent keyboardComponent;
     PresetLoader presets;
     PWMModeSwitch pwmModeSwitchGui;
-    
+    PolaritySwitch polaritySwitchGui;
     //Labels
     Label lfoLabel;
     Label oscLabel;

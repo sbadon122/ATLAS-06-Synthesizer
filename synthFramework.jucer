@@ -4,14 +4,16 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="EFNugl" name="synthFramework">
     <GROUP id="{66FD8400-6D02-3DAD-76EB-B7D0CEE54811}" name="Source">
-      <FILE id="R9LXTS" name="SliderToggleLookAndFeel.h" compile="0" resource="0"
-            file="Source/SliderToggleLookAndFeel.h"/>
       <FILE id="sFZFnR" name="Constants.h" compile="0" resource="0" file="Source/Constants.h"/>
       <FILE id="PQhezK" name="SliderLookAndFeel.h" compile="0" resource="0"
             file="Source/SliderLookAndFeel.h"/>
       <FILE id="ZRr7qN" name="PresetLoader.cpp" compile="1" resource="0"
             file="Source/PresetLoader.cpp"/>
       <FILE id="sKfCm5" name="PresetLoader.h" compile="0" resource="0" file="Source/PresetLoader.h"/>
+      <FILE id="vrAPwv" name="PolaritySwitch.cpp" compile="1" resource="0"
+            file="Source/PolaritySwitch.cpp"/>
+      <FILE id="bEeWwE" name="PolaritySwitch.h" compile="0" resource="0"
+            file="Source/PolaritySwitch.h"/>
       <FILE id="kCnvEz" name="ChorusEffect.cpp" compile="1" resource="0"
             file="Source/ChorusEffect.cpp"/>
       <FILE id="Pl7Alk" name="ChorusEffect.h" compile="0" resource="0" file="Source/ChorusEffect.h"/>

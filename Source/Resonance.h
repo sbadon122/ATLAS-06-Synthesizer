@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "Constants.h"
 //==============================================================================
 /*
 */
@@ -29,6 +30,9 @@ private:
     SynthFrameworkAudioProcessor& processor;
     Slider resonanceSlider;
     Label resonanceLabel;
+    Label zeroLabel1;
+    Label fiveLabel1;
+    Label tenLabel1;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> resonanceVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Resonance)
 };

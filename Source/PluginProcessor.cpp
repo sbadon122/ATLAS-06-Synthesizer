@@ -53,6 +53,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> chorus1Param (0, 1, 0);
     NormalisableRange<float> chorus2Param (0, 1, 0);
     NormalisableRange<float> pwmModeToggle (0, 1, 0);
+    NormalisableRange<float> polarityModeToggle (-1, 1, 1);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -81,6 +82,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("chorus1", "Chorus1", "chorus1", chorus1Param, 0,nullptr , nullptr);
     tree->createAndAddParameter("chorus2", "Chorus2", "chorus2", chorus2Param, 0,nullptr , nullptr);
     tree->createAndAddParameter("pwmMode", "PwmMode", "pwmMode", pwmModeToggle, 0,nullptr , nullptr);
+    tree->createAndAddParameter("polarityMode", "PolarityMode", "polarityMode", polarityModeToggle, 1,nullptr , nullptr);
     
     
     
@@ -233,6 +235,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setPwmSetting(tree->getRawParameterValue("pwm"));
             myVoice->setLfoPitchSetting(tree->getRawParameterValue("lfoPitch"));
             myVoice->setLfoPwmSetting(tree->getRawParameterValue("lfoPwm"));
+            myVoice->setPolarityModeSetting(tree->getRawParameterValue("polarityMode"));
             myVoice->setPwmMode(tree->getRawParameterValue("pwmMode"));
             myVoice->setChorus(tree->getRawParameterValue("chorus1"),
                                tree->getRawParameterValue("chorus2"));

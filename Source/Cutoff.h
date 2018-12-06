@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "Constants.h"
 
 //==============================================================================
 /*
@@ -30,6 +31,9 @@ private:
     SynthFrameworkAudioProcessor& processor;
     Slider filterSlider;
     Label filterLabel;
+    Label zeroLabel1;
+    Label fiveLabel1;
+    Label tenLabel1;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> filterVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Cutoff)
 };
