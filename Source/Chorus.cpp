@@ -48,18 +48,20 @@ void Chorus::paint (Graphics& g)
 {
  
   g.setColour (getButtonColor(&chorus1Button));
-  g.fillEllipse(17.5, 50,5, 5);
+   g.fillEllipse(22.5, 55,5, 5);
   g.setColour (getButtonColor(&chorus2Button));
-  g.fillEllipse(67.5, 50,5, 5);
+  g.fillEllipse(62.5, 55,5, 5);
+
 }
 
 void Chorus::resized()
 {
-    chorus1Button.setBounds (0, 60,40, 40);
-    chorus2Button.setBounds (50, 60, 40, 40);
+    chorus1Button.setBounds (10, 70,buttonSize, buttonSize);
+    chorus2Button.setBounds (50, 70, buttonSize, buttonSize);
     
-    chorus1Label.setBounds (0, 17,40, 40);
-    chorus2Label.setBounds (50, 17, 40, 40);
+    chorus1Label.setBounds (10, 30,buttonSize, buttonSize);
+    chorus2Label.setBounds (50, 30, buttonSize, buttonSize);
+    
     
 }
 

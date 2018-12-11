@@ -89,6 +89,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     
     tree->state = ValueTree ("synth");
     
+    initState = tree->state.createXml();
     mySynth.clearVoices();
     
     for (int i = 0; i < 5; i++)
@@ -207,7 +208,7 @@ bool SynthFrameworkAudioProcessor::isBusesLayoutSupported (const BusesLayout& la
 
 void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
-     ScopedNoDenormals noDenormals;
+    ScopedNoDenormals noDenormals;
    auto numSamples = buffer.getNumSamples();
     for (int i = 0; i < mySynth.getNumVoices(); i++)
     {
@@ -288,3 +289,9 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new SynthFrameworkAudioProcessor();
 }
+
+void SynthFrameworkAudioProcessor::initializeSynth (){
+    tree->replaceState(ValueTree::fromXml(*initState));
+}
+
+

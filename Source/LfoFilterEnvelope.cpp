@@ -28,6 +28,18 @@ processor(p)
     lfoFilterEnvelopeLabel.setJustificationType(Justification::centred);
     lfoFilterEnvelopeVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoFilterEnvelope", lfoFilterEnvelopeSlider);
 
+    addAndMakeVisible(&zeroLabel1);
+    zeroLabel1.setText("0", dontSendNotification);
+    zeroLabel1.setFont (Font (numberFontSize, Font::bold));
+    
+    addAndMakeVisible(&fiveLabel1);
+    fiveLabel1.setText("5", dontSendNotification);
+    fiveLabel1.setFont (Font (numberFontSize, Font::bold));
+    
+    addAndMakeVisible(&tenLabel1);
+    tenLabel1.setText("10", dontSendNotification);
+    tenLabel1.setFont (Font (numberFontSize, Font::bold));
+    
 }
 
 LfoFilterEnvelope::~LfoFilterEnvelope()
@@ -41,7 +53,10 @@ void LfoFilterEnvelope::paint (Graphics& g)
 
 void LfoFilterEnvelope::resized()
 {
-    lfoFilterEnvelopeSlider.setBounds(0, 30, 40, 100);
+    lfoFilterEnvelopeSlider.setBounds(0, 30, sliderWidth, 100);
+    tenLabel1.setBounds(sliderWidth, 37.5, 20, 10);
+    fiveLabel1.setBounds(sliderWidth, 77.5, 20, 10);
+    zeroLabel1.setBounds(sliderWidth, 114, 20, 10);
 }
 
 void LfoFilterEnvelope::sliderValueChanged(Slider* slider)

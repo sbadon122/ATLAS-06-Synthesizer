@@ -11,7 +11,9 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <stdio.h>
 #include "PluginProcessor.h"
+#include "Constants.h"
 
 //==============================================================================
 /*
@@ -33,7 +35,10 @@ private:
     std::unique_ptr<FilenameComponent> fileComp;
     std::unique_ptr<FileChooser> fc;
     TextButton saveButton    { "" };
-    Label saveLabel         { {}, "Save'"};
+    Label saveLabel         { {}, "Save"};
+    TextButton initButton    { "" };
+    Label initLabel         { {}, "Init"};
+    Label synthName         { {}, "Atlas-06"};
     void     buttonClicked (Button *) override;
     void     buttonStateChanged (Button *) override;
     

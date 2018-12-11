@@ -87,9 +87,12 @@
         <FILE id="af8n5l" name="stb_vorbis.h" compile="0" resource="0" file="Libraries/Maximilian/stb_vorbis.h"/>
       </GROUP>
       <FILE id="qamVp9" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
+      <FILE id="fTinYD" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
       <FILE id="X7KvpY" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
-      <FILE id="fTinYD" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
+      <FILE id="WEWJ6C" name="AmpModeSwitch.cpp" compile="1" resource="0"
+            file="Source/AmpModeSwitch.cpp"/>
+      <FILE id="kT3CmV" name="AmpModeSwitch.h" compile="0" resource="0" file="Source/AmpModeSwitch.h"/>
       <FILE id="IvYmOO" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
       <FILE id="l9zhAE" name="PluginEditor.cpp" compile="1" resource="0"

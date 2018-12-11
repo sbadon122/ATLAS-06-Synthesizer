@@ -23,7 +23,7 @@ processor(p)
     addAndMakeVisible(&filterSlider);
     addAndMakeVisible(&filterLabel);
     filterLabel.attachToComponent(&filterSlider, false);
-    filterLabel.setText("Cutoff", dontSendNotification);
+    filterLabel.setText("FREQ", dontSendNotification);
     filterLabel.setFont (Font (12.0f, Font::plain));
     filterLabel.setJustificationType(Justification::centred);
     

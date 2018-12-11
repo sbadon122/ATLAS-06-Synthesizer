@@ -23,7 +23,7 @@ processor(p)
     addAndMakeVisible(&noiseSlider);
     addAndMakeVisible(&noiseLabel);
     noiseLabel.attachToComponent(&noiseSlider, false);
-    noiseLabel.setText("Noise", dontSendNotification);
+    noiseLabel.setText("NOISE", dontSendNotification);
     noiseLabel.setFont (Font (12.0f, Font::plain));
     noiseLabel.setJustificationType(Justification::centred);
     

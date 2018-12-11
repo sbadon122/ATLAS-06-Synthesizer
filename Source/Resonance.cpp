@@ -22,7 +22,7 @@ processor(p)
     resonanceSlider.addListener(this);
     addAndMakeVisible(&resonanceSlider);
     resonanceLabel.attachToComponent(&resonanceSlider, false);
-    resonanceLabel.setText("Resonance", dontSendNotification);
+    resonanceLabel.setText("RES", dontSendNotification);
     resonanceLabel.setFont (Font (12.0f, Font::plain));
     resonanceLabel.setJustificationType(Justification::centred);
     addAndMakeVisible(&zeroLabel1);

@@ -56,6 +56,9 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    
+    void initializeSynth ();
+    Boolean synthHasLicense ();
 
     ScopedPointer<AudioProcessorValueTreeState> tree;
     ScopedPointer<UndoManager>                  mUndoManager;
@@ -67,6 +70,7 @@ private:
     Synthesiser mySynth;
     SynthVoice* myVoice;
     double lastSampleRate;
+    XmlElement * initState;
     
      JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessor)
 };

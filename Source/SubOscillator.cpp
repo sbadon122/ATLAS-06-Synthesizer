@@ -23,7 +23,7 @@ processor(p)
     addAndMakeVisible(&subOscSlider);
     addAndMakeVisible(&subOscLabel);
     subOscLabel.attachToComponent(&subOscSlider, false);
-    subOscLabel.setText("Sub", dontSendNotification);
+    subOscLabel.setText("SUB", dontSendNotification);
     subOscLabel.setFont (Font (12.0f, Font::plain));
     subOscLabel.setJustificationType(Justification::centred);
     
