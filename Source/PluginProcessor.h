@@ -58,7 +58,8 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     void initializeSynth ();
-    Boolean synthHasLicense ();
+    void checkSynthLicense ();
+    String getOwnersName();
 
     ScopedPointer<AudioProcessorValueTreeState> tree;
     ScopedPointer<UndoManager>                  mUndoManager;
@@ -71,6 +72,9 @@ private:
     SynthVoice* myVoice;
     double lastSampleRate;
     XmlElement * initState;
+    String  activationString = "Vega-06 Activated to:";
+    String  synthOwner = "Not registered";
+    Boolean  synthIsRegistered = true;
     
      JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessor)
 };

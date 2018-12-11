@@ -39,6 +39,7 @@ private:
     TextButton initButton    { "" };
     Label initLabel         { {}, "Init"};
     Label synthName         { {}, "Atlas-06"};
+    Label licenseToLabel         { {}, "Licensed to:"};
     void     buttonClicked (Button *) override;
     void     buttonStateChanged (Button *) override;
     

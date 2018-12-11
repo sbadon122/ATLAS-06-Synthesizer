@@ -49,6 +49,13 @@ processor(p)
     synthName.setColour(Label::ColourIds::textColourId, Colours::black);
     synthName.setJustificationType(Justification::centred);
     
+    addAndMakeVisible (licenseToLabel);
+    licenseToLabel.setText("Licensed to: " + p.getOwnersName() , dontSendNotification);
+    licenseToLabel.setFont (Font (12.0f, Font::plain));
+    licenseToLabel.setColour(Label::ColourIds::textColourId, Colours::whitesmoke);
+    licenseToLabel.setJustificationType(Justification::right);
+
+    
     otherLookAndFeel.setColour (TextButton::buttonColourId,  Colour(0xffe0dedf));
     otherLookAndFeel.setColour (TextButton::buttonOnColourId,  Colour(0xffe0dedf));
     otherLookAndFeel.setColour (TextButton::textColourOnId,  Colours::black);
@@ -71,6 +78,7 @@ void PresetLoader::paint (Graphics& g)
     saveButton.setBounds(10, 70,buttonSize, buttonSize);
     initButton.setBounds(50, 70,buttonSize, buttonSize);
     synthName.setBounds(60, 35,200, 100);
+    licenseToLabel.setBounds(7.5, 70,230, 100);
     g.setColour(Colours::black);
     Line<float> line (Point<float> (90, 67.5),
                       Point<float> (229, 67.5));

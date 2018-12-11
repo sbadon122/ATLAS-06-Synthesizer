@@ -24,6 +24,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
                        )
 #endif
 {
+    checkSynthLicense();
     mUndoManager = new UndoManager();
     tree =  new AudioProcessorValueTreeState (*this, mUndoManager);
     //need these normalisable range objects for the tree state below this
@@ -83,9 +84,6 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("chorus2", "Chorus2", "chorus2", chorus2Param, 0,nullptr , nullptr);
     tree->createAndAddParameter("pwmMode", "PwmMode", "pwmMode", pwmModeToggle, 0,nullptr , nullptr);
     tree->createAndAddParameter("polarityMode", "PolarityMode", "polarityMode", polarityModeToggle, 1,nullptr , nullptr);
-    
-    
-    
     
     tree->state = ValueTree ("synth");
     
@@ -244,8 +242,9 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
     }
     buffer.clear();
     keyboardState.processNextMidiBuffer (midiMessages, 0, numSamples, true);
-
-    mySynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
+    if(synthIsRegistered){
+        mySynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
+    }
 }
 
 //==============================================================================
@@ -293,5 +292,32 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 void SynthFrameworkAudioProcessor::initializeSynth (){
     tree->replaceState(ValueTree::fromXml(*initState));
 }
+
+void SynthFrameworkAudioProcessor::checkSynthLicense (){
+   File file ("~/documents/Vega-06/license.vega");
+    if (! file.existsAsFile())
+        return;
+    
+    std::string fileText =  file.loadFileAsString().toStdString();
+    char encryptedText[fileText.size()+1];
+    
+    const char* strdata = fileText.c_str();
+    for (int i = 0; i < fileText.length(); ++i){
+       char c =  strdata[i] - 2;
+       encryptedText[i] = c;
+    }
+    CharPointer_UTF8 utf8CharPointer(encryptedText);
+    String decryptedText(utf8CharPointer);
+    String activated = decryptedText.substring(0, 21);
+    if(activated.compare(activationString) == 0 ) {
+        synthOwner = decryptedText.substring(21, decryptedText.length()-2);
+        synthIsRegistered = true;
+    }
+}
+
+String SynthFrameworkAudioProcessor::getOwnersName(){
+    return synthOwner;
+}
+
 
 
