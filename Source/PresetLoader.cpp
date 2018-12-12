@@ -70,6 +70,9 @@ processor(p)
 
 PresetLoader::~PresetLoader()
 {
+    saveButton.setLookAndFeel(nullptr);
+    fileComp->setLookAndFeel(nullptr);
+    
 }
 
 void PresetLoader::paint (Graphics& g)

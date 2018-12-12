@@ -46,6 +46,7 @@ processor(p)
 
 SubOscillator::~SubOscillator()
 {
+    subOscVal = nullptr;
 }
 
 void SubOscillator::paint (Graphics& g)

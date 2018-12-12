@@ -42,6 +42,10 @@ processor(p)
 
 Chorus::~Chorus()
 {
+    chorus1Val = nullptr;
+    chorus2Val = nullptr;
+    chorus1Button.setLookAndFeel(nullptr);
+    chorus2Button.setLookAndFeel(nullptr);
 }
 
 void Chorus::paint (Graphics& g)

@@ -57,6 +57,7 @@ processor(p)
 
 HPF::~HPF()
 {
+    hfpVal = nullptr;
 }
 
 void HPF::paint (Graphics& g)

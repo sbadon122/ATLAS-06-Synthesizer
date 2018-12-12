@@ -43,6 +43,7 @@ processor(p)
 
 Resonance::~Resonance()
 {
+    resonanceVal = nullptr;
 }
 
 void Resonance::paint (Graphics& g)

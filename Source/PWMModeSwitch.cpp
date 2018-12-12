@@ -38,6 +38,7 @@ processor(p)
 
 PWMModeSwitch::~PWMModeSwitch()
 {
+    pwmModeVal = nullptr;
 }
 
 void PWMModeSwitch::paint (Graphics& g)

@@ -203,7 +203,11 @@ class SynthVoice : public SynthesiserVoice
     void startNote(int midiNoteNumber, float velocity, SynthesiserSound* sound, int currentPitchWheelPosition) override
         {
             env1.trigger = 1;
+            env1.attackphase=1;
+            env1.decayphase=0;
             lfoEnv.trigger = 1;
+            lfoEnv.attackphase=1;
+            lfoEnv.decayphase=0;
             level = velocity;
             frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
         }
@@ -265,8 +269,8 @@ class SynthVoice : public SynthesiserVoice
     
         double getChorusRate(){
             double chorusRate = 0;
-            if(chorus1Setting > 0){ chorusRate += 0.2; }
-            if(chorus2Setting > 0){ chorusRate += 0.4; }
+            if(chorus1Setting > 0){ chorusRate += 0.1; }
+            if(chorus2Setting > 0){ chorusRate += 0.2; }
             return chorusRate;
         }
     

@@ -28,6 +28,7 @@ processor(p)
 
 PolaritySwitch::~PolaritySwitch()
 {
+    polarityModeVal = nullptr;
 }
 
 void PolaritySwitch::paint (Graphics& g)

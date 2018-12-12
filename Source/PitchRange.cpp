@@ -52,6 +52,9 @@ processor(p)
 
 PitchRange::~PitchRange()
 {
+    range4Val = nullptr;
+    range8Val = nullptr;
+    range16Val = nullptr;
 }
 
 void PitchRange::paint (Graphics& g)

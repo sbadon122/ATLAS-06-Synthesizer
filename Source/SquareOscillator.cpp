@@ -18,13 +18,14 @@ processor(p)
     squareButton.setClickingTogglesState (true);
     addAndMakeVisible (squareLabel);
     addAndMakeVisible (squareButton);
-    sawVal = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "squareOsc", squareButton);
+    squareVal = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "squareOsc", squareButton);
     squareButton.addListener(this);
 
 }
 
 SquareOscillator::~SquareOscillator()
 {
+    squareVal = nullptr;
 }
 
 void SquareOscillator::paint (Graphics& g)

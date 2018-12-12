@@ -45,6 +45,7 @@ processor(p)
 
 PWM::~PWM()
 {
+    pwmVal = nullptr;
 }
 
 void PWM::paint (Graphics& g)

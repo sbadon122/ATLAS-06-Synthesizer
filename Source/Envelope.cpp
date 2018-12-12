@@ -98,6 +98,10 @@ processor(p)
 
 Envelope::~Envelope()
 {
+    attackVal = nullptr;
+    decayVal = nullptr;
+    sustainVal = nullptr;
+    releaseVal = nullptr;
 }
 
 void Envelope::paint (Graphics& g)

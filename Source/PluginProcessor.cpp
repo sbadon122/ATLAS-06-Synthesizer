@@ -40,7 +40,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> lfoDelayParam (30.0f, 50000.0f);
     NormalisableRange<float> lfoFilterParam (0.1f, 5000.0f);
     NormalisableRange<float> hpfParam (5.0f, 19000.0f);
-    NormalisableRange<float> vcaParam (0, 1);
+    NormalisableRange<float> vcaParam (0, 5);
     NormalisableRange<float> noiseParam (0, 1);
     NormalisableRange<float> sawButtonParam (0, 1, 0);
     NormalisableRange<float> squareButtonParam (0, 1, 1);
@@ -69,7 +69,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("lfoDelay", "LfoDelay", "lfoDelay", lfoDelayParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("lfoFilterEnvelope", "LfoFilterEnvelope", "lfoFilterEnvelope", lfoFilterParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("hpf", "Hpf", "hpf", hpfParam, 5.0f,nullptr , nullptr);
-    tree->createAndAddParameter("vca", "Vca", "vca", vcaParam, 0.75f,nullptr , nullptr);
+    tree->createAndAddParameter("vca", "Vca", "vca", vcaParam, 2.5f,nullptr , nullptr);
     tree->createAndAddParameter("noise", "Noise", "noise", noiseParam, 0.0f,nullptr , nullptr);
     tree->createAndAddParameter("sawOsc", "SawOsc", "sawOsc", sawButtonParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("squareOsc", "SquareOsc", "squareOsc", squareButtonParam, 1,nullptr , nullptr);
@@ -87,7 +87,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     
     tree->state = ValueTree ("synth");
     
-    initState = tree->state.createXml();
+    initState.reset(tree->state.createXml());
     mySynth.clearVoices();
     
     for (int i = 0; i < 5; i++)
@@ -101,6 +101,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
 
 SynthFrameworkAudioProcessor::~SynthFrameworkAudioProcessor()
 {
+    initState = nullptr;
 }
 
 //==============================================================================
@@ -211,7 +212,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
     for (int i = 0; i < mySynth.getNumVoices(); i++)
     {
         
-        
+
         if ((myVoice = dynamic_cast<SynthVoice*>(mySynth.getVoice(i))))
         {
             myVoice->getEnvelopeParams(tree->getRawParameterValue("attack"),

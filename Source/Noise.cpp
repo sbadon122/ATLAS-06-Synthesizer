@@ -46,6 +46,7 @@ processor(p)
 
 Noise::~Noise()
 {
+    noiseVal = nullptr;
 }
 
 void Noise::paint (Graphics& g)

@@ -16,8 +16,8 @@ VCA::VCA(SynthFrameworkAudioProcessor& p) :
 processor(p)
 {
     vcaSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    vcaSlider.setRange(0, 1.0f);
-    vcaSlider.setValue(0.75f);
+    vcaSlider.setRange(0, 5.0f);
+    vcaSlider.setValue(2.5f);
     vcaSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 0, 0);
     addAndMakeVisible(&vcaSlider);
     addAndMakeVisible(&vcaLabel);
@@ -78,6 +78,8 @@ processor(p)
 
 VCA::~VCA()
 {
+    ampModeVal = nullptr;
+    ampModeSlider.setLookAndFeel(nullptr);
 }
 
 void VCA::paint (Graphics& g)

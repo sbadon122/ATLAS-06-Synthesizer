@@ -54,6 +54,7 @@ void LFOPWM::paint (Graphics& g)
 
 void LFOPWM::resized()
 {
+    lfoPwmVal = nullptr;
     tenLabel1.setBounds(0, 37.5, 20, 10);
     fiveLabel1.setBounds(5, 77.5, 20, 10);
     zeroLabel1.setBounds(5, 114, 20, 10);

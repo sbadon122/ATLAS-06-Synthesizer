@@ -44,6 +44,7 @@ processor(p)
 
 LfoFilterEnvelope::~LfoFilterEnvelope()
 {
+    lfoFilterEnvelopeVal = nullptr;
 }
 
 void LfoFilterEnvelope::paint (Graphics& g)

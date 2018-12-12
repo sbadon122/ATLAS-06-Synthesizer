@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="jYSEsp" name="synthFramework" projectType="audioplug" jucerVersion="5.4.0"
-              pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
-  <MAINGROUP id="EFNugl" name="synthFramework">
+<JUCERPROJECT id="jYSEsp" name="ATLAS-06" projectType="audioplug" jucerVersion="5.4.0"
+              pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn"
+              bundleIdentifier="com.islndsdsp.ATLAS-06" pluginManufacturer="ISLNDS dsp."
+              companyName="ISLNDS dsp." pluginFormats="buildVST3">
+  <MAINGROUP id="EFNugl" name="ATLAS-06">
     <GROUP id="{66FD8400-6D02-3DAD-76EB-B7D0CEE54811}" name="Source">
       <FILE id="sFZFnR" name="Constants.h" compile="0" resource="0" file="Source/Constants.h"/>
       <FILE id="PQhezK" name="SliderLookAndFeel.h" compile="0" resource="0"

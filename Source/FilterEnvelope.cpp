@@ -44,6 +44,7 @@ processor(p)
 
 FilterEnvelope::~FilterEnvelope()
 {
+    filterEnvelopeVal = nullptr;
 }
 
 void FilterEnvelope::paint (Graphics& g)

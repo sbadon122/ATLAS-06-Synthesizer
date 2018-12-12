@@ -45,6 +45,7 @@ processor(p)
 
 Cutoff::~Cutoff()
 {
+    filterVal = nullptr;
 }
 
 void Cutoff::paint (Graphics& g)

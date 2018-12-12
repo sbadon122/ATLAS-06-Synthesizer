@@ -71,7 +71,7 @@ private:
     Synthesiser mySynth;
     SynthVoice* myVoice;
     double lastSampleRate;
-    XmlElement * initState;
+    std::unique_ptr<XmlElement> initState;
     String  activationString = "Vega-06 Activated to:";
     String  synthOwner = "Not registered";
     Boolean  synthIsRegistered = true;

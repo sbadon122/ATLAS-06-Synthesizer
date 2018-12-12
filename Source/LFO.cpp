@@ -72,6 +72,9 @@ processor(p)
 
 LFO::~LFO()
 {
+    lfoRateVal = nullptr;
+    lfoDelayVal = nullptr;
+    
 }
 
 void LFO::paint (Graphics& g)

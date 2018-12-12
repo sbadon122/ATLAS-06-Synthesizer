@@ -102,6 +102,20 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
 
 SynthFrameworkAudioProcessorEditor::~SynthFrameworkAudioProcessorEditor()
 {
+    lfoGui.setLookAndFeel(nullptr);
+    lfoPwmGui.setLookAndFeel(nullptr);
+    pwmGui.setLookAndFeel(nullptr);
+    subOscGui.setLookAndFeel(nullptr);
+    noiseGui.setLookAndFeel(nullptr);
+    envGui.setLookAndFeel(nullptr);
+    hpfGui.setLookAndFeel(nullptr);
+    filterGui.setLookAndFeel(nullptr);
+    resonanceGui.setLookAndFeel(nullptr);
+    filterEnvelopeGui.setLookAndFeel(nullptr);
+    lfoFilterEnvelopeGui.setLookAndFeel(nullptr);
+    vcaGui.setLookAndFeel(nullptr);
+    pwmModeSwitchGui.setLookAndFeel(nullptr);
+    polaritySwitchGui.setLookAndFeel(nullptr);
 }
 
 //==============================================================================
@@ -128,8 +142,8 @@ void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
     drawDCOLabelLines(325, 35, 83, 1.4f, g);
     drawPolarityModeLabel(217, 248, 1.5f, 1.4f, false, g);
     drawPolarityModeLabel(217, 284, 1.5f, 1.4f, true, g);
-    drawGateLabel(372, 238, 1.8f, 1.4f,  g);
-    drawPolarityModeLabel(370, 294, 1.5f, 1.4f, true, g);
+    drawGateLabel(370, 300, 1.8f, 1.4f,  g);
+    drawPolarityModeLabel(370, 238, 1.5f, 1.4f, false, g);
     drawEnvWhiteLabelLine(223, 230,  1.4f,  g);
     drawAmpWhiteLabelLine(375, 220,  1.4f,  g);
     drawSeparatingWhiteLines(lfoGui.getX()-4, lfoGui.getY()-5, lfoGui.getHeight()+5, 1.5f, g);
@@ -323,19 +337,19 @@ void SynthFrameworkAudioProcessorEditor::drawGateLabel(float x, float y, int siz
     g.setColour(Colours::whitesmoke);
     float lineLength = 5.0f*size;
     Line<float> line (Point<float> (x, y),
-                      Point<float> (x+lineLength/3, y));
+                      Point<float> (x+lineLength*3/8, y));
     
-    Line<float> line2 (Point<float> (x+lineLength/3, y),
-                       Point<float> (x+lineLength/4, y-lineLength));
+    Line<float> line2 (Point<float> (x+lineLength*3/8, y),
+                       Point<float> (x+lineLength*3/8, y-lineLength));
     
-    Line<float> line3 (Point<float> (x+lineLength/4, y-lineLength),
-                       Point<float> (x+lineLength/4+lineLength, y-lineLength));
+    Line<float> line3 (Point<float> (x+lineLength*3/8, y-lineLength),
+                       Point<float> (x+lineLength*3/8+lineLength, y-lineLength));
     
-    Line<float> line4 (Point<float> (x+lineLength/4+lineLength, y-lineLength),
-                       Point<float> (x+lineLength/4+lineLength, y));
+    Line<float> line4 (Point<float> (x+lineLength*3/8+lineLength, y-lineLength),
+                       Point<float> (x+lineLength*3/8+lineLength, y));
     
-    Line<float> line5 (Point<float> (x+lineLength/4+lineLength, y),
-                       Point<float> (x+lineLength*2/3+lineLength, y));
+    Line<float> line5 (Point<float> (x+lineLength*3/8+lineLength, y),
+                       Point<float> (x+lineLength*3/4+lineLength, y));
     
     g.drawLine (line, thickness);
     g.drawLine (line2, thickness);

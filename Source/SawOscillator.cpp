@@ -23,6 +23,7 @@ processor(p)
 
 SawOscillator::~SawOscillator()
 {
+    sawVal = nullptr;
 }
 
 void SawOscillator::paint (Graphics& g)
