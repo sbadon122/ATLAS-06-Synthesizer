@@ -110,7 +110,7 @@ struct SliderToggleLookAndFeel    : public LookAndFeel_V4
                                 float sliderPos, float minSliderPos, float maxSliderPos,
                                 const Slider::SliderStyle style, Slider& slider) override
     {
-        auto sliderRadius = (float) getSliderThumbRadius (slider) * 0.75f;
+        auto sliderRadius = (float) getSliderThumbRadius (slider) * 0.5f;
         
         bool isDownOrDragging = slider.isEnabled() && (slider.isMouseOverOrDragging() || slider.isMouseButtonDown());
         
