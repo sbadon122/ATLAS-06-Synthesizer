@@ -134,7 +134,9 @@ void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
     g.fillRect (472, 155, 86, 20);
     g.setColour(Colours::darkred);
     g.fillRect (561, 155, 300, 20);
-    
+    g.setColour(Colour(0xff454a51));
+     g.fillRect (0, 308, 800, 200);
+    //g.fillRect (0, 308, 800, 6);
     g.setColour(Colours::whitesmoke);
     
     
@@ -151,12 +153,11 @@ void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
     drawSeparatingWhiteLines(lfoGui.getWidth()+lfoGui.getX()+5, lfoGui.getY(), lfoGui.getHeight()-5, 1.5f, g);
     drawSeparatingWhiteLines(noiseGui.getWidth()+noiseGui.getX(), noiseGui.getY(), noiseGui.getHeight()-5, 1.5f, g);
     drawSeparatingWhiteLines(envGui.getWidth()+envGui.getX()-6.5, envGui.getY(), envGui.getHeight()-5, 1.5f, g);
-    drawSeparatingWhiteLines(hpfGui.getX()-4, hpfGui.getY(), hpfGui.getHeight(), 1.5f, g);
-    drawSeparatingWhiteLines(hpfGui.getWidth()+hpfGui.getX()-6.5, hpfGui.getY(), hpfGui.getHeight(), 1.5f, g);
-    drawSeparatingWhiteLines(lfoFilterEnvelopeGui.getWidth()+lfoFilterEnvelopeGui.getX(), lfoFilterEnvelopeGui.getY(), lfoFilterEnvelopeGui.getHeight(), 1.5f, g);
-    drawSeparatingWhiteLines(vcaGui.getWidth()+vcaGui.getX(), vcaGui.getY(), vcaGui.getHeight(), 1.5f, g);
-    drawSeparatingWhiteLines(chorusGui.getWidth()+chorusGui.getX(), chorusGui.getY(), chorusGui.getHeight(), 1.5f, g);
-    
+    drawSeparatingWhiteLines(hpfGui.getX()-4, hpfGui.getY(), hpfGui.getHeight()-3, 1.5f, g);
+    drawSeparatingWhiteLines(hpfGui.getWidth()+hpfGui.getX()-6.5, hpfGui.getY()-3, hpfGui.getHeight(), 1.5f, g);
+    drawSeparatingWhiteLines(lfoFilterEnvelopeGui.getWidth()+lfoFilterEnvelopeGui.getX(), lfoFilterEnvelopeGui.getY()-3, lfoFilterEnvelopeGui.getHeight(), 1.5f, g);
+    drawSeparatingWhiteLines(vcaGui.getWidth()+vcaGui.getX(), vcaGui.getY()-3, vcaGui.getHeight(), 1.5f, g);
+    drawSeparatingWhiteLines(chorusGui.getWidth()+chorusGui.getX(), chorusGui.getY()-3, chorusGui.getHeight(), 1.5f, g);
    
 }
 
@@ -199,7 +200,7 @@ void SynthFrameworkAudioProcessorEditor::resized()
     chorusGui.setBounds(area2.removeFromLeft(90).removeFromTop(135));
     presets.setBounds(area2.removeFromLeft(290).removeFromTop(135));
     
-
+   
 
     //Keyboard
     keyboardComponent.setBounds(90, 315, 710, 85);
