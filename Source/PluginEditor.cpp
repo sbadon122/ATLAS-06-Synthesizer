@@ -138,24 +138,24 @@ void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
     g.setColour(Colours::whitesmoke);
     
     
-    drawSquareLabel(402.5, 80, 1.8f, 1.4f, g);
-    drawSawLabel(445, 80, 1.8f, 1.4f, g);
-    drawDCOLabelLines(325, 35, 83, 1.4f, g);
-    drawPolarityModeLabel(217, 238, 1.5f, 1.4f, false, g);
-    drawPolarityModeLabel(217, 274, 1.5f, 1.4f, true, g);
-    drawGateLabel(370, 290, 1.8f, 1.4f,  g);
-    drawPolarityModeLabel(370, 228, 1.5f, 1.4f, false, g);
-    drawEnvWhiteLabelLine(223, 220,  1.4f,  g);
-    drawAmpWhiteLabelLine(375, 210,  1.4f,  g);
-    drawSeparatingWhiteLines(lfoGui.getX()-4, lfoGui.getY()-5, lfoGui.getHeight()-5, 1.5f, g);
-    drawSeparatingWhiteLines(lfoGui.getWidth()+lfoGui.getX()+5, lfoGui.getY()-15, lfoGui.getHeight()+5, 1.5f, g);
-    drawSeparatingWhiteLines(noiseGui.getWidth()+noiseGui.getX(), noiseGui.getY()-15, noiseGui.getHeight()+5, 1.5f, g);
-    drawSeparatingWhiteLines(envGui.getWidth()+envGui.getX()-6.5, envGui.getY()-15, envGui.getHeight()+5, 1.5f, g);
-    drawSeparatingWhiteLines(hpfGui.getX()-4, hpfGui.getY()-5, hpfGui.getHeight()+5, 1.5f, g);
-    drawSeparatingWhiteLines(hpfGui.getWidth()+hpfGui.getX()-6.5, hpfGui.getY()-5, hpfGui.getHeight()+5, 1.5f, g);
-    drawSeparatingWhiteLines(lfoFilterEnvelopeGui.getWidth()+lfoFilterEnvelopeGui.getX(), lfoFilterEnvelopeGui.getY()-5, lfoFilterEnvelopeGui.getHeight()+5, 1.5f, g);
-    drawSeparatingWhiteLines(vcaGui.getWidth()+vcaGui.getX(), vcaGui.getY()-5, vcaGui.getHeight()+5, 1.5f, g);
-    drawSeparatingWhiteLines(chorusGui.getWidth()+chorusGui.getX(), chorusGui.getY()-5, chorusGui.getHeight()+5, 1.5f, g);
+    drawSquareLabel(402.5, 75, 1.8f, 1.4f, g);
+    drawSawLabel(445, 75, 1.8f, 1.4f, g);
+    drawDCOLabelLines(325, 30, 83, 1.4f, g);
+    drawPolarityModeLabel(217, 233, 1.5f, 1.4f, false, g);
+    drawPolarityModeLabel(217, 269, 1.5f, 1.4f, true, g);
+    drawGateLabel(370, 285, 1.8f, 1.4f,  g);
+    drawPolarityModeLabel(370, 223, 1.5f, 1.4f, false, g);
+    drawEnvWhiteLabelLine(223, 215,  1.4f,  g);
+    drawAmpWhiteLabelLine(375, 205,  1.4f,  g);
+    drawSeparatingWhiteLines(lfoGui.getX()-4, lfoGui.getY(), lfoGui.getHeight()-5, 1.5f, g);
+    drawSeparatingWhiteLines(lfoGui.getWidth()+lfoGui.getX()+5, lfoGui.getY(), lfoGui.getHeight()-5, 1.5f, g);
+    drawSeparatingWhiteLines(noiseGui.getWidth()+noiseGui.getX(), noiseGui.getY(), noiseGui.getHeight()-5, 1.5f, g);
+    drawSeparatingWhiteLines(envGui.getWidth()+envGui.getX()-6.5, envGui.getY(), envGui.getHeight()-5, 1.5f, g);
+    drawSeparatingWhiteLines(hpfGui.getX()-4, hpfGui.getY(), hpfGui.getHeight(), 1.5f, g);
+    drawSeparatingWhiteLines(hpfGui.getWidth()+hpfGui.getX()-6.5, hpfGui.getY(), hpfGui.getHeight(), 1.5f, g);
+    drawSeparatingWhiteLines(lfoFilterEnvelopeGui.getWidth()+lfoFilterEnvelopeGui.getX(), lfoFilterEnvelopeGui.getY(), lfoFilterEnvelopeGui.getHeight(), 1.5f, g);
+    drawSeparatingWhiteLines(vcaGui.getWidth()+vcaGui.getX(), vcaGui.getY(), vcaGui.getHeight(), 1.5f, g);
+    drawSeparatingWhiteLines(chorusGui.getWidth()+chorusGui.getX(), chorusGui.getY(), chorusGui.getHeight(), 1.5f, g);
     
    
 }
@@ -163,10 +163,10 @@ void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
 void SynthFrameworkAudioProcessorEditor::resized()
 {
     Rectangle<int> area = getLocalBounds();
-    area.translate(5, 25);
+    area.translate(5, 20);
     
     Rectangle<int> area2 = getLocalBounds();
-    area2.translate(5, 180);
+    area2.translate(5, 175);
     
     //Labels
     lfoLabel.setBounds(10,5,100, 10);
@@ -190,14 +190,14 @@ void SynthFrameworkAudioProcessorEditor::resized()
     noiseGui.setBounds(area.removeFromLeft(65).removeFromTop(140));
     envGui.setBounds(area.removeFromLeft(240).removeFromTop(140));
     hpfGui.setBounds(area2.removeFromLeft(90).removeFromTop(135));
-    filterGui.setBounds(area2.removeFromLeft(55).removeFromTop(320));
-    resonanceGui.setBounds(area2.removeFromLeft(60).removeFromTop(320));
-    polaritySwitchGui.setBounds(area2.removeFromLeft(25).removeFromTop(250));
-    filterEnvelopeGui.setBounds(area2.removeFromLeft(50).removeFromTop(320));
-    lfoFilterEnvelopeGui.setBounds(area2.removeFromLeft(65).removeFromTop(320));
-    vcaGui.setBounds(area2.removeFromLeft(120).removeFromTop(320));
-    chorusGui.setBounds(area2.removeFromLeft(90).removeFromTop(320));
-    presets.setBounds(area2.removeFromLeft(290).removeFromTop(145));
+    filterGui.setBounds(area2.removeFromLeft(55).removeFromTop(135));
+    resonanceGui.setBounds(area2.removeFromLeft(60).removeFromTop(135));
+    polaritySwitchGui.setBounds(area2.removeFromLeft(25).removeFromTop(135));
+    filterEnvelopeGui.setBounds(area2.removeFromLeft(50).removeFromTop(135));
+    lfoFilterEnvelopeGui.setBounds(area2.removeFromLeft(65).removeFromTop(135));
+    vcaGui.setBounds(area2.removeFromLeft(120).removeFromTop(135));
+    chorusGui.setBounds(area2.removeFromLeft(90).removeFromTop(135));
+    presets.setBounds(area2.removeFromLeft(290).removeFromTop(135));
     
 
 
@@ -366,13 +366,13 @@ void SynthFrameworkAudioProcessorEditor::drawEnvWhiteLabelLine(float x, float y,
     g.setColour(Colours::whitesmoke);
     auto lineLength = 37.5f;
     Line<float> line (Point<float> (x, y),
-                      Point<float> (x, y-lineLength));
+                      Point<float> (x, y-lineLength*.8));
     
-    Line<float> line2 (Point<float> (x, y-lineLength),
-                      Point<float> (x+lineLength*1.35, y-lineLength));
+    Line<float> line2 (Point<float> (x, y-lineLength*.8),
+                      Point<float> (x+lineLength*1.35, y-lineLength*.8));
     
-    Line<float> line3 (Point<float> (x+lineLength*1.35, y-lineLength),
-                       Point<float> (x+lineLength*1.35, y-lineLength*7/8));
+    Line<float> line3 (Point<float> (x+lineLength*1.35, y-lineLength*.8),
+                       Point<float> (x+lineLength*1.35, y-lineLength*.7));
     
     g.drawLine (line, thickness);
     g.drawLine (line2, thickness);
@@ -383,13 +383,13 @@ void SynthFrameworkAudioProcessorEditor::drawAmpWhiteLabelLine(float x, float y,
     g.setColour(Colours::whitesmoke);
     auto lineLength = 27.5f;
     Line<float> line (Point<float> (x, y),
-                      Point<float> (x, y-lineLength));
+                      Point<float> (x, y-lineLength*.8));
     
-    Line<float> line2 (Point<float> (x, y-lineLength),
-                       Point<float> (x+lineLength*1.75, y-lineLength));
+    Line<float> line2 (Point<float> (x, y-lineLength*.8),
+                       Point<float> (x+lineLength*1.75, y-lineLength*.8));
     
-    Line<float> line3 (Point<float> (x+lineLength*1.75, y-lineLength),
-                       Point<float> (x+lineLength*1.75, y-lineLength*.85));
+    Line<float> line3 (Point<float> (x+lineLength*1.75, y-lineLength*.8),
+                       Point<float> (x+lineLength*1.75, y-lineLength*.7));
     
     g.drawLine (line, thickness);
     g.drawLine (line2, thickness);
