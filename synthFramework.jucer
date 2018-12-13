@@ -88,6 +88,8 @@
         <FILE id="U4rknl" name="stb_vorbis.c" compile="1" resource="0" file="Libraries/Maximilian/stb_vorbis.c"/>
         <FILE id="af8n5l" name="stb_vorbis.h" compile="0" resource="0" file="Libraries/Maximilian/stb_vorbis.h"/>
       </GROUP>
+      <FILE id="C5JW98" name="PitchBend.cpp" compile="1" resource="0" file="Source/PitchBend.cpp"/>
+      <FILE id="mwCBdD" name="PitchBend.h" compile="0" resource="0" file="Source/PitchBend.h"/>
       <FILE id="qamVp9" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
       <FILE id="fTinYD" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
       <FILE id="X7KvpY" name="PluginProcessor.cpp" compile="1" resource="0"

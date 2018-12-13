@@ -13,7 +13,7 @@
 
 //==============================================================================
 SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFrameworkAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p), lfoPitchGui(p), lfoPwmGui(p), chorusGui(p), keyboardComponent (p.keyboardState, MidiKeyboardComponent::horizontalKeyboard), presets(p), pwmModeSwitchGui(p), polaritySwitchGui(p)
+    : AudioProcessorEditor (&p), processor (p), envGui(p), filterGui(p), resonanceGui(p), filterEnvelopeGui(p), lfoGui(p), lfoFilterEnvelopeGui(p), hpfGui(p), vcaGui(p), noiseGui(p), sawOscGui(p), squareOscGui(p), subOscGui(p), pitchRangeGui(p), pwmGui(p), lfoPitchGui(p), lfoPwmGui(p), chorusGui(p), keyboardComponent (p.keyboardState, MidiKeyboardComponent::horizontalKeyboard), presets(p), pwmModeSwitchGui(p), polaritySwitchGui(p), pitchBendGui(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -38,7 +38,8 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     addAndMakeVisible(&keyboardComponent);
     addAndMakeVisible(&presets);
     addAndMakeVisible(&pwmModeSwitchGui);
-     addAndMakeVisible(&polaritySwitchGui);
+    addAndMakeVisible(&polaritySwitchGui);
+    addAndMakeVisible(&pitchBendGui);
     
     
     //Labels
@@ -63,7 +64,7 @@ SynthFrameworkAudioProcessorEditor::SynthFrameworkAudioProcessorEditor (SynthFra
     hpfLabel.setFont (Font (16.0f, Font::bold));
     
     addAndMakeVisible(&envAmpLabel);
-    envAmpLabel.setText ("ENV", dontSendNotification);
+    envAmpLabel.setText ("VCF", dontSendNotification);
     envAmpLabel.setJustificationType (Justification::centred);
     envAmpLabel.setFont (Font (16.0f, Font::bold));
     
@@ -126,13 +127,13 @@ void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
     g.fillRect (3, 0, 120.5, 20);
     g.fillRect (127, 0, 462, 20);
     g.fillRect (593, 0, 204, 20);
-    g.fillRect (3, 165, 83, 20);
-    g.fillRect (91, 165, 257, 20);
-    g.fillRect (352, 165, 116, 20);
+    g.fillRect (3, 155, 83, 20);
+    g.fillRect (91, 155, 257, 20);
+    g.fillRect (352, 155, 116, 20);
     g.setColour(Colours::darkblue);
-    g.fillRect (472, 165, 86, 20);
+    g.fillRect (472, 155, 86, 20);
     g.setColour(Colours::darkred);
-    g.fillRect (561, 165, 300, 20);
+    g.fillRect (561, 155, 300, 20);
     
     g.setColour(Colours::whitesmoke);
     
@@ -140,16 +141,16 @@ void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
     drawSquareLabel(402.5, 80, 1.8f, 1.4f, g);
     drawSawLabel(445, 80, 1.8f, 1.4f, g);
     drawDCOLabelLines(325, 35, 83, 1.4f, g);
-    drawPolarityModeLabel(217, 248, 1.5f, 1.4f, false, g);
-    drawPolarityModeLabel(217, 284, 1.5f, 1.4f, true, g);
-    drawGateLabel(370, 300, 1.8f, 1.4f,  g);
-    drawPolarityModeLabel(370, 238, 1.5f, 1.4f, false, g);
-    drawEnvWhiteLabelLine(223, 230,  1.4f,  g);
-    drawAmpWhiteLabelLine(375, 220,  1.4f,  g);
-    drawSeparatingWhiteLines(lfoGui.getX()-4, lfoGui.getY()-5, lfoGui.getHeight()+5, 1.5f, g);
-    drawSeparatingWhiteLines(lfoGui.getWidth()+lfoGui.getX()+5, lfoGui.getY()-5, lfoGui.getHeight()+5, 1.5f, g);
-    drawSeparatingWhiteLines(noiseGui.getWidth()+noiseGui.getX(), noiseGui.getY()-5, noiseGui.getHeight()+5, 1.5f, g);
-    drawSeparatingWhiteLines(envGui.getWidth()+envGui.getX()-6.5, envGui.getY()-5, envGui.getHeight()+5, 1.5f, g);
+    drawPolarityModeLabel(217, 238, 1.5f, 1.4f, false, g);
+    drawPolarityModeLabel(217, 274, 1.5f, 1.4f, true, g);
+    drawGateLabel(370, 290, 1.8f, 1.4f,  g);
+    drawPolarityModeLabel(370, 228, 1.5f, 1.4f, false, g);
+    drawEnvWhiteLabelLine(223, 220,  1.4f,  g);
+    drawAmpWhiteLabelLine(375, 210,  1.4f,  g);
+    drawSeparatingWhiteLines(lfoGui.getX()-4, lfoGui.getY()-5, lfoGui.getHeight()-5, 1.5f, g);
+    drawSeparatingWhiteLines(lfoGui.getWidth()+lfoGui.getX()+5, lfoGui.getY()-15, lfoGui.getHeight()+5, 1.5f, g);
+    drawSeparatingWhiteLines(noiseGui.getWidth()+noiseGui.getX(), noiseGui.getY()-15, noiseGui.getHeight()+5, 1.5f, g);
+    drawSeparatingWhiteLines(envGui.getWidth()+envGui.getX()-6.5, envGui.getY()-15, envGui.getHeight()+5, 1.5f, g);
     drawSeparatingWhiteLines(hpfGui.getX()-4, hpfGui.getY()-5, hpfGui.getHeight()+5, 1.5f, g);
     drawSeparatingWhiteLines(hpfGui.getWidth()+hpfGui.getX()-6.5, hpfGui.getY()-5, hpfGui.getHeight()+5, 1.5f, g);
     drawSeparatingWhiteLines(lfoFilterEnvelopeGui.getWidth()+lfoFilterEnvelopeGui.getX(), lfoFilterEnvelopeGui.getY()-5, lfoFilterEnvelopeGui.getHeight()+5, 1.5f, g);
@@ -165,16 +166,16 @@ void SynthFrameworkAudioProcessorEditor::resized()
     area.translate(5, 25);
     
     Rectangle<int> area2 = getLocalBounds();
-    area2.translate(5, 190);
+    area2.translate(5, 180);
     
     //Labels
     lfoLabel.setBounds(10,5,100, 10);
     oscLabel.setBounds(140, 0, 440, 20);
     envLabel.setBounds(563, 0, 237, 20);
-    hpfLabel.setBounds(15, 165, 57, 20);
-    envAmpLabel.setBounds(91, 165, 259, 20);
-    ampLabel.setBounds(352, 165, 103, 20);
-    chorusLabel.setBounds(470, 165, 90, 20);
+    hpfLabel.setBounds(15, 155, 57, 20);
+    envAmpLabel.setBounds(91, 155, 259, 20);
+    ampLabel.setBounds(352, 155, 103, 20);
+    chorusLabel.setBounds(470, 155, 90, 20);
     
     //Synth Components
     lfoGui.setBounds(area.removeFromLeft(115).removeFromTop(140));
@@ -188,7 +189,7 @@ void SynthFrameworkAudioProcessorEditor::resized()
     subOscGui.setBounds(area.removeFromLeft(55).removeFromTop(140));
     noiseGui.setBounds(area.removeFromLeft(65).removeFromTop(140));
     envGui.setBounds(area.removeFromLeft(240).removeFromTop(140));
-    hpfGui.setBounds(area2.removeFromLeft(90).removeFromTop(320));
+    hpfGui.setBounds(area2.removeFromLeft(90).removeFromTop(135));
     filterGui.setBounds(area2.removeFromLeft(55).removeFromTop(320));
     resonanceGui.setBounds(area2.removeFromLeft(60).removeFromTop(320));
     polaritySwitchGui.setBounds(area2.removeFromLeft(25).removeFromTop(250));
@@ -201,7 +202,8 @@ void SynthFrameworkAudioProcessorEditor::resized()
 
 
     //Keyboard
-    keyboardComponent.setBounds(0, 325, 800, 75);
+    keyboardComponent.setBounds(90, 315, 710, 85);
+    pitchBendGui.setBounds(0, 315, 90, 85);
     
     
  

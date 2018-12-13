@@ -55,6 +55,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> chorus2Param (0, 1, 0);
     NormalisableRange<float> pwmModeToggle (0, 1, 0);
     NormalisableRange<float> polarityModeToggle (-1, 1, 1);
+    NormalisableRange<float> pitchBendParam (-100.0f, 100.0f, 0);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -83,6 +84,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("chorus1", "Chorus1", "chorus1", chorus1Param, 0,nullptr , nullptr);
     tree->createAndAddParameter("chorus2", "Chorus2", "chorus2", chorus2Param, 0,nullptr , nullptr);
     tree->createAndAddParameter("pwmMode", "PwmMode", "pwmMode", pwmModeToggle, 0,nullptr , nullptr);
+    tree->createAndAddParameter("pitchBend", "PitchBend", "pitchBend", pitchBendParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("polarityMode", "PolarityMode", "polarityMode", polarityModeToggle, 1,nullptr , nullptr);
     
     tree->state = ValueTree ("synth");

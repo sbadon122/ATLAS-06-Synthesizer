@@ -34,6 +34,7 @@
 #include "SliderLookAndFeel.h"
 #include "PWMModeSwitch.h"
 #include "PolaritySwitch.h"
+#include "PitchBend.h"
 
 
 
@@ -90,6 +91,7 @@ private:
     PresetLoader presets;
     PWMModeSwitch pwmModeSwitchGui;
     PolaritySwitch polaritySwitchGui;
+    PitchBend pitchBendGui;
     //Labels
     Label lfoLabel;
     Label oscLabel;
