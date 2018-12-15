@@ -58,6 +58,8 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> pitchBendParam (-1.0f, 1.0f);
     NormalisableRange<float> dcoSliderPitchBendParam (0, 1.0f);
     NormalisableRange<float> vcfSliderPitchBendParam (0, 4000.0f);
+    NormalisableRange<float> portamentoParam (0, 0.99f);
+    NormalisableRange<float> portamentoToggleParam (-1.0f, 1.0f);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -89,6 +91,8 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("pitchBend", "PitchBend", "pitchBend", pitchBendParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("dcoSliderPitchBend", "DcoSliderPitchBend", "dcoSliderPitchBend", dcoSliderPitchBendParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("vcfSliderPitchBend", "VcfSliderPitchBend", "vcfSliderPitchBend", vcfSliderPitchBendParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("portamento", "Portamento", "portamento", portamentoParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("portamentoToggle", "PortamentoToggle", "portamentoToggle", portamentoToggleParam, -1,nullptr , nullptr);
     
     
     tree->createAndAddParameter("polarityMode", "PolarityMode", "polarityMode", polarityModeToggle, 1,nullptr , nullptr);
@@ -248,6 +252,8 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setPitchBendSetting(tree->getRawParameterValue("pitchBend"));
             myVoice->setDcoPitchBendSetting(tree->getRawParameterValue("dcoSliderPitchBend"));
             myVoice->setVcfPitchBendSetting(tree->getRawParameterValue("vcfSliderPitchBend"));
+            myVoice->setPortamentoSetting(tree->getRawParameterValue("portamento"));
+            myVoice->setPortomentoToggle(tree->getRawParameterValue("portamentoToggle"));
             myVoice->setChorus(tree->getRawParameterValue("chorus1"),
                                tree->getRawParameterValue("chorus2"));
         }

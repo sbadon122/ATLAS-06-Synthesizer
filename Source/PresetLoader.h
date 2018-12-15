@@ -14,13 +14,15 @@
 #include <stdio.h>
 #include "PluginProcessor.h"
 #include "Constants.h"
+#include "SliderLookAndFeel.h"
 
 //==============================================================================
 /*
 */
 class PresetLoader    : public Component,
                         public FilenameComponentListener,
-                        private Button::Listener
+                        private Button::Listener,
+                        private Slider::Listener
 {
 public:
     PresetLoader(SynthFrameworkAudioProcessor& p);
@@ -30,6 +32,7 @@ public:
     void resized() override;
     void filenameComponentChanged (FilenameComponent* fileComponentThatHasChanged) override;
     void readFile (const File& fileToRead);
+    void sliderValueChanged (Slider*) override;
 
 private:
     std::unique_ptr<FilenameComponent> fileComp;
@@ -39,12 +42,18 @@ private:
     TextButton initButton    { "" };
     Label initLabel         { {}, "Init"};
     Label synthName         { {}, "Atlas-06"};
+    Label portamentoLabel         { {}, "Portamento"};
     Label licenseToLabel         { {}, "Licensed to:"};
     void     buttonClicked (Button *) override;
     void     buttonStateChanged (Button *) override;
+    Slider   portamentoSlider;
+    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> portamentoVal;
+    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> portamentoToggleVal;
+    Slider portamentoToggle;
     
     //LookAndFeel
     LookAndFeel_V4 otherLookAndFeel;
+    SliderToggleLookAndFeel sliderToggle;
     
     SynthFrameworkAudioProcessor& processor;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetLoader)

@@ -59,6 +59,10 @@ class SynthVoice : public SynthesiserVoice
         lfoRateSetting = *setting;
     }
     
+    void setPortomentoToggle(float* setting)
+    {
+        portamentoToggleSetting = *setting == -1.0f ? false : true;
+    }
     
     void setLfoDelaySetting(float* setting)
     {
@@ -90,6 +94,13 @@ class SynthVoice : public SynthesiserVoice
     {
         noiseSetting = *setting;
     }
+    
+    void setPortamentoSetting(float* setting)
+    {
+        portamentoSetting = *setting;
+        
+    }
+    
     void setPwmMode(float* setting){
         pwmModeSetting = *setting;
     }
@@ -227,6 +238,9 @@ class SynthVoice : public SynthesiserVoice
             lfoEnv.decayphase=0;
             level = velocity;
             frequency = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
+            if(currentFrequency == 0){
+                currentFrequency = frequency;
+            }
         }
         
         void stopNote(float velocity, bool allowTailOff) override
@@ -271,7 +285,6 @@ class SynthVoice : public SynthesiserVoice
             {
                 cutoffValue = filterEnvelopeSetting/currentVolume;
             }
-            //cout<< vcfSliderPitchBendSetting  << endl;
             cutoffValue += getLfoValue()*lfoFilterEnvelopeSetting+vcfSliderPitchBendSetting*pitchBendPosition;
             if(cutoffValue < 30.0f)
             {
@@ -297,7 +310,20 @@ class SynthVoice : public SynthesiserVoice
             
             for (int sample = 0; sample < numSamples; ++sample)
             {
-                auto freq =  frequency * (std::pow(2, pitchBendSetting));
+                
+                if(portamentoToggleSetting && currentFrequency < frequency){
+                    currentFrequency += .1 * (1-portamentoSetting);
+                    currentFrequency = currentFrequency > frequency ? frequency : currentFrequency;
+                }
+                else if(portamentoToggleSetting && currentFrequency > frequency){
+                     currentFrequency -= .1 * (1-portamentoSetting);
+                    currentFrequency = currentFrequency < frequency ? frequency : currentFrequency;
+                }
+                else {
+                    currentFrequency = frequency;
+                }
+                
+                auto freq =  currentFrequency * (std::pow(2, pitchBendSetting));
                 double myCurrentVolume = env1.adsr(1., env1.trigger) * level * vcaSetting;
                 processedFrequency = freq + (freq * getLfoValue() * lfoPitchSetting);
                 double oscSound = getDCOSound();
@@ -354,5 +380,8 @@ class SynthVoice : public SynthesiserVoice
     double pitchBendPosition;
     double dcoSliderPitchBendSetting;
     double vcfSliderPitchBendSetting;
+    double portamentoSetting;
+    double currentFrequency;
+    Boolean portamentoToggleSetting;
     
 };
