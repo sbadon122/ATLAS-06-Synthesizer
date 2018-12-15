@@ -16,7 +16,7 @@ PitchBend::PitchBend(SynthFrameworkAudioProcessor& p):
 processor(p)
 {
     pitchBendSlider.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
-    pitchBendSlider.setRange(-100.0f, 100.0f);
+    pitchBendSlider.setRange(-1.0f, 1.0f);
     pitchBendSlider.setValue(0);
     pitchBendSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
     addAndMakeVisible(&pitchBendSlider);
@@ -26,7 +26,7 @@ processor(p)
     pitchBendVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "pitchBend", pitchBendSlider);
     
     dcoSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    dcoSlider.setRange(0, 12.0f);
+    dcoSlider.setRange(0, 1.0f);
     dcoSlider.setValue(0);
     dcoSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
     dcoSlider.setLookAndFeel(&sliderLookAndFeel);
@@ -36,14 +36,14 @@ processor(p)
     dcoSliderVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "dcoSliderPitchBend", dcoSlider);
     
     vcfSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    vcfSlider.setRange(0, 10.0f);
+    vcfSlider.setRange(0, 4000.0f);
     vcfSlider.setValue(0);
     vcfSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
     vcfSlider.setLookAndFeel(&sliderLookAndFeel);
     addAndMakeVisible(&vcfSlider);
     
     
-    dcoSliderVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "vcfSliderPitchBend", dcoSlider);
+    vcfSliderVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "vcfSliderPitchBend", vcfSlider);
     
     addAndMakeVisible(&dcoLabel);
     dcoLabel.setJustificationType(Justification::centred);
@@ -79,8 +79,10 @@ void PitchBend::resized()
 void PitchBend::sliderValueChanged (Slider *slider)
 {
     
+    
 }
 
 void PitchBend:: sliderDragEnded(Slider *slider){
     slider->setValue(0);
 }
+

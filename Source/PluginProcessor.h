@@ -75,6 +75,7 @@ private:
     String  activationString = "Vega-06 Activated to:";
     String  synthOwner = "Not registered";
     Boolean  synthIsRegistered = true;
+   
     
      JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessor)
 };

@@ -79,6 +79,13 @@ class SynthVoice : public SynthesiserVoice
         vcaSetting = *setting;
     }
     
+    void setPitchBendSetting(float* setting)
+    {
+        pitchBendPosition = *setting;
+        pitchBendSetting = *setting*dcoSliderPitchBendSetting;
+    }
+    
+    
     void setNoiseSetting(float* setting)
     {
         noiseSetting = *setting;
@@ -120,6 +127,15 @@ class SynthVoice : public SynthesiserVoice
         pwmSetting = *setting;
     }
     
+    void setDcoPitchBendSetting(float* setting)
+    {
+        dcoSliderPitchBendSetting = *setting;
+    }
+    void setVcfPitchBendSetting(float* setting)
+    {
+        vcfSliderPitchBendSetting = *setting;
+    }
+    
     double getPwmSetting(){
         double pwm = pwmSetting;
         pwm = pwmSetting - pwmSetting * lfoPwmSetting * pwmModeSetting * getLfoValue();
@@ -141,14 +157,15 @@ class SynthVoice : public SynthesiserVoice
     {
         if(pitchRangeSetting == 1)
         {
-            return 4;
+            return 2;
         }
         else if(pitchRangeSetting == 2)
         {
-            return 8;
+            return 4;
         }
         return 1;
     }
+    
     
     void setLfoPitchSetting(float* setting){
         lfoPitchSetting = *setting;
@@ -254,8 +271,8 @@ class SynthVoice : public SynthesiserVoice
             {
                 cutoffValue = filterEnvelopeSetting/currentVolume;
             }
-            
-            cutoffValue += getLfoValue()*lfoFilterEnvelopeSetting;
+            //cout<< vcfSliderPitchBendSetting  << endl;
+            cutoffValue += getLfoValue()*lfoFilterEnvelopeSetting+vcfSliderPitchBendSetting*pitchBendPosition;
             if(cutoffValue < 30.0f)
             {
                 cutoffValue = 30.0f;
@@ -280,8 +297,9 @@ class SynthVoice : public SynthesiserVoice
             
             for (int sample = 0; sample < numSamples; ++sample)
             {
+                auto freq =  frequency * (std::pow(2, pitchBendSetting));
                 double myCurrentVolume = env1.adsr(1., env1.trigger) * level * vcaSetting;
-                processedFrequency = frequency + (frequency * getLfoValue() * lfoPitchSetting);
+                processedFrequency = freq + (freq * getLfoValue() * lfoPitchSetting);
                 double oscSound = getDCOSound();
                 double filteredSound = filter1.lores(oscSound*myCurrentVolume, calculateFilterCutoff(myCurrentVolume), resonanceSetting);
                 double processedSound = filter1.hires(filteredSound, hpfSetting, 0);
@@ -332,6 +350,9 @@ class SynthVoice : public SynthesiserVoice
     double chorus2Setting;
     double pwmModeSetting;
     double polarityModeSetting;
-    
+    double pitchBendSetting;
+    double pitchBendPosition;
+    double dcoSliderPitchBendSetting;
+    double vcfSliderPitchBendSetting;
     
 };

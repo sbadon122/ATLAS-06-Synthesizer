@@ -37,6 +37,7 @@ private:
     Slider vcfSlider;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> pitchBendVal;
     ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> dcoSliderVal;
+    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> vcfSliderVal;
     PitchBendLookAndFeel pitchBendLookAndFeel;
     SliderPitchBendLookAndFeel sliderLookAndFeel;
     Label dcoLabel         { {}, "DCO"};

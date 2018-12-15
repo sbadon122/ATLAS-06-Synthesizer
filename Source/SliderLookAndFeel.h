@@ -227,7 +227,7 @@ struct PitchBendLookAndFeel    : public LookAndFeel_V4
         Path on, off;
         auto iy = x + height * 0.5f - sliderRadius;
         Rectangle<float> r (x-sliderRadius*0.5f, iy ,width+ sliderRadius ,  sliderRadius);
-        g.setColour(Colours::black.withMultipliedAlpha(0.35f));
+        g.setColour(Colours::black.withMultipliedAlpha(0.8f));
         Rectangle<float> backgroundR (x-8.0f, iy - 2.0f ,width+ sliderRadius + 4.0f ,  sliderRadius+4.0f);
         g.fillRect(backgroundR);
         auto onH = r.getWidth() * ((float) slider.valueToProportionOfLength (slider.getValue()));

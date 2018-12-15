@@ -55,7 +55,9 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> chorus2Param (0, 1, 0);
     NormalisableRange<float> pwmModeToggle (0, 1, 0);
     NormalisableRange<float> polarityModeToggle (-1, 1, 1);
-    NormalisableRange<float> pitchBendParam (-100.0f, 100.0f, 0);
+    NormalisableRange<float> pitchBendParam (-1.0f, 1.0f);
+    NormalisableRange<float> dcoSliderPitchBendParam (0, 1.0f);
+    NormalisableRange<float> vcfSliderPitchBendParam (0, 4000.0f);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
@@ -85,6 +87,10 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("chorus2", "Chorus2", "chorus2", chorus2Param, 0,nullptr , nullptr);
     tree->createAndAddParameter("pwmMode", "PwmMode", "pwmMode", pwmModeToggle, 0,nullptr , nullptr);
     tree->createAndAddParameter("pitchBend", "PitchBend", "pitchBend", pitchBendParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("dcoSliderPitchBend", "DcoSliderPitchBend", "dcoSliderPitchBend", dcoSliderPitchBendParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("vcfSliderPitchBend", "VcfSliderPitchBend", "vcfSliderPitchBend", vcfSliderPitchBendParam, 0,nullptr , nullptr);
+    
+    
     tree->createAndAddParameter("polarityMode", "PolarityMode", "polarityMode", polarityModeToggle, 1,nullptr , nullptr);
     
     tree->state = ValueTree ("synth");
@@ -239,15 +245,20 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setLfoPwmSetting(tree->getRawParameterValue("lfoPwm"));
             myVoice->setPolarityModeSetting(tree->getRawParameterValue("polarityMode"));
             myVoice->setPwmMode(tree->getRawParameterValue("pwmMode"));
+            myVoice->setPitchBendSetting(tree->getRawParameterValue("pitchBend"));
+            myVoice->setDcoPitchBendSetting(tree->getRawParameterValue("dcoSliderPitchBend"));
+            myVoice->setVcfPitchBendSetting(tree->getRawParameterValue("vcfSliderPitchBend"));
             myVoice->setChorus(tree->getRawParameterValue("chorus1"),
                                tree->getRawParameterValue("chorus2"));
         }
     }
     buffer.clear();
     keyboardState.processNextMidiBuffer (midiMessages, 0, numSamples, true);
+   
     if(synthIsRegistered){
         mySynth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
     }
+    
 }
 
 //==============================================================================
