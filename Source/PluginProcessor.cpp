@@ -32,14 +32,13 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> decayParam (1.0f, 2000.0f);
     NormalisableRange<float> sustainParam (0.0f, 1.0f);
     NormalisableRange<float> releaseParam (0.1f, 5000.0f);
-    NormalisableRange<float> waveTypeParam (0, 2);
-    NormalisableRange<float> filterParam (30.0f, 4000.0f);
+    NormalisableRange<float> filterParam (30.0f, 6000.0f);
     NormalisableRange<float> resonanceParam (1.0f, 20.0f);
     NormalisableRange<float> filterEnvelopeParam (30.0f, 4000.0f);
     NormalisableRange<float> lfoRateParam (0.0f, 10.0f);
     NormalisableRange<float> lfoDelayParam (30.0f, 50000.0f);
     NormalisableRange<float> lfoFilterParam (0.1f, 5000.0f);
-    NormalisableRange<float> hpfParam (5.0f, 19000.0f);
+    NormalisableRange<float> hpfParam (10.0f, 6000.0f);
     NormalisableRange<float> vcaParam (0, 5);
     NormalisableRange<float> noiseParam (0, 1);
     NormalisableRange<float> sawButtonParam (0, 1, 0);
@@ -60,20 +59,20 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> vcfSliderPitchBendParam (0, 4000.0f);
     NormalisableRange<float> portamentoParam (0, 0.99f);
     NormalisableRange<float> portamentoToggleParam (-1.0f, 1.0f);
+    NormalisableRange<float> ampParam (0, 1);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
     tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
     tree->createAndAddParameter("decay", "Decay", "decay", decayParam, 1.0f, nullptr, nullptr);
     tree->createAndAddParameter("sustain", "Sustain", "sustain", sustainParam, 0.8f, nullptr, nullptr);
     tree->createAndAddParameter("release", "Release", "release", releaseParam, 5.0f, nullptr, nullptr);
-    tree->createAndAddParameter("wavetype", "WaveType", "wavetype", waveTypeParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("cutoff", "Cutoff", "cutoff", filterParam, 4000.0f,nullptr , nullptr);
     tree->createAndAddParameter("resonance", "Resonance", "resonance", resonanceParam, 1.0f,nullptr , nullptr);
     tree->createAndAddParameter("filterEnvelope", "FilterEnvelope", "filterEnvelope", filterEnvelopeParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("lfoRate", "LfoRate", "lfoRate", lfoRateParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("lfoDelay", "LfoDelay", "lfoDelay", lfoDelayParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("lfoFilterEnvelope", "LfoFilterEnvelope", "lfoFilterEnvelope", lfoFilterParam, 30.0f,nullptr , nullptr);
-    tree->createAndAddParameter("hpf", "Hpf", "hpf", hpfParam, 5.0f,nullptr , nullptr);
+    tree->createAndAddParameter("hpf", "Hpf", "hpf", hpfParam, 10.0f,nullptr , nullptr);
     tree->createAndAddParameter("vca", "Vca", "vca", vcaParam, 2.5f,nullptr , nullptr);
     tree->createAndAddParameter("noise", "Noise", "noise", noiseParam, 0.0f,nullptr , nullptr);
     tree->createAndAddParameter("sawOsc", "SawOsc", "sawOsc", sawButtonParam, 0,nullptr , nullptr);
@@ -93,6 +92,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("vcfSliderPitchBend", "VcfSliderPitchBend", "vcfSliderPitchBend", vcfSliderPitchBendParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("portamento", "Portamento", "portamento", portamentoParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("portamentoToggle", "PortamentoToggle", "portamentoToggle", portamentoToggleParam, -1,nullptr , nullptr);
+    tree->createAndAddParameter("ampMode", "AmpMode", "ampMode", ampParam, 1,nullptr , nullptr);
     
     
     tree->createAndAddParameter("polarityMode", "PolarityMode", "polarityMode", polarityModeToggle, 1,nullptr , nullptr);
@@ -254,6 +254,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setVcfPitchBendSetting(tree->getRawParameterValue("vcfSliderPitchBend"));
             myVoice->setPortamentoSetting(tree->getRawParameterValue("portamento"));
             myVoice->setPortomentoToggle(tree->getRawParameterValue("portamentoToggle"));
+            myVoice->setAmpMode(tree->getRawParameterValue("ampMode"));
             myVoice->setChorus(tree->getRawParameterValue("chorus1"),
                                tree->getRawParameterValue("chorus2"));
         }

@@ -24,10 +24,18 @@ class SynthVoice : public SynthesiserVoice
     
     void getEnvelopeParams(float* attack, float* decay, float* sustain, float* release)
     {
+        if(ampMode){
             env1.setAttack(*attack);
             env1.setDecay(*decay);
             env1.setSustain(*sustain);
             env1.setRelease(*release);
+        }
+        else {
+            env1.setAttack(0.1f);
+            env1.setDecay(0.1);
+            env1.setSustain(1.0f);
+            env1.setRelease(0.1);
+        }
     }
     
     void setCutoffSound(float* setting)
@@ -38,6 +46,11 @@ class SynthVoice : public SynthesiserVoice
     void setFitlerResonance(float* setting)
     {
         resonanceSetting = *setting;
+    }
+    
+    void setAmpMode(float* setting)
+    {
+        ampMode = *setting == 1;
     }
     
     void setFilterEnvelopeSetting(float* setting)
@@ -322,13 +335,15 @@ class SynthVoice : public SynthesiserVoice
                 else {
                     currentFrequency = frequency;
                 }
-                
+                if(frequency > 0){
+                    int test = 0;
+                }
                 auto freq =  currentFrequency * (std::pow(2, pitchBendSetting));
                 double myCurrentVolume = env1.adsr(1., env1.trigger) * level * vcaSetting;
                 processedFrequency = freq + (freq * getLfoValue() * lfoPitchSetting);
                 double oscSound = getDCOSound();
                 double filteredSound = filter1.lores(oscSound*myCurrentVolume, calculateFilterCutoff(myCurrentVolume), resonanceSetting);
-                double processedSound = filter1.hires(filteredSound, hpfSetting, 0);
+                double processedSound = filter2.hires(filteredSound, hpfSetting, 1.0f);
                 double chorusRate = getChorusRate();
                 if(chorusRate > 0) {
                     processedSound = chorusEffect.processSignal(processedSound, chorusRate);
@@ -351,6 +366,7 @@ class SynthVoice : public SynthesiserVoice
     maxiEnv env1;
     maxiEnv lfoEnv;
     maxiFilter filter1;
+    maxiFilter filter2;
     maxiOsc lfo;
     ChorusEffect chorusEffect;
     double level;
@@ -382,6 +398,7 @@ class SynthVoice : public SynthesiserVoice
     double vcfSliderPitchBendSetting;
     double portamentoSetting;
     double currentFrequency;
+    Boolean ampMode;
     Boolean portamentoToggleSetting;
     
 };

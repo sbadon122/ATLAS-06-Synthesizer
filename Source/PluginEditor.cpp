@@ -203,7 +203,7 @@ void SynthFrameworkAudioProcessorEditor::resized()
    
 
     //Keyboard
-    keyboardComponent.setBounds(90, 315, 710, 85);
+    keyboardComponent.setBounds(90, 315, 700, 85);
     pitchBendGui.setBounds(0, 315, 90, 85);
     
     

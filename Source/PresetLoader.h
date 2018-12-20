@@ -54,6 +54,7 @@ private:
     //LookAndFeel
     LookAndFeel_V4 otherLookAndFeel;
     SliderToggleLookAndFeel sliderToggle;
+    RotaryLookAndFeel portamentoLookAndFeel;
     
     SynthFrameworkAudioProcessor& processor;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetLoader)

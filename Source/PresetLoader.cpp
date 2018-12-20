@@ -34,6 +34,18 @@ processor(p)
     saveLabel.setJustificationType(Justification::centred);
     saveButton.addListener(this);
     
+    portamentoSlider.setSliderStyle(Slider::SliderStyle::Rotary);
+    portamentoSlider.setRange(0, 0.99f);
+    portamentoSlider.setValue(0);
+    portamentoSlider.setTextBoxStyle (Slider::NoTextBox, false, 0, 0);
+    portamentoSlider.setLookAndFeel(&portamentoLookAndFeel);
+    portamentoSlider.setRotaryParameters(4.45, 9.5, true);
+    addAndMakeVisible(&portamentoSlider);
+    
+    addAndMakeVisible (portamentoLabel);
+    portamentoLabel.setFont (Font (10.0f, Font::plain));
+    
+    
     addAndMakeVisible (initLabel);
     addAndMakeVisible (initButton);
     initLabel.attachToComponent(&initButton, false);
@@ -54,16 +66,6 @@ processor(p)
     licenseToLabel.setFont (Font (10.0f, Font::plain));
     licenseToLabel.setColour(Label::ColourIds::textColourId, Colours::whitesmoke);
     licenseToLabel.setJustificationType(Justification::right);
-    
-    portamentoSlider.setSliderStyle(Slider::SliderStyle::Rotary);
-    portamentoSlider.setRange(0, 0.99f);
-    portamentoSlider.setValue(0);
-    portamentoSlider.setTextBoxStyle (Slider::NoTextBox, false, 0, 0);
-    addAndMakeVisible(&portamentoSlider);
-
-    addAndMakeVisible (portamentoLabel);
-    portamentoLabel.setFont (Font (10.0f, Font::plain));
-    
     
     otherLookAndFeel.setColour (TextButton::buttonColourId,  Colour(0xffe0dedf));
     otherLookAndFeel.setColour (TextButton::buttonOnColourId,  Colour(0xffe0dedf));
@@ -90,6 +92,8 @@ PresetLoader::~PresetLoader()
 {
     saveButton.setLookAndFeel(nullptr);
     fileComp->setLookAndFeel(nullptr);
+    portamentoSlider.setLookAndFeel(nullptr);
+    portamentoToggle.setLookAndFeel(nullptr);
     
 }
 
@@ -100,8 +104,8 @@ void PresetLoader::paint (Graphics& g)
     initButton.setBounds(50, 60,buttonSize-5, buttonSize-5);
     synthName.setBounds(60, 20,200, 100);
     
-    licenseToLabel.setBounds(7.5, 70,230, 105);
-    portamentoSlider.setBounds(0, 85,45, 45);
+    licenseToLabel.setBounds(45, 70,190, 105);
+    portamentoSlider.setBounds(7.5, 90,30, 30);
     portamentoToggle.setBounds(52.5, 90,20, 25);
     portamentoLabel.setBounds(39, 70,50, 105);
     g.setColour(Colours::black);

@@ -30,7 +30,7 @@ processor(p)
     
     ampModeSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
     ampModeSlider.setRange(0, 1);
-    ampModeSlider.setValue(0);
+    ampModeSlider.setValue(1);
     ampModeSlider.addListener(this);
     addAndMakeVisible(&ampModeSlider);
     addAndMakeVisible(&ampLabel);
