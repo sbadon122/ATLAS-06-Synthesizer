@@ -98,8 +98,9 @@ class SynthVoice : public SynthesiserVoice
     
     void setPitchBendSetting(float* setting)
     {
-        pitchBendPosition = *setting;
-        pitchBendSetting = *setting*dcoSliderPitchBendSetting;
+
+        pitchBendPosition = midiPitchWheel != 0 ? midiPitchWheel : *setting;
+        pitchBendSetting = pitchBendPosition*dcoSliderPitchBendSetting;
     }
     
     
@@ -272,6 +273,7 @@ class SynthVoice : public SynthesiserVoice
         
         void pitchWheelMoved(int newPitchWheelValue) override
         {
+           midiPitchWheel = (newPitchWheelValue-8191.5f)/8191.5f;
         }
         
         void controllerMoved(int controllerNumber, int newControllerValue) override
@@ -335,9 +337,6 @@ class SynthVoice : public SynthesiserVoice
                 else {
                     currentFrequency = frequency;
                 }
-                if(frequency > 0){
-                    int test = 0;
-                }
                 auto freq =  currentFrequency * (std::pow(2, pitchBendSetting));
                 double myCurrentVolume = env1.adsr(1., env1.trigger) * level * vcaSetting;
                 processedFrequency = freq + (freq * getLfoValue() * lfoPitchSetting);
@@ -400,5 +399,6 @@ class SynthVoice : public SynthesiserVoice
     double currentFrequency;
     Boolean ampMode;
     Boolean portamentoToggleSetting;
+    double midiPitchWheel;
     
 };

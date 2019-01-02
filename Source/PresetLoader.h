@@ -44,6 +44,7 @@ private:
     Label synthName         { {}, "Atlas-06"};
     Label portamentoLabel         { {}, "Portamento"};
     Label licenseToLabel         { {}, "Licensed to:"};
+    Label islndsLabel         { {}, "ISLNDS dsp."};
     void     buttonClicked (Button *) override;
     void     buttonStateChanged (Button *) override;
     Slider   portamentoSlider;

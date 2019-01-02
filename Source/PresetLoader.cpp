@@ -59,13 +59,17 @@ processor(p)
     synthName.setText("ATLAS-06", dontSendNotification);
     synthName.setFont (Font (30.0f, Font::bold));
     synthName.setColour(Label::ColourIds::textColourId, Colours::black);
-    synthName.setJustificationType(Justification::centred);
     
     addAndMakeVisible (licenseToLabel);
     licenseToLabel.setText("Licensed to: " + p.getOwnersName() , dontSendNotification);
-    licenseToLabel.setFont (Font (10.0f, Font::plain));
+    licenseToLabel.setFont (Font (11.0f, Font::plain));
     licenseToLabel.setColour(Label::ColourIds::textColourId, Colours::whitesmoke);
     licenseToLabel.setJustificationType(Justification::right);
+    
+    addAndMakeVisible (islndsLabel);
+    islndsLabel.setFont (Font (12.0f, Font::plain));
+    islndsLabel.setColour(Label::ColourIds::textColourId, Colours::whitesmoke);
+    islndsLabel.setJustificationType(Justification::right);
     
     otherLookAndFeel.setColour (TextButton::buttonColourId,  Colour(0xffe0dedf));
     otherLookAndFeel.setColour (TextButton::buttonOnColourId,  Colour(0xffe0dedf));
@@ -86,6 +90,7 @@ processor(p)
 
     portamentoVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "portamento", portamentoSlider);
     portamentoToggleVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "portamentoToggle", portamentoToggle);
+    fileComp->toFront(true);
 }
 
 PresetLoader::~PresetLoader()
@@ -94,19 +99,21 @@ PresetLoader::~PresetLoader()
     fileComp->setLookAndFeel(nullptr);
     portamentoSlider.setLookAndFeel(nullptr);
     portamentoToggle.setLookAndFeel(nullptr);
-    
+    portamentoVal = nullptr;
+    portamentoToggleVal = nullptr;
 }
 
 void PresetLoader::paint (Graphics& g)
 {
-    fileComp->setBounds(10, 15, 220, 20);
+   
     saveButton.setBounds(10, 60,buttonSize-5, buttonSize-5);
     initButton.setBounds(50, 60,buttonSize-5, buttonSize-5);
-    synthName.setBounds(60, 20,200, 100);
-    
-    licenseToLabel.setBounds(45, 70,190, 105);
+    synthName.setBounds(87.5, 20,160, 100);
+    islndsLabel.setBounds(75, 50,160, 105);
+    licenseToLabel.setBounds(75, 70,160, 105);
     portamentoSlider.setBounds(7.5, 90,30, 30);
     portamentoToggle.setBounds(52.5, 90,20, 25);
+     fileComp->setBounds(10, 15, 220, 20);
     portamentoLabel.setBounds(39, 70,50, 105);
     g.setColour(Colours::black);
     Line<float> line (Point<float> (90, 52.5),

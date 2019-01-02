@@ -16,8 +16,7 @@ VCA::VCA(SynthFrameworkAudioProcessor& p) :
 processor(p)
 {
     vcaSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    vcaSlider.setRange(0, 5.0f);
-    vcaSlider.setValue(2.5f);
+    vcaSlider.setRange(0, 2.5f);
     vcaSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 0, 0);
     addAndMakeVisible(&vcaSlider);
     addAndMakeVisible(&vcaLabel);
@@ -95,9 +94,9 @@ void VCA::resized()
     fiveLabel1.setBounds(43, 77.5, 20, 10);
     zeroLabel1.setBounds(40, 114, 20, 10);
     vcaSlider.setBounds(55, 30, sliderWidth, 100);
-//    tenLabel1.setBounds(sliderWidth, 37.5, 20, 10);
-//    fiveLabel1.setBounds(sliderWidth, 77.5, 20, 10);
-//    zeroLabel1.setBounds(sliderWidth, 114, 20, 10);
+    tenLabel1.setBounds(sliderWidth, 37.5, 20, 10);
+    fiveLabel1.setBounds(sliderWidth, 77.5, 20, 10);
+    zeroLabel1.setBounds(sliderWidth, 114, 20, 10);
 
 
 }

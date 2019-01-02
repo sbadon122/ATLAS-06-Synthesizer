@@ -59,6 +59,7 @@ PitchBend::~PitchBend()
     pitchBendVal = nullptr;
     pitchBendSlider.setLookAndFeel(nullptr);
     dcoSlider.setLookAndFeel(nullptr);
+    vcfSlider.setLookAndFeel(nullptr);
 }
 
 void PitchBend::paint (Graphics& g)
@@ -82,7 +83,6 @@ void PitchBend::sliderValueChanged (Slider *slider)
     
 }
 
-void PitchBend:: sliderDragEnded(Slider *slider){
+void PitchBend::sliderDragEnded(Slider *slider){
     slider->setValue(0);
 }
-
