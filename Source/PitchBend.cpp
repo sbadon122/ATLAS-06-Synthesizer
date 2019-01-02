@@ -17,7 +17,6 @@ processor(p)
 {
     pitchBendSlider.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
     pitchBendSlider.setRange(-1.0f, 1.0f);
-    pitchBendSlider.setValue(0);
     pitchBendSlider.setTextBoxStyle(Slider::NoTextBox, true, 0, 0);
     addAndMakeVisible(&pitchBendSlider);
     pitchBendSlider.setLookAndFeel(&pitchBendLookAndFeel);

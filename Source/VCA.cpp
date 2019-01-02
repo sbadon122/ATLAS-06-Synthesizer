@@ -16,7 +16,7 @@ VCA::VCA(SynthFrameworkAudioProcessor& p) :
 processor(p)
 {
     vcaSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
-    vcaSlider.setRange(0, 2.5f);
+    vcaSlider.setRange(0, 1.0f);
     vcaSlider.setTextBoxStyle(Slider::TextBoxBelow, true, 0, 0);
     addAndMakeVisible(&vcaSlider);
     addAndMakeVisible(&vcaLabel);

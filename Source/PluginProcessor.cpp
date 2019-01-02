@@ -39,7 +39,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> lfoDelayParam (30.0f, 50000.0f);
     NormalisableRange<float> lfoFilterParam (0.1f, 5000.0f);
     NormalisableRange<float> hpfParam (10.0f, 6000.0f);
-    NormalisableRange<float> vcaParam (0, 2.5f);
+    NormalisableRange<float> vcaParam (0, 1.0f);
     NormalisableRange<float> noiseParam (0, 1);
     NormalisableRange<float> sawButtonParam (0, 1, 0);
     NormalisableRange<float> squareButtonParam (0, 1, 1);
@@ -73,7 +73,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("lfoDelay", "LfoDelay", "lfoDelay", lfoDelayParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("lfoFilterEnvelope", "LfoFilterEnvelope", "lfoFilterEnvelope", lfoFilterParam, 30.0f,nullptr , nullptr);
     tree->createAndAddParameter("hpf", "Hpf", "hpf", hpfParam, 10.0f,nullptr , nullptr);
-    tree->createAndAddParameter("vca", "Vca", "vca", vcaParam, 1.25f,nullptr , nullptr);
+    tree->createAndAddParameter("vca", "Vca", "vca", vcaParam, 0.5f,nullptr , nullptr);
     tree->createAndAddParameter("noise", "Noise", "noise", noiseParam, 0.0f,nullptr , nullptr);
     tree->createAndAddParameter("sawOsc", "SawOsc", "sawOsc", sawButtonParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("squareOsc", "SquareOsc", "squareOsc", squareButtonParam, 1,nullptr , nullptr);
@@ -88,7 +88,7 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     tree->createAndAddParameter("chorus2", "Chorus2", "chorus2", chorus2Param, 0,nullptr , nullptr);
     tree->createAndAddParameter("pwmMode", "PwmMode", "pwmMode", pwmModeToggle, 0,nullptr , nullptr);
     tree->createAndAddParameter("pitchBend", "PitchBend", "pitchBend", pitchBendParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("dcoSliderPitchBend", "DcoSliderPitchBend", "dcoSliderPitchBend", dcoSliderPitchBendParam, 0,nullptr , nullptr);
+    tree->createAndAddParameter("dcoSliderPitchBend", "DcoSliderPitchBend", "dcoSliderPitchBend", dcoSliderPitchBendParam, 0.125f,nullptr , nullptr);
     tree->createAndAddParameter("vcfSliderPitchBend", "VcfSliderPitchBend", "vcfSliderPitchBend", vcfSliderPitchBendParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("portamento", "Portamento", "portamento", portamentoParam, 0,nullptr , nullptr);
     tree->createAndAddParameter("portamentoToggle", "PortamentoToggle", "portamentoToggle", portamentoToggleParam, -1,nullptr , nullptr);
@@ -227,7 +227,6 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
 
         if ((myVoice = dynamic_cast<SynthVoice*>(mySynth.getVoice(i))))
         {
-            Value pitchBendValue = tree->getParameterAsValue("pitchBend");
             myVoice->getEnvelopeParams(tree->getRawParameterValue("attack"),
                                        tree->getRawParameterValue("decay"),
                                        tree->getRawParameterValue("sustain"),
@@ -250,7 +249,7 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
             myVoice->setLfoPwmSetting(tree->getRawParameterValue("lfoPwm"));
             myVoice->setPolarityModeSetting(tree->getRawParameterValue("polarityMode"));
             myVoice->setPwmMode(tree->getRawParameterValue("pwmMode"));
-            myVoice->setPitchBendSetting(&pitchBendValue);
+            myVoice->setPitchBendSetting(tree->getRawParameterValue("pitchBend"));
             myVoice->setDcoPitchBendSetting(tree->getRawParameterValue("dcoSliderPitchBend"));
             myVoice->setVcfPitchBendSetting(tree->getRawParameterValue("vcfSliderPitchBend"));
             myVoice->setPortamentoSetting(tree->getRawParameterValue("portamento"));
