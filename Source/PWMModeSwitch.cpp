@@ -33,7 +33,7 @@ processor(p)
     
 
 
-    pwmModeVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "pwmMode", pwmModeSlider);
+    pwmModeVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "pwmMode", pwmModeSlider);
 }
 
 PWMModeSwitch::~PWMModeSwitch()

@@ -30,6 +30,6 @@ private:
     SynthFrameworkAudioProcessor& processor;
     Slider lfoPitchSlider;
     Label lfoPitchLabel;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> lfoPitchVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> lfoPitchVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LFOPitch)
 };

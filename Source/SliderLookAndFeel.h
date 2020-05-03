@@ -32,9 +32,9 @@ struct SliderLookAndFeel    : public LookAndFeel_V4
                 float kx, ky;
                 kx = x + width * 0.5f;
                 ky = sliderPos;
-                g.fillRect (Rectangle<float> (kx - sliderRadius, ky - 2.5f, sliderRadius * 2.0f, 10.0f));
+                g.fillRect (juce::Rectangle<float> (kx - sliderRadius, ky - 2.5f, sliderRadius * 2.0f, 10.0f));
                 g.setColour(Colours::whitesmoke);
-                g.fillRect (Rectangle<float> (kx - sliderRadius * 0.5f, ky + 0.5f, sliderRadius, 2.0f));
+                g.fillRect (juce::Rectangle<float> (kx - sliderRadius * 0.5f, ky + 0.5f, sliderRadius, 2.0f));
         }
         else
         {
@@ -81,7 +81,7 @@ struct SliderLookAndFeel    : public LookAndFeel_V4
         auto sliderRadius = getSliderThumbRadius (slider) - 7.5f;
         Path on, off;
         auto ix = x + width * 0.5f - sliderRadius * 0.5f;
-        Rectangle<float> r (ix, y - sliderRadius * 0.5f, sliderRadius, height + sliderRadius);
+        juce::Rectangle<float> r (ix, y - sliderRadius * 0.5f, sliderRadius, height + sliderRadius);
         auto onH = r.getHeight() * ((float) slider.valueToProportionOfLength (slider.getValue()));
             
         on.addRectangle (r.removeFromBottom (onH));
@@ -96,8 +96,8 @@ struct SliderLookAndFeel    : public LookAndFeel_V4
         g.setColour(Colours::whitesmoke);
         for(int i = 0; i<11; i++){
             float thickness = i % 5  ? 0.5f : 2.0f;
-            g.fillRect (Rectangle<float> (x, y + spacing*i, width/2-sliderRadius, thickness));
-            g.fillRect (Rectangle<float> (x + width/2+sliderRadius, y + spacing*i, width/2-sliderRadius, thickness));
+            g.fillRect (juce::Rectangle<float> (x, y + spacing*i, width/2-sliderRadius, thickness));
+            g.fillRect (juce::Rectangle<float> (x + width/2+sliderRadius, y + spacing*i, width/2-sliderRadius, thickness));
         }
     }
     
@@ -125,9 +125,9 @@ struct SliderToggleLookAndFeel    : public LookAndFeel_V4
             float kx, ky;
             kx = x + width * 0.5f;
             ky = sliderPos;
-            g.fillRect (Rectangle<float> (kx - sliderRadius, ky - 2.5f, sliderRadius * 2.0f, 10.0f));
+            g.fillRect (juce::Rectangle<float> (kx - sliderRadius, ky - 2.5f, sliderRadius * 2.0f, 10.0f));
             g.setColour(Colours::whitesmoke);
-            g.fillRect (Rectangle<float> (kx - sliderRadius, ky + 1.5f, sliderRadius*2.0f, 2.0f));
+            g.fillRect (juce::Rectangle<float> (kx - sliderRadius, ky + 1.5f, sliderRadius*2.0f, 2.0f));
         }
         else
         {
@@ -155,7 +155,7 @@ struct SliderToggleLookAndFeel    : public LookAndFeel_V4
         auto sliderRadius = getSliderThumbRadius (slider) - 1.0f;
         Path on, off;
         auto ix = x + width * 0.5f - sliderRadius * 0.5f;
-        Rectangle<float> r (ix, y - sliderRadius * 0.5f, sliderRadius, height + sliderRadius);
+        juce::Rectangle<float> r (ix, y - sliderRadius * 0.5f, sliderRadius, height + sliderRadius);
         auto onH = r.getHeight() * ((float) slider.valueToProportionOfLength (slider.getValue()));
         
         on.addRectangle (r.removeFromBottom (onH));
@@ -192,12 +192,12 @@ struct PitchBendLookAndFeel    : public LookAndFeel_V4
             float kx, ky;
             kx = sliderPos;
             ky = x + height * 0.5f;
-            g.fillRect (Rectangle<float> (kx -5.0f, ky -  sliderRadius+0.2f, 10.0f, sliderRadius -0.2f));
+            g.fillRect (juce::Rectangle<float> (kx -5.0f, ky -  sliderRadius+0.2f, 10.0f, sliderRadius -0.2f));
             
             auto white = Colours::grey.withMultipliedAlpha(0.5f);
             g.setColour(white);
             auto calculatedOffset = (sliderPos-12.0f)/66.0f * 8.0f;
-            g.fillRect (Rectangle<float> (kx-5.0f+ calculatedOffset, ky -  sliderRadius+0.2f, 2.0f, sliderRadius -0.2f));
+            g.fillRect (juce::Rectangle<float> (kx-5.0f+ calculatedOffset, ky -  sliderRadius+0.2f, 2.0f, sliderRadius -0.2f));
         }
     
     }
@@ -226,9 +226,9 @@ struct PitchBendLookAndFeel    : public LookAndFeel_V4
         auto sliderRadius = getSliderThumbRadius (slider) - 1.0f;
         Path on, off;
         auto iy = x + height * 0.5f - sliderRadius;
-        Rectangle<float> r (x-sliderRadius*0.5f, iy ,width+ sliderRadius ,  sliderRadius);
+        juce::Rectangle<float> r (x-sliderRadius*0.5f, iy ,width+ sliderRadius ,  sliderRadius);
         g.setColour(Colours::black.withMultipliedAlpha(0.8f));
-        Rectangle<float> backgroundR (x-8.0f, iy - 2.0f ,width+ sliderRadius + 4.0f ,  sliderRadius+4.0f);
+        juce::Rectangle<float> backgroundR (x-8.0f, iy - 2.0f ,width+ sliderRadius + 4.0f ,  sliderRadius+4.0f);
         g.fillRect(backgroundR);
         auto onH = r.getWidth() * ((float) slider.valueToProportionOfLength (slider.getValue()));
         g.setGradientFill({black, r.getX(),r.getY(), grey,(r.getX()+r.getWidth()/2)*percent, r.getY()+r.getHeight(), true});
@@ -267,9 +267,9 @@ struct SliderPitchBendLookAndFeel    : public LookAndFeel_V4
             float kx, ky;
             kx = x + width * 0.5f;
             ky = sliderPos;
-            g.fillRect (Rectangle<float> (kx - sliderRadius, ky - 2.5f, sliderRadius * 2.0f, 10.0f));
+            g.fillRect (juce::Rectangle<float> (kx - sliderRadius, ky - 2.5f, sliderRadius * 2.0f, 10.0f));
             g.setColour(Colours::whitesmoke);
-            g.fillRect (Rectangle<float> (kx - sliderRadius * 0.5f, ky + 0.75f, sliderRadius, 1.0f));
+            g.fillRect (juce::Rectangle<float> (kx - sliderRadius * 0.5f, ky + 0.75f, sliderRadius, 1.0f));
         }
         else
         {
@@ -316,7 +316,7 @@ struct SliderPitchBendLookAndFeel    : public LookAndFeel_V4
         auto sliderRadius = getSliderThumbRadius (slider) - 7.5f;
         Path on, off;
         auto ix = x + width * 0.5f - sliderRadius * 0.5f;
-        Rectangle<float> r (ix, y - sliderRadius * 0.5f, sliderRadius, height + sliderRadius);
+        juce::Rectangle<float> r (ix, y - sliderRadius * 0.5f, sliderRadius, height + sliderRadius);
         auto onH = r.getHeight() * ((float) slider.valueToProportionOfLength (slider.getValue()));
         
         on.addRectangle (r.removeFromBottom (onH));
@@ -331,8 +331,8 @@ struct SliderPitchBendLookAndFeel    : public LookAndFeel_V4
         g.setColour(Colours::whitesmoke);
         for(int i = 0; i<11; i++){
             float thickness = i % 5  ? 0.25f : 1.0f;
-            g.fillRect (Rectangle<float> (x, y + spacing*i, width/2-sliderRadius, thickness));
-            g.fillRect (Rectangle<float> (x + width/2+sliderRadius, y + spacing*i, width/2-sliderRadius, thickness));
+            g.fillRect (juce::Rectangle<float> (x, y + spacing*i, width/2-sliderRadius, thickness));
+            g.fillRect (juce::Rectangle<float> (x + width/2+sliderRadius, y + spacing*i, width/2-sliderRadius, thickness));
         }
     }
     
@@ -519,7 +519,7 @@ struct RotaryLookAndFeel    : public LookAndFeel_V4
         if (slider.isHorizontal())
         {
             auto iy = y + height * 0.5f - sliderRadius * 0.5f;
-            Rectangle<float> r (x - sliderRadius * 0.5f, iy, width + sliderRadius, sliderRadius);
+            juce::Rectangle<float> r (x - sliderRadius * 0.5f, iy, width + sliderRadius, sliderRadius);
             auto onW = r.getWidth() * ((float) slider.valueToProportionOfLength (slider.getValue()));
             
             on.addRectangle (r.removeFromLeft (onW));
@@ -528,7 +528,7 @@ struct RotaryLookAndFeel    : public LookAndFeel_V4
         else
         {
             auto ix = x + width * 0.5f - sliderRadius * 0.5f;
-            Rectangle<float> r (ix, y - sliderRadius * 0.5f, sliderRadius, height + sliderRadius);
+            juce::Rectangle<float> r (ix, y - sliderRadius * 0.5f, sliderRadius, height + sliderRadius);
             auto onH = r.getHeight() * ((float) slider.valueToProportionOfLength (slider.getValue()));
             
             on.addRectangle (r.removeFromBottom (onH));

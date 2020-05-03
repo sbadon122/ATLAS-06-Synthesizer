@@ -33,9 +33,9 @@ private:
     SynthFrameworkAudioProcessor& processor;
     Slider vcaSlider;
     Label vcaLabel;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> vcaVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> vcaVal;
     
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> ampModeVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> ampModeVal;
     Slider ampModeSlider;
     Label ampLabel;
     Label gateLabel;

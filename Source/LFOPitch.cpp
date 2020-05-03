@@ -25,7 +25,7 @@ processor(p)
     lfoPitchLabel.attachToComponent(&lfoPitchSlider, false);
     lfoPitchLabel.setText("LFO Pitch", dontSendNotification);
     
-    lfoPitchVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoPitch", lfoPitchSlider);
+    lfoPitchVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "lfoPitch", lfoPitchSlider);
 }
 
 LFOPitch::~LFOPitch()

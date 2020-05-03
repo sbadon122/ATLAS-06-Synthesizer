@@ -37,6 +37,6 @@ private:
     Label zeroLabel2;
     Label fiveLabel2;
     Label tenLabel2;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> hfpVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> hfpVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HPF)
 };

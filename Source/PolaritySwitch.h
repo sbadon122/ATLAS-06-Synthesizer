@@ -28,7 +28,7 @@ public:
 
 private:
     SynthFrameworkAudioProcessor& processor;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> polarityModeVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> polarityModeVal;
     Slider polarityModeSlider;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PolaritySwitch)

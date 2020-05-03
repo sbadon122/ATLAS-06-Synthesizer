@@ -33,6 +33,6 @@ private:
     Label zeroLabel1;
     Label fiveLabel1;
     Label tenLabel1;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> lfoPwmVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> lfoPwmVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LFOPWM)
 };

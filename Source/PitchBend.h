@@ -35,9 +35,9 @@ private:
     Slider pitchBendSlider;
     Slider dcoSlider;
     Slider vcfSlider;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> pitchBendVal;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> dcoSliderVal;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> vcfSliderVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> pitchBendVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> dcoSliderVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> vcfSliderVal;
     PitchBendLookAndFeel pitchBendLookAndFeel;
     SliderPitchBendLookAndFeel sliderLookAndFeel;
     Label dcoLabel         { {}, "DCO"};

@@ -25,8 +25,8 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
 #endif
 {
     checkSynthLicense();
-    mUndoManager = new UndoManager();
-    tree =  new AudioProcessorValueTreeState (*this, mUndoManager);
+    mUndoManager = std::make_unique< UndoManager >();
+    tree =  std::make_unique<AudioProcessorValueTreeState> (*this, mUndoManager.get());
     //need these normalisable range objects for the tree state below this
     NormalisableRange<float> attackParam (0.1f, 5000.0f);
     NormalisableRange<float> decayParam (1.0f, 2000.0f);
@@ -62,44 +62,44 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
     NormalisableRange<float> ampParam (0, 1);
     
     //params that make it possible to set/get states and automate parameters in your DAW.  Also connects values between the slider and the values here
-    tree->createAndAddParameter("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr);
-    tree->createAndAddParameter("decay", "Decay", "decay", decayParam, 1.0f, nullptr, nullptr);
-    tree->createAndAddParameter("sustain", "Sustain", "sustain", sustainParam, 0.8f, nullptr, nullptr);
-    tree->createAndAddParameter("release", "Release", "release", releaseParam, 5.0f, nullptr, nullptr);
-    tree->createAndAddParameter("cutoff", "Cutoff", "cutoff", filterParam, 4000.0f,nullptr , nullptr);
-    tree->createAndAddParameter("resonance", "Resonance", "resonance", resonanceParam, 1.0f,nullptr , nullptr);
-    tree->createAndAddParameter("filterEnvelope", "FilterEnvelope", "filterEnvelope", filterEnvelopeParam, 30.0f,nullptr , nullptr);
-    tree->createAndAddParameter("lfoRate", "LfoRate", "lfoRate", lfoRateParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("lfoDelay", "LfoDelay", "lfoDelay", lfoDelayParam, 30.0f,nullptr , nullptr);
-    tree->createAndAddParameter("lfoFilterEnvelope", "LfoFilterEnvelope", "lfoFilterEnvelope", lfoFilterParam, 30.0f,nullptr , nullptr);
-    tree->createAndAddParameter("hpf", "Hpf", "hpf", hpfParam, 10.0f,nullptr , nullptr);
-    tree->createAndAddParameter("vca", "Vca", "vca", vcaParam, 0.5f,nullptr , nullptr);
-    tree->createAndAddParameter("noise", "Noise", "noise", noiseParam, 0.0f,nullptr , nullptr);
-    tree->createAndAddParameter("sawOsc", "SawOsc", "sawOsc", sawButtonParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("squareOsc", "SquareOsc", "squareOsc", squareButtonParam, 1,nullptr , nullptr);
-    tree->createAndAddParameter("subOsc", "SubOsc", "subOsc", subOscParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("range4", "Range4", "range4", pitchRangeParam, 1,nullptr , nullptr);
-    tree->createAndAddParameter("range8", "Range8", "range8", pitchRangeParam2, 0,nullptr , nullptr);
-    tree->createAndAddParameter("range16", "Range16", "range16", pitchRangeParam3, 0,nullptr , nullptr);
-    tree->createAndAddParameter("pwm", "Pwm", "pwm", pwmParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("lfoPitch", "LfoPitch", "lfoPitch", lfoPitchParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("lfoPwm", "LfoPwm", "lfoPwm", lfoPwmParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("chorus1", "Chorus1", "chorus1", chorus1Param, 0,nullptr , nullptr);
-    tree->createAndAddParameter("chorus2", "Chorus2", "chorus2", chorus2Param, 0,nullptr , nullptr);
-    tree->createAndAddParameter("pwmMode", "PwmMode", "pwmMode", pwmModeToggle, 0,nullptr , nullptr);
-    tree->createAndAddParameter("pitchBend", "PitchBend", "pitchBend", pitchBendParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("dcoSliderPitchBend", "DcoSliderPitchBend", "dcoSliderPitchBend", dcoSliderPitchBendParam, 0.125f,nullptr , nullptr);
-    tree->createAndAddParameter("vcfSliderPitchBend", "VcfSliderPitchBend", "vcfSliderPitchBend", vcfSliderPitchBendParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("portamento", "Portamento", "portamento", portamentoParam, 0,nullptr , nullptr);
-    tree->createAndAddParameter("portamentoToggle", "PortamentoToggle", "portamentoToggle", portamentoToggleParam, -1,nullptr , nullptr);
-    tree->createAndAddParameter("ampMode", "AmpMode", "ampMode", ampParam, 1,nullptr , nullptr);
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("attack", "Attack", "attack", attackParam, 0.1f, nullptr, nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("decay", "Decay", "decay", decayParam, 1.0f, nullptr, nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("sustain", "Sustain", "sustain", sustainParam, 0.8f, nullptr, nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("release", "Release", "release", releaseParam, 5.0f, nullptr, nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("cutoff", "Cutoff", "cutoff", filterParam, 4000.0f,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("resonance", "Resonance", "resonance", resonanceParam, 1.0f,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("filterEnvelope", "FilterEnvelope", "filterEnvelope", filterEnvelopeParam, 30.0f,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("lfoRate", "LfoRate", "lfoRate", lfoRateParam, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("lfoDelay", "LfoDelay", "lfoDelay", lfoDelayParam, 30.0f,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("lfoFilterEnvelope", "LfoFilterEnvelope", "lfoFilterEnvelope", lfoFilterParam, 30.0f,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("hpf", "Hpf", "hpf", hpfParam, 10.0f,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("vca", "Vca", "vca", vcaParam, 0.5f,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("noise", "Noise", "noise", noiseParam, 0.0f,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("sawOsc", "SawOsc", "sawOsc", sawButtonParam, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("squareOsc", "SquareOsc", "squareOsc", squareButtonParam, 1,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("subOsc", "SubOsc", "subOsc", subOscParam, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("range4", "Range4", "range4", pitchRangeParam, 1,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("range8", "Range8", "range8", pitchRangeParam2, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("range16", "Range16", "range16", pitchRangeParam3, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("pwm", "Pwm", "pwm", pwmParam, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("lfoPitch", "LfoPitch", "lfoPitch", lfoPitchParam, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("lfoPwm", "LfoPwm", "lfoPwm", lfoPwmParam, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("chorus1", "Chorus1", "chorus1", chorus1Param, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("chorus2", "Chorus2", "chorus2", chorus2Param, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("pwmMode", "PwmMode", "pwmMode", pwmModeToggle, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("pitchBend", "PitchBend", "pitchBend", pitchBendParam, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("dcoSliderPitchBend", "DcoSliderPitchBend", "dcoSliderPitchBend", dcoSliderPitchBendParam, 0.125f,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("vcfSliderPitchBend", "VcfSliderPitchBend", "vcfSliderPitchBend", vcfSliderPitchBendParam, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("portamento", "Portamento", "portamento", portamentoParam, 0,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("portamentoToggle", "PortamentoToggle", "portamentoToggle", portamentoToggleParam, -1,nullptr , nullptr));
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("ampMode", "AmpMode", "ampMode", ampParam, 1,nullptr , nullptr));
     
     
-    tree->createAndAddParameter("polarityMode", "PolarityMode", "polarityMode", polarityModeToggle, 1,nullptr , nullptr);
+    tree->createAndAddParameter(std::make_unique<AudioProcessorValueTreeState::Parameter>("polarityMode", "PolarityMode", "polarityMode", polarityModeToggle, 1,nullptr , nullptr));
     
     tree->state = ValueTree ("synth");
     
-    initState.reset(tree->state.createXml());
+    initState = tree->state.createXml();
     mySynth.clearVoices();
     
     for (int i = 0; i < 5; i++)
@@ -286,7 +286,7 @@ void SynthFrameworkAudioProcessor::getStateInformation (MemoryBlock& destData)
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
     
-    ScopedPointer <XmlElement> xml (tree->state.createXml());
+    std::unique_ptr<XmlElement> xml (tree->state.createXml());
     copyXmlToBinary(*xml, destData);
 }
 
@@ -294,7 +294,7 @@ void SynthFrameworkAudioProcessor::setStateInformation (const void* data, int si
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-    ScopedPointer <XmlElement> paramsXml (getXmlFromBinary(data,sizeInBytes));
+    std::unique_ptr<XmlElement> paramsXml (getXmlFromBinary(data,sizeInBytes));
     
     if( paramsXml != nullptr) {
         if(paramsXml -> hasTagName(tree->state.getType())) {
@@ -320,14 +320,14 @@ void SynthFrameworkAudioProcessor::checkSynthLicense (){
         return;
     
     std::string fileText =  file.loadFileAsString().toStdString();
-    char encryptedText[fileText.size()+1];
+    std::string encryptedText = fileText;
     
     const char* strdata = fileText.c_str();
     for (int i = 0; i < fileText.length(); ++i){
        char c =  strdata[i] - 2;
        encryptedText[i] = c;
     }
-    CharPointer_UTF8 utf8CharPointer(encryptedText);
+    CharPointer_UTF8 utf8CharPointer(encryptedText.c_str());
     String decryptedText(utf8CharPointer);
     String activated = decryptedText.substring(0, 21);
     if(activated.compare(activationString) == 0 ) {

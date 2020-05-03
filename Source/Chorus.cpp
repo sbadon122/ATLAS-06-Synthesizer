@@ -21,7 +21,7 @@ processor(p)
     chorus1Label.setText("i", dontSendNotification);
     chorus1Label.setFont (Font (12.0f, Font::plain));
     chorus1Label.setJustificationType(Justification::centred);
-    chorus1Val = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "chorus1", chorus1Button);
+    chorus1Val = std::make_unique<AudioProcessorValueTreeState::ButtonAttachment> (*processor.tree, "chorus1", chorus1Button);
     
     chorus2Button.setClickingTogglesState (true);
     addAndMakeVisible (chorus2Label);
@@ -29,7 +29,7 @@ processor(p)
     chorus2Label.setText("ii", dontSendNotification);
     chorus2Label.setFont (Font (12.0f, Font::plain));
     chorus2Label.setJustificationType(Justification::centred);
-    chorus2Val = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "chorus2", chorus2Button);
+    chorus2Val = std::make_unique<AudioProcessorValueTreeState::ButtonAttachment> (*processor.tree, "chorus2", chorus2Button);
     
     chorus1Button.addListener(this);
     chorus2Button.addListener(this);

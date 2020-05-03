@@ -51,7 +51,7 @@ processor(p)
     tenLabel2.setText("10", dontSendNotification);
     tenLabel2.setFont (Font (numberFontSize, Font::bold));
     
-    hfpVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "hpf", hpfSlider);
+    hfpVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "hpf", hpfSlider);
 
 }
 

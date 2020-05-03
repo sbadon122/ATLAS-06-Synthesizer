@@ -61,8 +61,8 @@ public:
     void checkSynthLicense ();
     String getOwnersName();
 
-    ScopedPointer<AudioProcessorValueTreeState> tree;
-    ScopedPointer<UndoManager>                  mUndoManager;
+    std::unique_ptr<AudioProcessorValueTreeState> tree;
+    std::unique_ptr<UndoManager>                  mUndoManager;
     MidiKeyboardState                           keyboardState;
 
 private:
@@ -74,7 +74,7 @@ private:
     std::unique_ptr<XmlElement> initState;
     String  activationString = "Vega-06 Activated to:";
     String  synthOwner = "Not registered";
-    Boolean  synthIsRegistered = true;
+    bool  synthIsRegistered = true;
    
     
      JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthFrameworkAudioProcessor)

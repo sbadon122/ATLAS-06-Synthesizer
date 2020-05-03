@@ -23,7 +23,7 @@ processor(p)
     
     
     
-    polarityModeVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "polarityMode", polarityModeSlider);
+    polarityModeVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "polarityMode", polarityModeSlider);
 }
 
 PolaritySwitch::~PolaritySwitch()

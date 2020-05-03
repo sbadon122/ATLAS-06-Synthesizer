@@ -38,10 +38,10 @@ private:
     Label sustainLabel         { {}, "S"};
     Label releaseLabel         { {}, "R"};
     
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> attackVal;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> decayVal;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> sustainVal;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> releaseVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> attackVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> decayVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> sustainVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> releaseVal;
     Label zeroLabel1;
     Label fiveLabel1;
     Label tenLabel1;

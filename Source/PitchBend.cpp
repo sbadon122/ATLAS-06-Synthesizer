@@ -22,7 +22,7 @@ processor(p)
     pitchBendSlider.setLookAndFeel(&pitchBendLookAndFeel);
     pitchBendSlider.addListener(this);
     
-    pitchBendVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "pitchBend", pitchBendSlider);
+    pitchBendVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "pitchBend", pitchBendSlider);
     
     dcoSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
     dcoSlider.setRange(0, 1.0f);
@@ -32,7 +32,7 @@ processor(p)
     addAndMakeVisible(&dcoSlider);
 
     
-    dcoSliderVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "dcoSliderPitchBend", dcoSlider);
+    dcoSliderVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "dcoSliderPitchBend", dcoSlider);
     
     vcfSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
     vcfSlider.setRange(0, 4000.0f);
@@ -42,7 +42,7 @@ processor(p)
     addAndMakeVisible(&vcfSlider);
     
     
-    vcfSliderVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "vcfSliderPitchBend", vcfSlider);
+    vcfSliderVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "vcfSliderPitchBend", vcfSlider);
     
     addAndMakeVisible(&dcoLabel);
     dcoLabel.setJustificationType(Justification::centred);
