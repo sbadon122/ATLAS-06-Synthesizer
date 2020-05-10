@@ -34,6 +34,6 @@ private:
     Label zeroLabel1;
     Label fiveLabel1;
     Label tenLabel1;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> noiseVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> noiseVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Noise)
 };

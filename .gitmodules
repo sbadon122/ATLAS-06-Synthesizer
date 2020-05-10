@@ -1,0 +1,6 @@
+[submodule "lib/JUCE"]
+	path = lib/JUCE
+	url = https://github.com/juce-framework/JUCE
+[submodule "lib/Maximilian"]
+	path = lib/Maximilian
+	url = https://github.com/micknoise/Maximilian.git

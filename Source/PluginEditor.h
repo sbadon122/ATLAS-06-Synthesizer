@@ -60,7 +60,7 @@ public:
     void drawSawLabel(float x, float y, int size, float thickness, Graphics& g);
     void drawDCOLabelLines(float x, float y, float width, float thickness, Graphics& g);
     void drawSeparatingWhiteLines(float x, float y, float height, float thickness, Graphics& g);
-    void drawPolarityModeLabel(float x, float y, float size,  float thickness, Boolean flip, Graphics& g);
+    void drawPolarityModeLabel(float x, float y, float size,  float thickness, bool flip, Graphics& g);
     void drawGateLabel(float x, float y, int size, float thickness, Graphics& g);
     void drawAmpWhiteLabelLine(float x, float y,  float thickness, Graphics& g);
     void drawEnvWhiteLabelLine(float x, float y,  float thickness, Graphics& g);

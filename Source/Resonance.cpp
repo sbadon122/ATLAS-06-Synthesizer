@@ -37,7 +37,7 @@ processor(p)
     tenLabel1.setText("10", dontSendNotification);
     tenLabel1.setFont (Font (numberFontSize, Font::bold));
     
-    resonanceVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "resonance", resonanceSlider);
+    resonanceVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "resonance", resonanceSlider);
 
 }
 

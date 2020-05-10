@@ -33,6 +33,6 @@ private:
     SynthFrameworkAudioProcessor& processor;
     TextButton squareButton    { "" };
     Label squareLabel         { {}, ""};
-    ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> squareVal;
+    std::unique_ptr<AudioProcessorValueTreeState::ButtonAttachment> squareVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquareOscillator)
 };

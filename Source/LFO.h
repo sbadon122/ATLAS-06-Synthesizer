@@ -40,7 +40,7 @@ private:
     Label zeroLabel2;
     Label fiveLabel2;
     Label tenLabel2;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> lfoRateVal;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> lfoDelayVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> lfoRateVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> lfoDelayVal;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LFO)
 };

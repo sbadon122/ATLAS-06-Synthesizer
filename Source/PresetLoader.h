@@ -48,8 +48,8 @@ private:
     void     buttonClicked (Button *) override;
     void     buttonStateChanged (Button *) override;
     Slider   portamentoSlider;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> portamentoVal;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> portamentoToggleVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> portamentoVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> portamentoToggleVal;
     Slider portamentoToggle;
     
     //LookAndFeel

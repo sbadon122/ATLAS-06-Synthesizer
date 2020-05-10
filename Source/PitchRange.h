@@ -34,15 +34,15 @@ private:
     SynthFrameworkAudioProcessor& processor;
     TextButton range4Button    { "" };
     Label range4Label         { {}, "4'"};
-    ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> range4Val;
+    std::unique_ptr<AudioProcessorValueTreeState::ButtonAttachment> range4Val;
     
     TextButton range8Button    { "" };
     Label range8Label         { {}, "8'"};
-    ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> range8Val;
+    std::unique_ptr<AudioProcessorValueTreeState::ButtonAttachment> range8Val;
     
     TextButton range16Button    { "" };
     Label range16Label         { {}, "16'"};
-    ScopedPointer<AudioProcessorValueTreeState::ButtonAttachment> range16Val;
+    std::unique_ptr<AudioProcessorValueTreeState::ButtonAttachment> range16Val;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PitchRange)
 };

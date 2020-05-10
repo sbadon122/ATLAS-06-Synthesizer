@@ -26,7 +26,7 @@ processor(p)
     lfoFilterEnvelopeLabel.setText("LFO", dontSendNotification);
     lfoFilterEnvelopeLabel.setFont (Font (12.0f, Font::plain));
     lfoFilterEnvelopeLabel.setJustificationType(Justification::centred);
-    lfoFilterEnvelopeVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoFilterEnvelope", lfoFilterEnvelopeSlider);
+    lfoFilterEnvelopeVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "lfoFilterEnvelope", lfoFilterEnvelopeSlider);
 
     addAndMakeVisible(&zeroLabel1);
     zeroLabel1.setText("0", dontSendNotification);

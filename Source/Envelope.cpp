@@ -89,10 +89,10 @@ processor(p)
 
     
         //sends value of the sliders to the tree state in the processor
-        attackVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "attack", attackSlider);
-        decayVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "decay", decaySlider);
-        sustainVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "sustain", sustainSlider);
-        releaseVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "release", releaseSlider);
+        attackVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "attack", attackSlider);
+        decayVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "decay", decaySlider);
+        sustainVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "sustain", sustainSlider);
+        releaseVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "release", releaseSlider);
 
 }
 

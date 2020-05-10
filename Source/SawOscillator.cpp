@@ -17,7 +17,7 @@ processor(p)
 {
     sawButton.setClickingTogglesState (true);
     addAndMakeVisible (sawButton);
-    sawVal = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "sawOsc", sawButton);
+    sawVal = std::make_unique<AudioProcessorValueTreeState::ButtonAttachment> (*processor.tree, "sawOsc", sawButton);
     sawButton.addListener(this);
 }
 

@@ -18,7 +18,7 @@ processor(p)
     squareButton.setClickingTogglesState (true);
     addAndMakeVisible (squareLabel);
     addAndMakeVisible (squareButton);
-    squareVal = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "squareOsc", squareButton);
+    squareVal = std::make_unique<AudioProcessorValueTreeState::ButtonAttachment> (*processor.tree, "squareOsc", squareButton);
     squareButton.addListener(this);
 
 }

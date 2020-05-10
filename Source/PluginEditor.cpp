@@ -166,10 +166,10 @@ void SynthFrameworkAudioProcessorEditor::paint (Graphics& g)
 
 void SynthFrameworkAudioProcessorEditor::resized()
 {
-    Rectangle<int> area = getLocalBounds();
+    juce::Rectangle<int> area = getLocalBounds();
     area.translate(5, 20);
     
-    Rectangle<int> area2 = getLocalBounds();
+    juce::Rectangle<int> area2 = getLocalBounds();
     area2.translate(5, 175);
     
     //Labels
@@ -312,7 +312,7 @@ void SynthFrameworkAudioProcessorEditor::drawSeparatingWhiteLines(float x, float
     
 }
 
-void SynthFrameworkAudioProcessorEditor::drawPolarityModeLabel(float x, float y, float size,  float thickness, Boolean flip, Graphics& g){
+void SynthFrameworkAudioProcessorEditor::drawPolarityModeLabel(float x, float y, float size,  float thickness, bool flip, Graphics& g){
     g.setColour(Colours::whitesmoke);
     float lineLength = 5.0f*size;
     float tempY = flip ? y+lineLength : y-lineLength;

@@ -39,7 +39,7 @@ processor(p)
     tenLabel1.setText("10", dontSendNotification);
     tenLabel1.setFont (Font (numberFontSize, Font::bold));
     
-    noiseVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "noise", noiseSlider);
+    noiseVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "noise", noiseSlider);
 
 
 }

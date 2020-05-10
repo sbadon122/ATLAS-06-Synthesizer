@@ -18,7 +18,7 @@ processor(p)
     range4Button.setClickingTogglesState (true);
     addAndMakeVisible (range4Label);
     addAndMakeVisible (range4Button);
-    range4Val = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "range4", range4Button);
+    range4Val = std::make_unique<AudioProcessorValueTreeState::ButtonAttachment> (*processor.tree, "range4", range4Button);
     //range4Label.attachToComponent(&range4Button, false);
     range4Label.setText(" 4'", dontSendNotification);
     range4Label.setFont (Font (10.0f, Font::plain));
@@ -27,7 +27,7 @@ processor(p)
     range8Button.setClickingTogglesState (true);
     addAndMakeVisible (range8Label);
     addAndMakeVisible (range8Button);
-    range8Val = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "range8", range8Button);
+    range8Val = std::make_unique<AudioProcessorValueTreeState::ButtonAttachment> (*processor.tree, "range8", range8Button);
     //range8Label.attachToComponent(&range8Button, false);
     range8Label.setText(" 8'", dontSendNotification);
     range8Label.setFont (Font (10.0f, Font::plain));
@@ -36,7 +36,7 @@ processor(p)
     range16Button.setClickingTogglesState (true);
     addAndMakeVisible (range16Label);
     addAndMakeVisible (range16Button);
-    range16Val = new AudioProcessorValueTreeState::ButtonAttachment (*processor.tree, "range16", range16Button);
+    range16Val = std::make_unique<AudioProcessorValueTreeState::ButtonAttachment> (*processor.tree, "range16", range16Button);
    // range16Label.attachToComponent(&range16Button, false);
     range16Label.setText("16'", dontSendNotification);
     range16Label.setFont (Font (10.0f, Font::plain));

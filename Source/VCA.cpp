@@ -25,7 +25,7 @@ processor(p)
     vcaLabel.setFont (Font (12.0f, Font::plain));
     vcaLabel.setJustificationType(Justification::centred);
     
-    vcaVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "vca", vcaSlider);
+    vcaVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "vca", vcaSlider);
     
     ampModeSlider.setSliderStyle(Slider::SliderStyle::LinearVertical);
     ampModeSlider.setRange(0, 1);
@@ -45,7 +45,7 @@ processor(p)
     
     
     
-    ampModeVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "ampMode", ampModeSlider);
+    ampModeVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "ampMode", ampModeSlider);
     
     addAndMakeVisible(&zeroLabel1);
     zeroLabel1.setText("-5", dontSendNotification);

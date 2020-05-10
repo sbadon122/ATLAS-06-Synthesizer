@@ -41,8 +41,8 @@ processor(p)
     lfoDelayLabel.setJustificationType(Justification::centred);
     lfoDelayLabel.setFont (Font (12.0f, Font::plain));
     
-    lfoRateVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoRate", lfoRateSlider);
-    lfoDelayVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "lfoDelay", lfoDelaySlider);
+    lfoRateVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "lfoRate", lfoRateSlider);
+    lfoDelayVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "lfoDelay", lfoDelaySlider);
     
     addAndMakeVisible(&zeroLabel1);
     zeroLabel1.setText("0", dontSendNotification);

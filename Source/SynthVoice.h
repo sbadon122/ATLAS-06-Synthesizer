@@ -22,7 +22,7 @@ class SynthVoice : public SynthesiserVoice
         return dynamic_cast<SynthSound*>(sound) != nullptr;
     }
     
-    void getEnvelopeParams(float* attack, float* decay, float* sustain, float* release)
+    void getEnvelopeParams(std::atomic<float>* attack, std::atomic<float>* decay, std::atomic<float>* sustain, std::atomic<float>* release)
     {
         if(ampMode){
             env1.setAttack(*attack);
@@ -38,46 +38,46 @@ class SynthVoice : public SynthesiserVoice
         }
     }
     
-    void setCutoffSound(float* setting)
+    void setCutoffSound(std::atomic<float>* setting)
     {
         cutoffSetting = *setting;
     }
     
-    void setFitlerResonance(float* setting)
+    void setFitlerResonance(std::atomic<float>* setting)
     {
         resonanceSetting = *setting;
     }
     
-    void setAmpMode(float* setting)
+    void setAmpMode(std::atomic<float>* setting)
     {
         ampMode = *setting == 1;
     }
     
-    void setFilterEnvelopeSetting(float* setting)
+    void setFilterEnvelopeSetting(std::atomic<float>* setting)
     {
         filterEnvelopeSetting = *setting;
     }
     
-    void setPolarityModeSetting(float* setting) {
+    void setPolarityModeSetting(std::atomic<float>* setting) {
         polarityModeSetting = *setting;
     }
     
-    void setLfoFilterEnvelopeSetting(float* setting)
+    void setLfoFilterEnvelopeSetting(std::atomic<float>* setting)
     {
         lfoFilterEnvelopeSetting = *setting;
     }
     
-    void setLfoRateSetting(float* setting)
+    void setLfoRateSetting(std::atomic<float>* setting)
     {
         lfoRateSetting = *setting;
     }
     
-    void setPortomentoToggle(float* setting)
+    void setPortomentoToggle(std::atomic<float>* setting)
     {
         portamentoToggleSetting = *setting == -1.0f ? false : true;
     }
     
-    void setLfoDelaySetting(float* setting)
+    void setLfoDelaySetting(std::atomic<float>* setting)
     {
         lfoEnv.setAttack(*setting);
         lfoEnv.setDecay(1.0f);
@@ -86,55 +86,54 @@ class SynthVoice : public SynthesiserVoice
         lfoDelaySetting = *setting;
     }
     
-    void setHpfSetting(float* setting)
+    void setHpfSetting(std::atomic<float>* setting)
     {
         hpfSetting = *setting;
     }
     
-    void setVcaSetting(float* setting)
+    void setVcaSetting(std::atomic<float>* setting)
     {
         vcaSetting = *setting;
     }
     
-    void setPitchBendSetting(float* setting)
+    void setPitchBendSetting(std::atomic<float>* setting)
     {
-
-        pitchBendPosition = midiPitchWheel != 0 ? midiPitchWheel : *setting;
+        pitchBendPosition = ( midiPitchWheel != 0 ) ? midiPitchWheel : (double)*setting;
         pitchBendSetting = pitchBendPosition*dcoSliderPitchBendSetting;
     }
     
     
-    void setNoiseSetting(float* setting)
+    void setNoiseSetting(std::atomic<float>* setting)
     {
         noiseSetting = *setting;
     }
     
-    void setPortamentoSetting(float* setting)
+    void setPortamentoSetting(std::atomic<float>* setting)
     {
         portamentoSetting = *setting;
         
     }
     
-    void setPwmMode(float* setting){
+    void setPwmMode(std::atomic<float>* setting){
         pwmModeSetting = *setting;
     }
     
-    void setSawOscSetting(float* setting)
+    void setSawOscSetting(std::atomic<float>* setting)
     {
         sawOscSetting = *setting;
     }
     
-    void setSquareOscSetting(float* setting)
+    void setSquareOscSetting(std::atomic<float>* setting)
     {
         squareOscSetting = *setting;
     }
     
-    void setSubOscSetting(float* setting)
+    void setSubOscSetting(std::atomic<float>* setting)
     {
         subOscSetting = *setting;
     }
     
-    void setPitchRangeSetting(float* range4, float* range8, float* range16)
+    void setPitchRangeSetting(std::atomic<float>* range4, std::atomic<float>* range8, std::atomic<float>* range16)
     {
         if(*range4 == 1) {
             pitchRangeSetting = 0;
@@ -147,16 +146,16 @@ class SynthVoice : public SynthesiserVoice
         }
     }
     
-    void setPwmSetting(float* setting)
+    void setPwmSetting(std::atomic<float>* setting)
     {
         pwmSetting = *setting;
     }
     
-    void setDcoPitchBendSetting(float* setting)
+    void setDcoPitchBendSetting(std::atomic<float>* setting)
     {
         dcoSliderPitchBendSetting = *setting;
     }
-    void setVcfPitchBendSetting(float* setting)
+    void setVcfPitchBendSetting(std::atomic<float>* setting)
     {
         vcfSliderPitchBendSetting = *setting;
     }
@@ -173,7 +172,7 @@ class SynthVoice : public SynthesiserVoice
         }
     }
     
-    void setChorus(float* chorus1, float* chorus2){
+    void setChorus(std::atomic<float>* chorus1, std::atomic<float>* chorus2){
         chorus1Setting = *chorus1;
         chorus2Setting = *chorus2;
     }
@@ -192,11 +191,11 @@ class SynthVoice : public SynthesiserVoice
     }
     
     
-    void setLfoPitchSetting(float* setting){
+    void setLfoPitchSetting(std::atomic<float>* setting){
         lfoPitchSetting = *setting;
     }
     
-    void setLfoPwmSetting(float* setting){
+    void setLfoPwmSetting(std::atomic<float>* setting){
         lfoPwmSetting = *setting;
     }
     
@@ -397,8 +396,8 @@ class SynthVoice : public SynthesiserVoice
     double vcfSliderPitchBendSetting;
     double portamentoSetting;
     double currentFrequency;
-    Boolean ampMode;
-    Boolean portamentoToggleSetting;
+    bool ampMode;
+    bool portamentoToggleSetting;
     double midiPitchWheel;
     
 };

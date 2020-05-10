@@ -88,8 +88,8 @@ processor(p)
     portamentoToggle.setLookAndFeel(&sliderToggle);
     addAndMakeVisible(&portamentoToggle);
 
-    portamentoVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "portamento", portamentoSlider);
-    portamentoToggleVal = new AudioProcessorValueTreeState::SliderAttachment (*processor.tree, "portamentoToggle", portamentoToggle);
+    portamentoVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "portamento", portamentoSlider);
+    portamentoToggleVal = std::make_unique<AudioProcessorValueTreeState::SliderAttachment> (*processor.tree, "portamentoToggle", portamentoToggle);
     fileComp->toFront(true);
 }
 

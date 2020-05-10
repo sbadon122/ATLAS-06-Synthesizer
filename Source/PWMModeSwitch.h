@@ -28,7 +28,7 @@ public:
 
 private:
     SynthFrameworkAudioProcessor& processor;
-    ScopedPointer<AudioProcessorValueTreeState::SliderAttachment> pwmModeVal;
+    std::unique_ptr<AudioProcessorValueTreeState::SliderAttachment> pwmModeVal;
     Slider pwmModeSlider;
     Label pwmModeLabel;
     Label manModeLabel;
