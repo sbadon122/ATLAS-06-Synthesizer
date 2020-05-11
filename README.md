@@ -11,3 +11,11 @@ A subtractive software synthesizer built using the JUCE framework. It currently 
 * Pitch Bend
 
 ![Alt text](ATLAS-06-screenshot.png?raw=true "ATLAS-06")
+
+
+## Build
+git clone https://github.com/sbadon122/ATLAS-06-Synthesizer.git
+cd ATLASE-06-Synthesizer
+git submodule update --init --recursive
+cmake -Bbuild  # mac man want cmake -Bbuild -GXcode
+cmake --build build --config Release
