@@ -15,7 +15,7 @@ A subtractive software synthesizer built using the JUCE framework. It currently 
 
 ## Build
 * git clone https://github.com/sbadon122/ATLAS-06-Synthesizer.git
-* cd ATLASE-06-Synthesizer
+* cd ATLAS-06-Synthesizer
 * git submodule update --init --recursive
 * cmake -Bbuild  # mac man want cmake -Bbuild -GXcode
 * cmake --build build --config Release
